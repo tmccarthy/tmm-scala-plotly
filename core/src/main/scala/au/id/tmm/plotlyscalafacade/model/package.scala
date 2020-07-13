@@ -13,7 +13,9 @@ package object model {
 
   type Date = LocalDateTime // TODO is this right?
 
-  // string | number | Date | null;
+  type CategoryIndex = Int
+
+  // TODO string | number | Date | null;
   type Datum = Nothing
 
   type Partial[A] = A // TODO find some way of handling this
@@ -42,6 +44,38 @@ package object model {
         ev(t) match {
           case Value(a) => Encoder[A].apply(a)
           case False    => Json.fromBoolean(false)
+        }
+      }
+  }
+
+  @silent("define classes/objects inside of package objects")
+  sealed trait BooleanOr[+A]
+
+  object BooleanOr {
+    final case class Value[A](a: A)                 extends BooleanOr[A]
+    final case class BooleanValue(boolean: Boolean) extends BooleanOr[Nothing]
+
+    implicit def plotlyFacadeEncoderForBooleanOr[A : Encoder, T](implicit ev: T <:< BooleanOr[A]): Encoder[T] =
+      Encoder[T] { t =>
+        ev(t) match {
+          case Value(a)        => Encoder[A].apply(a)
+          case BooleanValue(b) => Json.fromBoolean(b)
+        }
+      }
+  }
+
+  @silent("define classes/objects inside of package objects")
+  sealed trait BlankOr[+A]
+
+  object BlankOr {
+    final case class Value[A](a: A) extends BlankOr[A]
+    case object Blank               extends BlankOr[Nothing]
+
+    implicit def plotlyFacadeEncoderForBlankOr[A : Encoder, T](implicit ev: T <:< BlankOr[A]): Encoder[T] =
+      Encoder[T] { t =>
+        ev(t) match {
+          case Value(a) => Encoder[A].apply(a)
+          case Blank    => Encoder[String].apply("")
         }
       }
   }

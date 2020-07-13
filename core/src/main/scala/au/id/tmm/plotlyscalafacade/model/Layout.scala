@@ -49,7 +49,7 @@ final case class Layout(
   font: Partial[Font],
   scene: Partial[Scene],
   barmode: Layout.BarMode,
-  barnorm: Layout.BarNormalisation,
+  barnorm: BlankOr[Layout.BarNormalisation],
   bargap: Number,
   bargroupgap: Number,
   selectdirection: Layout.SelectDirection,
@@ -185,7 +185,6 @@ object Layout {
   sealed abstract class BarNormalisation(val asString: String) extends JSEnum
 
   object BarNormalisation {
-    case object None     extends BarNormalisation("")
     case object Fraction extends BarNormalisation("fraction")
     case object Percent  extends BarNormalisation("percent")
   }

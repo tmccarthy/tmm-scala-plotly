@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade
 
+import java.time.LocalDateTime
+
 import com.github.ghik.silencer.silent
 
 package object model {
@@ -7,6 +9,8 @@ package object model {
   type Number = Double
 
   type NumberArray = Seq[Number]
+
+  type Date = LocalDateTime // TODO is this right?
 
   // string | number | Date | null;
   type Datum = Nothing

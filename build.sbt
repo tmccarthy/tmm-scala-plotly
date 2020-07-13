@@ -12,8 +12,13 @@ lazy val root = project
     core,
   )
 
+val circeVersion = "0.14.0-M1"
+
 lazy val core = project
   .in(file("core"))
   .settings(settingsHelper.settingsForSubprojectCalled("core"))
+  .settings(
+    libraryDependencies += "io.circe" %% "circe-core" % circeVersion,
+  )
 
 addCommandAlias("check", ";+test;scalafmtCheckAll")

@@ -3,6 +3,7 @@ package au.id.tmm.plotlyscalafacade
 import java.time.LocalDateTime
 
 import com.github.ghik.silencer.silent
+import io.circe.{Encoder, Json}
 
 package object model {
 
@@ -23,6 +24,26 @@ package object model {
   @silent("define classes/objects inside of package objects")
   trait JSEnum {
     def asString: String
+  }
+
+  object JSEnum {
+    implicit def plotlyFacadeEncoderForJsEnum[T <: JSEnum]: Encoder[T] = Encoder[String].contramap(_.asString)
+  }
+
+  @silent("define classes/objects inside of package objects")
+  sealed trait FalseOr[+A]
+
+  object FalseOr {
+    final case class Value[A](a: A) extends FalseOr[A]
+    case object False               extends FalseOr[Nothing]
+
+    implicit def plotlyFacadeEncoderForFalseOr[A : Encoder, T](implicit ev: T <:< FalseOr[A]): Encoder[T] =
+      Encoder[T] { t =>
+        ev(t) match {
+          case Value(a) => Encoder[A].apply(a)
+          case False    => Json.fromBoolean(false)
+        }
+      }
   }
 
 }

@@ -37,7 +37,7 @@ object MapboxLayers {
   sealed trait Source
 
   object Source {
-    final case class OfUrl(uri: URI) extends Source
+    final case class OfUrl(uri: URI)        extends Source
     final case class OfUrls(uris: Seq[URI]) extends Source
   }
 

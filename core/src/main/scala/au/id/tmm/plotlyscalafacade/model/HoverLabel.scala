@@ -4,6 +4,6 @@ final case class HoverLabel(
   bgcolor: Color,
   bordercolor: Color,
   font: Partial[Font],
-  align: HorizontalLabelAlignment,
+  align: LabelAlignment.Horizontal,
   namelength: Number,
 ) extends Label

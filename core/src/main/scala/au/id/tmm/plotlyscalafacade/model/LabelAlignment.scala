@@ -13,10 +13,9 @@ object LabelAlignment {
   sealed abstract class Vertical(val asString: String) extends JSEnum
 
   object Vertical {
-    case object Top  extends Vertical("top")
+    case object Top    extends Vertical("top")
     case object Middle extends Vertical("middle")
-    case object Bottom  extends Vertical("bottom")
+    case object Bottom extends Vertical("bottom")
   }
 
 }
-

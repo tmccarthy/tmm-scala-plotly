@@ -1,7 +1,5 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import io.circe.{Encoder, Json}
-
 final case class Annotations(
   bgcolor: Color,
   bordercolor: Color,
@@ -35,7 +33,7 @@ final case class Annotations(
   y: AxisPosition,
   yanchor: Anchor.Y,
   yshift: Number,
-  clicktoshow: Annotations.ClickToShow,
+  clicktoshow: FalseOr[Annotations.ClickToShow],
   xclick: AxisPosition,
   yclick: AxisPosition,
   hovertext: String,
@@ -70,18 +68,11 @@ object Annotations {
 
   }
 
-  sealed abstract class ClickToShow
+  sealed abstract class ClickToShow(val asString: String) extends JSEnum
 
   object ClickToShow {
-    case object False extends ClickToShow
-    case object OnOff extends ClickToShow
-    case object OnOut extends ClickToShow
-
-    implicit val encoder: Encoder[ClickToShow] = {
-      case False => Json.fromBoolean(false)
-      case OnOff => Json.fromString("onoff")
-      case OnOut => Json.fromString("onout")
-    }
+    case object OnOff extends ClickToShow("onoff")
+    case object OnOut extends ClickToShow("onout")
   }
 
 }

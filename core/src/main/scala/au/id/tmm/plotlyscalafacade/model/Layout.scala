@@ -1,6 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.Layout.Title.ContainerReference
+import au.id.tmm.plotlyscalafacade.model.utilities.{BlankOr, FalseOr, JSEnum}
 
 final case class Layout(
   colorway: Seq[Color],

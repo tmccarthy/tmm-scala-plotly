@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 object Anchor {
 
   sealed abstract class X(val asString: String) extends JSEnum

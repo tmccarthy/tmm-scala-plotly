@@ -2,6 +2,7 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.time.Duration
 
+import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, JSEnum}
 import cats.data.NonEmptySet
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
@@ -398,6 +399,7 @@ final case class LayoutAxis(
   zerolinecolor: Color,
   zerolinewidth: Number,
   calendar: Calendar,
+
   fixedrange: Boolean,
   scaleanchor: AxisName,
   scaleratio: Number,
@@ -442,7 +444,7 @@ object LayoutAxis {
   object SpikeMode {
 
     // TODO confirm this isn't recursive
-    def apply(head: Mode, tail: Mode*): SpikeMode = SpikeMode(NonEmptySet.of[Mode](head, tail: _*): NonEmptySet[Mode])
+    def apply(head: Mode, tail: Mode*): SpikeMode = SpikeMode.apply(modes = NonEmptySet.of[Mode](head, tail: _*): NonEmptySet[Mode])
 
     sealed abstract class Mode(val asString: String) extends JSEnum
 
@@ -543,6 +545,7 @@ final case class SceneAxis(
   zerolinecolor: Color,
   zerolinewidth: Number,
   calendar: Calendar,
+
   spikesides: Boolean,
   showbackground: Boolean,
   backgroundcolor: Color,

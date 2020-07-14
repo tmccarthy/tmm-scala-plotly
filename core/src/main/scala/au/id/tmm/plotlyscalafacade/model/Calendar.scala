@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 sealed abstract class Calendar(val asString: String) extends JSEnum
 
 object Calendar {

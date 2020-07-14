@@ -1,7 +1,9 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 final case class Gauge(
-  shape: "angular" | "bullet",
+  shape: Gauge.Shape,
   bar: Partial[Gauge.Bar],
   bgcolor: Color,
   bordercolor: Color,
@@ -12,6 +14,14 @@ final case class Gauge(
 )
 
 object Gauge {
+
+  sealed abstract class Shape(val asString: String) extends JSEnum
+
+  object Shape {
+    case object Angular extends Shape("angular")
+    case object Bullet  extends Shape("bullet")
+  }
+
   final case class Bar(
     color: Color,
     line: Partial[Gauge.Line],

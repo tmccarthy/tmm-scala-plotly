@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 final case class PolarLayout(
   domain: Partial[Domain],
   sector: NumberArray,

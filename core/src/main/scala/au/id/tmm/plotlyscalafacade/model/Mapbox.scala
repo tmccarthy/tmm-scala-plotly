@@ -2,6 +2,8 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.net.URI
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 final case class Mapbox(
   domain: Partial[Domain],
   accesstoken: String,

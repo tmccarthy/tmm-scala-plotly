@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 final case class Shape(
   visible: Boolean,
   layer: Shape.Layer,

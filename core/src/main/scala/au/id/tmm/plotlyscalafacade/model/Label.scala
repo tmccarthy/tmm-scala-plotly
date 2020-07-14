@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum}
+
 sealed trait Label extends Product {
   def bgcolor: Color
   def bordercolor: Color

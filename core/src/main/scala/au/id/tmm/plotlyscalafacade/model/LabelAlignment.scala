@@ -1,5 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+
 object LabelAlignment {
 
   sealed abstract class Horizontal(val asString: String) extends JSEnum

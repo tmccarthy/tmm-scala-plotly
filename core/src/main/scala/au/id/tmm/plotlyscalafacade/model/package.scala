@@ -22,6 +22,13 @@ package object model {
 
   type PlotSelectedData = Partial[PlotDatum]
 
+  @silent("define classes/objects inside of package objects")
+  final case class Range[+A](min: A, max: A)
+
+  object Range {
+    implicit def encoder[A: Encoder]: Encoder[Range[A]] = Encoder[List[A]].contramap(r => List(r.min, r.max))
+  }
+
   // TODO put this somewhere
   @silent("define classes/objects inside of package objects")
   trait JSEnum {

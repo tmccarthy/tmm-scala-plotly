@@ -15,8 +15,8 @@ package object model {
 
   type CategoryIndex = Int
 
-  // TODO string | number | Date | null;
-  type Datum = Nothing
+  type Datum = Nothing // TODO string | number | Date | null;
+  type TypedArray = Nothing // TODO Int8Array | Uint8Array | Int16Array | Uint16Array | Int32Array | Uint32Array | Uint8ClampedArray | Float32Array | Float64Array;
 
   type Partial[A] = A // TODO find some way of handling this
 

@@ -9,5 +9,15 @@ final case class DataTitle(
 )
 
 object DataTitle {
-  implicit val encoder: Encoder[DataTitle] = _ => ???
+  implicit val encoder: Encoder[DataTitle] = Encoder.forProduct3(
+    "text",
+    "font",
+    "position",
+  )(t =>
+    (
+      t.text,
+      t.font,
+      t.position,
+    ),
+  )
 }

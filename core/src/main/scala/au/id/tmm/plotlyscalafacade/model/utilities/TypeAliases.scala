@@ -17,6 +17,9 @@ private[model] trait TypeAliases {
   type Datum = Nothing // TODO string | number | Date | null;
   type TypedArray = Nothing // TODO Int8Array | Uint8Array | Int16Array | Uint16Array | Int32Array | Uint32Array | Uint8ClampedArray | Float32Array | Float64Array;
 
+  // TODO this will need a rename and some thought
+  type DataSequence = Nothing // TODO Datum[] | Datum[][] | Datum[][][] | TypedArray
+
   type Partial[A] = A // TODO find some way of handling this
 
   type PlotSelectedData = Partial[PlotDatum]

@@ -1,5 +1,6 @@
 package au.id.tmm.plotlyscalafacade.model
 
+// TODO isn't this a Datum?
 sealed trait AxisPosition
 
 object AxisPosition {

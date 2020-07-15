@@ -1,7 +1,8 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, JSEnum}
-import cats.data.NonEmptySet
+import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FlagList, JSEnum}
+import cats.Show
+import cats.data.NonEmptyList
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
 import io.circe.Encoder
@@ -224,7 +225,7 @@ final case class LayoutAxis(
   constrain: LayoutAxis.Constrain,
   constraintoward: LayoutAxis.ConstrainToward,
   spikedash: String,
-  spikemode: LayoutAxis.SpikeMode,
+  spikemode: FlagList[LayoutAxis.SpikeMode],
   anchor: LayoutAxis.Anchor,
   side: LayoutAxis.Side,
   overlaying: LayoutAxis.Overlaying,
@@ -257,30 +258,19 @@ object LayoutAxis {
     case object Bottom extends ConstrainToward("bottom")
   }
 
-  final case class SpikeMode(modes: NonEmptySet[SpikeMode.Mode])
+  sealed abstract class SpikeMode(val asString: String) extends JSEnum
 
   object SpikeMode {
 
-    // TODO confirm this isn't recursive
-    def apply(head: Mode, tail: Mode*): SpikeMode =
-      SpikeMode.apply(modes = NonEmptySet.of[Mode](head, tail: _*): NonEmptySet[Mode])
+    case object ToAxis extends SpikeMode("toaxis")
+    case object Across extends SpikeMode("across")
+    case object Marker extends SpikeMode("marker")
 
-    sealed abstract class Mode(val asString: String) extends JSEnum
-
-    object Mode {
-      case object ToAxis extends Mode("toaxis")
-      case object Across extends Mode("across")
-      case object Marker extends Mode("marker")
-
-      implicit val order: Order[Mode] = Order.by[Mode, Int] {
-        case ToAxis => 0
-        case Across => 1
-        case Marker => 2
-      }
+    implicit val order: Order[SpikeMode] = Order.by[SpikeMode, Int] {
+      case ToAxis => 0
+      case Across => 1
+      case Marker => 2
     }
-
-    implicit val encoder: Encoder[SpikeMode] = spikeMode =>
-      Encoder[String].apply(spikeMode.modes.reduceLeftTo(_.asString)((l, r) => s"$l+$r"))
   }
 
   sealed abstract class Anchor(val asString: String) extends JSEnum

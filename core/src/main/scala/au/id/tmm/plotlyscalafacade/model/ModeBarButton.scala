@@ -23,7 +23,7 @@ object ModeBarButton {
 
     implicit val encoder: Encoder[ModeBarButton.Icon] = {
       case OfString(asString) => Encoder[String].apply(asString)
-      case OfIcon(icon) => Encoder[model.Icon].apply(icon)
+      case OfIcon(icon)       => Encoder[model.Icon].apply(icon)
     }
   }
 

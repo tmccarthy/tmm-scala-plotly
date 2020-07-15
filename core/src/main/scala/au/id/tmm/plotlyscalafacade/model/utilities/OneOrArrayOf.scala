@@ -10,7 +10,7 @@ object OneOrArrayOf {
   final case class Array[A](as: Seq[A]) extends OneOrArrayOf[A]
 
   implicit def encoder[A : Encoder]: Encoder[OneOrArrayOf[A]] = {
-    case One(a)         => Encoder[A].apply(a)
+    case One(a)            => Encoder[A].apply(a)
     case Array(as: Seq[A]) => Encoder[Seq[A]].apply(as)
   }
 

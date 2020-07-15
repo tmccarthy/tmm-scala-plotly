@@ -82,8 +82,8 @@ object PlotMarker {
     sealed abstract class TitleSide(val asString: String) extends JSEnum
 
     object TitleSide {
-      case object Right extends TitleSide("right")
-      case object Top extends TitleSide("top")
+      case object Right  extends TitleSide("right")
+      case object Top    extends TitleSide("top")
       case object Bottom extends TitleSide("bottom")
     }
   }

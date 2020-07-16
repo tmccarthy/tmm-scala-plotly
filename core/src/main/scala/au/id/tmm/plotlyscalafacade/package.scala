@@ -1,3 +1,3 @@
 package au.id.tmm
 
-package object plotlyscalafacade {}
+package object plotlyscalafacade

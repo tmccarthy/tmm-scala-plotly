@@ -15,8 +15,6 @@ private[model] trait TypeAliases {
   type CategoryIndex = Int
 
   type Datum = Nothing // TODO string | number | Date | null;
-  type TypedArray =
-    Nothing // TODO Int8Array | Uint8Array | Int16Array | Uint16Array | Int32Array | Uint32Array | Uint8ClampedArray | Float32Array | Float64Array;
 
   // TODO this will need a rename and some thought
   // TODO the two-dimensional and three-dimensional versions of this only work in some contexts. May want some way to constrain this

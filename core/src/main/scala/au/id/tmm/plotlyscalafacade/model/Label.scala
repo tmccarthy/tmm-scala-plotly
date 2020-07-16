@@ -22,13 +22,33 @@ object Label {
     font: Partial[Font],
   ) extends Label
 
+  object Alignment {
+
+    sealed abstract class Horizontal(val asString: String) extends JSEnum
+
+    object Horizontal {
+      case object Left  extends Horizontal("left")
+      case object Right extends Horizontal("right")
+      case object Auto  extends Horizontal("auto")
+    }
+
+    sealed abstract class Vertical(val asString: String) extends JSEnum
+
+    object Vertical {
+      case object Top    extends Vertical("top")
+      case object Middle extends Vertical("middle")
+      case object Bottom extends Vertical("bottom")
+    }
+
+  }
+
 }
 
 final case class HoverLabel(
   bgcolor: Color,
   bordercolor: Color,
   font: Partial[Font],
-  align: LabelAlignment.Horizontal,
+  align: Label.Alignment.Horizontal,
   namelength: Number,
 ) extends Label
 
@@ -73,8 +93,8 @@ final case class Annotations(
   width: Number,
   height: Number,
   opacity: Number,
-  align: LabelAlignment.Horizontal,
-  valign: LabelAlignment.Vertical,
+  align: Label.Alignment.Horizontal,
+  valign: Label.Alignment.Vertical,
   borderpad: Number,
   borderwidth: Number,
   showarrow: Boolean,

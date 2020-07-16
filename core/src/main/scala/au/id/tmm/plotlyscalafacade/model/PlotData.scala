@@ -1,6 +1,6 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FlagList, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FalseOr, FlagList, OneOrArrayOf}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.instances.string.catsKernelStdOrderForString
 import cats.instances.tuple.catsKernelStdOrderForTuple2
@@ -49,11 +49,11 @@ final case class PlotData(
   transforms: Seq[Partial[Transform]],
   orientation: PlotData.Orientation,
   width: OneOrArrayOf[Number],
-  boxmean: Boolean | "sd",
+  boxmean: PlotData.BoxMean,
   opacity: Number,
   showscale: Boolean,
   colorscale: ColorScale,
-  zsmooth: "fast" | "best" | false,
+  zsmooth: FalseOr[PlotData.ZSmooth],
   ygap: Number,
   xgap: Number,
   transpose: Boolean,
@@ -62,7 +62,7 @@ final case class PlotData(
   value: Number,
   values: Seq[Datum],
   labels: Seq[Datum],
-  direction: "clockwise" | "counterclockwise",
+  direction: PlotData.Direction,
   hole: Number,
   rotation: Number,
   theta: Seq[Datum],
@@ -70,7 +70,7 @@ final case class PlotData(
   customdata: Seq[Datum],
   domain: Partial[PlotData.Domain],
   title: Partial[DataTitle],
-  branchvalues: "total" | "remainder",
+  branchvalues: PlotData.BranchValues,
 )
 
 object PlotData {
@@ -257,6 +257,41 @@ object PlotData {
   object Orientation {
     case object Vertical extends Orientation("v")
     case object Horizontal extends Orientation("h")
+  }
+
+  sealed trait BoxMean
+
+  object BoxMean {
+    case object True extends BoxMean
+    case object WithStandardDeviation extends BoxMean
+    case object False extends BoxMean
+
+    implicit val encoder: Encoder[BoxMean] = {
+      case True => Encoder[Boolean].apply(true)
+      case WithStandardDeviation => Encoder[String].apply("sd")
+      case False => Encoder[Boolean].apply(false)
+    }
+  }
+
+  sealed abstract class ZSmooth(val asString: String) extends JSEnum
+
+  object ZSmooth {
+    case object Fast extends ZSmooth("fast")
+    case object Best extends ZSmooth("best")
+  }
+
+  sealed abstract class Direction(val asString: String) extends JSEnum
+
+  object Direction {
+    case object Clockwise extends Direction("clockwise")
+    case object CounterClockwise extends Direction("counterclockwise")
+  }
+
+  sealed abstract class BranchValues(val asString: String) extends JSEnum
+
+  object BranchValues {
+    case object Total extends BranchValues("total")
+    case object Remainder extends BranchValues("remainder")
   }
 
   final case class XBins(

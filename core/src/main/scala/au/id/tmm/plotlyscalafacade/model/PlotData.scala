@@ -1,6 +1,6 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{FlagList, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FlagList, OneOrArrayOf}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.instances.string.catsKernelStdOrderForString
 import cats.instances.tuple.catsKernelStdOrderForTuple2
@@ -31,10 +31,10 @@ final case class PlotData(
   hoverlabel: Partial[HoverLabel],
   hovertemplate: OneOrArrayOf[String],
   hovertext: OneOrArrayOf[String],
-  textinfo: "label" | "label+text" | "label+value" | "label+percent" | "label+text+value" | "label+text+percent" | "label+value+percent" | "text" | "text+value" | "text+percent" | "text+value+percent" | "value" | "value+percent" | "percent" | "none",
-  textposition: "top left" | "top center" | "top right" | "middle left" | "middle center" | "middle right" | "bottom left" | "bottom center" | "bottom right" | "inside" | "outside",
+  textinfo: PlotData.TextInfo,
+  textposition: PlotData.TextPosition,
   textfont: Partial[Font],
-  fill: "none" | "tozeroy" | "tozerox" | "tonexty" | "tonextx" | "toself" | "tonext",
+  fill: PlotData.Fill,
   fillcolor: String,
   showlegend: Boolean,
   legendgroup: String,
@@ -42,12 +42,12 @@ final case class PlotData(
   name: String,
   stackgroup: String,
   connectgaps: Boolean,
-  visible: Boolean | "legendonly",
+  visible: BooleanOr[PlotData.Visibility],
   delta: Partial[Delta],
   gauge: Partial[Gauge],
   number: Partial[PlotNumber],
-  transforms: Seq[DataTransform],
-  orientation: "v" | "h",
+  transforms: Seq[Partial[Transform]],
+  orientation: PlotData.Orientation,
   width: OneOrArrayOf[Number],
   boxmean: Boolean | "sd",
   opacity: Number,
@@ -185,6 +185,78 @@ object PlotData {
       case Of(flags) => Encoder[FlagList[HoverInfo.Flag]].apply(flags)
     }
 
+  }
+
+  sealed trait TextInfo
+
+  object TextInfo {
+
+    case object None extends TextInfo
+    final case class Of(flags: FlagList[Flag]) extends TextInfo
+
+    sealed abstract class Flag(val asString: String)
+
+    object Flag {
+      case object Label extends Flag("label")
+      case object Text extends Flag("text")
+      case object Initial extends Flag("initial")
+      case object Delta extends Flag("delta")
+      case object Final extends Flag("final")
+
+      implicit val order: Order[Flag] = Order.by[Flag, Int] {
+        case Label => 0
+        case Text => 1
+        case Initial => 2
+        case Delta => 3
+        case Final => 4
+      }
+    }
+
+    implicit val encoder: Encoder[TextInfo] = {
+      case None => Encoder[String].apply("none")
+      case Of(flags) => Encoder[FlagList[Flag]].apply(flags)
+    }
+  }
+
+  sealed abstract class TextPosition(val asString: String) extends JSEnum
+
+  object TextPosition {
+    case object TopLeft extends TextPosition("top left")
+    case object TopCenter extends TextPosition("top center")
+    case object TopRight extends TextPosition("top right")
+    case object MiddleLeft extends TextPosition("middle left")
+    case object MiddleCenter extends TextPosition("middle center")
+    case object MiddleRight extends TextPosition("middle right")
+    case object BottomLeft extends TextPosition("bottom left")
+    case object BottomCenter extends TextPosition("bottom center")
+    case object BottomRight extends TextPosition("bottom right")
+    case object Inside extends TextPosition("inside")
+    case object Outside extends TextPosition("outside")
+  }
+
+  sealed abstract class Fill(val asString: String) extends JSEnum
+
+  object Fill {
+    case object None extends Fill("none")
+    case object ToZeroY extends Fill("tozeroy")
+    case object ToZeroX extends Fill("tozerox")
+    case object ToNextY extends Fill("tonexty")
+    case object ToNextX extends Fill("tonextx")
+    case object ToSelf extends Fill("toself")
+    case object ToNext extends Fill("tonext")
+  }
+
+  sealed abstract class Visibility(val asString: String) extends JSEnum
+
+  object Visibility {
+    case object LegendOnly extends Visibility("legendOnly")
+  }
+
+  sealed abstract class Orientation(val asString: String) extends JSEnum
+
+  object Orientation {
+    case object Vertical extends Orientation("v")
+    case object Horizontal extends Orientation("h")
   }
 
   final case class XBins(

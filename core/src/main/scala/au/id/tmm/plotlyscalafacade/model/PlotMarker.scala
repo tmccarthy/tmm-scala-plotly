@@ -1,9 +1,10 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
+import io.circe.Encoder
 
 final case class PlotMarker(
-  symbol: PlotMarker.Symbol,
+  symbol: OneOrArrayOf[PlotMarker.Symbol],
   color: OneOrArrayOf[Color],
   colors: Seq[Color],
   colorscale: ColorScale,
@@ -29,7 +30,17 @@ final case class PlotMarker(
 
 object PlotMarker {
 
-  sealed trait Symbol // TODO this will be fun
+  sealed trait Symbol
+
+  object Symbol {
+    final case class OfString(string: String) extends Symbol
+    final case class OfNumber(n: Number)      extends Symbol
+
+    implicit val encoder: Encoder[Symbol] = {
+      case OfString(string) => Encoder[String].apply(string)
+      case OfNumber(n)      => Encoder[Number].apply(n)
+    }
+  }
 
   final case class ScatterMarkerLine(
     width: OneOrArrayOf[Number],

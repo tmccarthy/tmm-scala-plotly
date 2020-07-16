@@ -295,9 +295,9 @@ object PlotData {
   }
 
   final case class XBins(
-    start: Number | String,
-    end: Number | String,
-    size: Number | String,
+    start: AxisPosition,
+    end: AxisPosition,
+    size: AxisPosition,
   )
 
   final case class Domain(

@@ -1,8 +1,6 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FlagList, JSEnum}
-import cats.Show
-import cats.data.NonEmptyList
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
 import io.circe.Encoder

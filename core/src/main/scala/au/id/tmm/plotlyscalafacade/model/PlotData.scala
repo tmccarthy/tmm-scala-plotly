@@ -194,7 +194,7 @@ object PlotData {
     case object None extends TextInfo
     final case class Of(flags: FlagList[Flag]) extends TextInfo
 
-    sealed abstract class Flag(val asString: String)
+    sealed abstract class Flag(val asString: String) extends JSEnum
 
     object Flag {
       case object Label extends Flag("label")

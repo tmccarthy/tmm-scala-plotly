@@ -5,6 +5,7 @@ import java.time.Duration
 import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf, Range}
 import io.circe.Encoder
 
+// TODO encode this using FieldsFromEncoder
 final case class TickProperties(
   tickmode: TickProperties.TickMode,
   nticks: Int,

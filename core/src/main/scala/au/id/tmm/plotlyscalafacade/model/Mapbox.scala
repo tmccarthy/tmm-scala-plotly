@@ -8,7 +8,7 @@ final case class Mapbox(
   domain: Partial[Domain],
   accesstoken: String,
   style: Mapbox.Style,
-  center: Partial[MapboxCenter],
+  center: Partial[Mapbox.Center],
   zoom: Number,
   bearing: Number,
   pitch: Number,
@@ -49,6 +49,11 @@ object Mapbox {
     final case class MapboxUri(uri: URI) extends Style
 
   }
+
+  final case class Center(
+    lon: Number,
+    lat: Number,
+  )
 
   sealed abstract class UiRevision(val asString: String) extends JSEnum
 

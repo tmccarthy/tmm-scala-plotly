@@ -7,7 +7,7 @@ final case class Scene(
   camera: Partial[Scene.Camera],
   domain: Partial[Domain],
   aspectmode: Scene.AspectMode,
-  aspectratio: Partial[Point],
+  aspectratio: Partial[Scene.Point],
   xaxis: Partial[SceneAxis],
   yaxis: Partial[SceneAxis],
   zaxis: Partial[SceneAxis],
@@ -22,6 +22,12 @@ object Scene {
     up: Partial[Point],
     center: Partial[Point],
     eye: Partial[Point],
+  )
+
+  final case class Point(
+    x: Number,
+    y: Number,
+    z: Number,
   )
 
   sealed abstract class AspectMode(val asString: String) extends JSEnum

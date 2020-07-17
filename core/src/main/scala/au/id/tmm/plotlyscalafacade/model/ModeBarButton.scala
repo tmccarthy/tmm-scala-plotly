@@ -19,12 +19,48 @@ object ModeBarButton {
 
   object Icon {
     final case class OfString(asString: String) extends ModeBarButton.Icon
-    final case class OfIcon(icon: model.Icon)   extends ModeBarButton.Icon
+    final case class OfIcon(icon: IconDetails)   extends ModeBarButton.Icon
 
     implicit val encoder: Encoder[ModeBarButton.Icon] = {
       case OfString(asString) => Encoder[String].apply(asString)
-      case OfIcon(icon)       => Encoder[model.Icon].apply(icon)
+      case OfIcon(icon)       => Encoder[IconDetails].apply(icon)
     }
   }
+
+  final case class IconDetails(
+    height: Option[Number],
+    width: Option[Number],
+    ascent: Option[Number],
+    descent: Option[Number],
+    name: Option[String],
+    path: Option[String],
+    svg: Option[String],
+    transform: Option[String],
+  )
+
+  object IconDetails {
+    implicit val encoder: Encoder[IconDetails] = Encoder.forProduct8(
+      "height",
+      "width",
+      "ascent",
+      "descent",
+      "name",
+      "path",
+      "svg",
+      "transform",
+    )(i =>
+      (
+        i.height,
+        i.width,
+        i.ascent,
+        i.descent,
+        i.name,
+        i.path,
+        i.svg,
+        i.transform,
+      ),
+    )
+  }
+
 
 }

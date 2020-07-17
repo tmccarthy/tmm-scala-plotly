@@ -110,6 +110,30 @@ object Axis {
     case object MedianDescending   extends CategoryOrder("median descending")
   }
 
+  sealed abstract class Name(val asString: String) extends JSEnum
+
+  object Name {
+    case object x  extends Name("x")
+    case object x2 extends Name("x2")
+    case object x3 extends Name("x3")
+    case object x4 extends Name("x4")
+    case object x5 extends Name("x5")
+    case object x6 extends Name("x6")
+    case object x7 extends Name("x7")
+    case object x8 extends Name("x8")
+    case object x9 extends Name("x9")
+
+    case object y  extends Name("y")
+    case object y2 extends Name("y2")
+    case object y3 extends Name("y3")
+    case object y4 extends Name("y4")
+    case object y5 extends Name("y5")
+    case object y6 extends Name("y6")
+    case object y7 extends Name("y7")
+    case object y8 extends Name("y8")
+    case object y9 extends Name("y9")
+  }
+
 }
 
 final case class LayoutAxis(
@@ -141,7 +165,7 @@ final case class LayoutAxis(
   zerolinewidth: Number,
   calendar: Calendar,
   fixedrange: Boolean,
-  scaleanchor: AxisName,
+  scaleanchor: Axis.Name,
   scaleratio: Number,
   constrain: LayoutAxis.Constrain,
   constraintoward: LayoutAxis.ConstrainToward,
@@ -197,8 +221,8 @@ object LayoutAxis {
   sealed abstract class Anchor(val asString: String) extends JSEnum
 
   object Anchor {
-    case object Free                            extends Anchor("free")
-    final case class ToAxis(axisName: AxisName) extends Anchor(axisName.asString)
+    case object Free                             extends Anchor("free")
+    final case class ToAxis(axisName: Axis.Name) extends Anchor(axisName.asString)
   }
 
   sealed abstract class Side(val asString: String) extends JSEnum
@@ -215,8 +239,8 @@ object LayoutAxis {
   sealed abstract class Overlaying(val asString: String) extends JSEnum
 
   object Overlaying {
-    case object Free                            extends Overlaying("free")
-    final case class ToAxis(axisName: AxisName) extends Overlaying(axisName.asString)
+    case object Free                             extends Overlaying("free")
+    final case class ToAxis(axisName: Axis.Name) extends Overlaying(axisName.asString)
   }
 
   sealed abstract class Layer(val asString: String)

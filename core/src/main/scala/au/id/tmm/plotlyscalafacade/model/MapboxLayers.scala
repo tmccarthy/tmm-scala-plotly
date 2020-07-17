@@ -11,7 +11,7 @@ final case class MapboxLayers(
   sourcelayer: String,
   sourceattribution: String,
   `type`: MapboxLayers.Type,
-  coordinates: Coordinates,
+  coordinates: MapboxLayers.Coordinates,
   below: String,
   color: Color,
   opacity: Number,
@@ -20,7 +20,7 @@ final case class MapboxLayers(
   circle: MapboxLayers.Circle,
   line: Partial[ShapeLine],
   fill: MapboxLayers.Fill,
-  symbol: Partial[MapboxSymbol],
+  symbol: Partial[MapboxLayers.MapboxSymbol],
   name: String,
   templateitemname: String,
 )
@@ -53,8 +53,40 @@ object MapboxLayers {
     case object Raster extends Type("raster")
   }
 
+  final case class Coordinates(
+    topLeft: Coordinates.Point,
+    topRight: Coordinates.Point,
+    bottomRight: Coordinates.Point,
+    bottomLeft: Coordinates.Point,
+  )
+
+  object Coordinates {
+    final case class Point(longitude: Number, latitude: Number)
+  }
+
   final case class Circle(radius: Number)
 
   final case class Fill(outlineColor: Color)
+
+  final case class MapboxSymbol(
+    icon: String,
+    iconsize: Number,
+    text: String,
+    placement: MapboxSymbol.Placement,
+    textfont: Partial[Font],
+    textposition: TextPosition,
+  )
+
+  object MapboxSymbol {
+
+    sealed abstract class Placement(val asString: String) extends JSEnum
+
+    object Placement {
+      case object Point      extends Placement("point")
+      case object Line       extends Placement("line")
+      case object LineCenter extends Placement("line-center")
+    }
+
+  }
 
 }

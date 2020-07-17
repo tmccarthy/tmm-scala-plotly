@@ -4,6 +4,7 @@ import java.time.Duration
 
 import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf, Range}
 import io.circe.Encoder
+import io.circe.syntax.EncoderOps
 
 // TODO encode this using FieldsFromEncoder
 final case class TickProperties(
@@ -73,14 +74,14 @@ object TickProperties {
     }
 
     implicit val encoder: Encoder[DTick] = {
-      case Numeric(n)                                 => Encoder[Number].apply(n)
-      case CategoryOffset(n)                          => Encoder[Number].apply(n)
-      case Logarithmic.Log(n)                         => Encoder[Number].apply(n)
-      case Logarithmic.Linear(n)                      => Encoder[String].apply(s"L$n")
-      case Logarithmic.PowersOf10PlusAllSmallDigits   => Encoder[String].apply("D1")
-      case Logarithmic.PowersOf10PlusSmallDigits2And5 => Encoder[String].apply("D2")
-      case Date.OfDuration(duration)                  => Encoder[Number].apply(duration.toMillis.toDouble)
-      case Date.OfMonths(numMonths)                   => Encoder[String].apply(s"M$numMonths")
+      case Numeric(n)                                 => n.asJson
+      case CategoryOffset(n)                          => n.asJson
+      case Logarithmic.Log(n)                         => n.asJson
+      case Logarithmic.Linear(n)                      => s"L$n".asJson
+      case Logarithmic.PowersOf10PlusAllSmallDigits   => "D1".asJson
+      case Logarithmic.PowersOf10PlusSmallDigits2And5 => "D2".asJson
+      case Date.OfDuration(duration)                  => duration.toMillis.toDouble.asJson
+      case Date.OfMonths(numMonths)                   => s"M$numMonths".asJson
     }
 
   }
@@ -119,6 +120,74 @@ object TickProperties {
     value: String,
     name: String,
     templateitemname: String,
+  )
+
+  object FormatStop {
+    implicit val encoder: Encoder[FormatStop] = Encoder.forProduct5(
+      "enabled",
+      "dtickrange",
+      "value",
+      "name",
+      "templateitemname",
+    )(f =>
+      (
+        f.enabled,
+        f.dtickrange,
+        f.value,
+        f.name,
+        f.templateitemname,
+      ),
+    )
+  }
+
+  implicit val encoder: Encoder[TickProperties] = Encoder.forProduct22(
+    "tickmode",
+    "nticks",
+    "tick0",
+    "dtick",
+    "tickvals",
+    "tickText",
+    "ticks",
+    "ticklen",
+    "tickwidth",
+    "tickcolor",
+    "showticklabels",
+    "tickfont",
+    "tickangle",
+    "tickformat",
+    "tickformatstops",
+    "tickprefix",
+    "showtickprefix",
+    "ticksuffix",
+    "showticksuffix",
+    "separatethousands",
+    "exponentformat",
+    "showexponent",
+  )(p =>
+    (
+      p.tickmode,
+      p.nticks,
+      p.tick0,
+      p.dtick,
+      p.tickvals,
+      p.tickText,
+      p.ticks,
+      p.ticklen,
+      p.tickwidth,
+      p.tickcolor,
+      p.showticklabels,
+      p.tickfont,
+      p.tickangle,
+      p.tickformat,
+      p.tickformatstops,
+      p.tickprefix,
+      p.showtickprefix,
+      p.ticksuffix,
+      p.showticksuffix,
+      p.separatethousands,
+      p.exponentformat,
+      p.showexponent,
+    ),
   )
 
 }

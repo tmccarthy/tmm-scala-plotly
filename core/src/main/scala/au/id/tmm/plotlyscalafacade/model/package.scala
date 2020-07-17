@@ -4,7 +4,7 @@ import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 import cats.Show
 import io.circe.Encoder
 
-package object model extends utilities.TypeAliases {
+package object model extends utilities.TypeAliases with utilities.EncoderOps.ToEncoderOps {
 
   private[model] implicit def plotlyFacadeEncoderForJsEnum[T <: JSEnum]: Encoder[T] =
     JSEnum.plotlyFacadeEncoderForJsEnum[T]

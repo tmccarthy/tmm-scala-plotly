@@ -3,7 +3,8 @@ package au.id.tmm.plotlyscalafacade.model
 import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FlagList, JSEnum}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
-import io.circe.Encoder
+import io.circe.syntax.{EncoderOps, KeyOps}
+import io.circe.{Encoder, Json}
 
 sealed trait Axis {
   def visible: Boolean
@@ -79,6 +80,13 @@ object Axis {
     final case class Logarithmic(range: NumberArray)       extends Range
     final case class Dates(range: Seq[Date])               extends Range
     final case class Category(indices: Seq[CategoryIndex]) extends Range
+
+    implicit val encoder: Encoder[Range] = {
+      case Numeric(range)     => range.asJson
+      case Logarithmic(range) => range.asJson
+      case Dates(range)       => range.asJson
+      case Category(indices)  => indices.asJson
+    }
   }
 
   sealed abstract class Mirror(val asString: String) extends JSEnum
@@ -132,6 +140,11 @@ object Axis {
     case object y7 extends Name("y7")
     case object y8 extends Name("y8")
     case object y9 extends Name("y9")
+  }
+
+  implicit val encoder: Encoder[Axis] = {
+    case l: LayoutAxis => l.asJson
+    case s: SceneAxis  => s.asJson
   }
 
 }
@@ -243,12 +256,61 @@ object LayoutAxis {
     final case class ToAxis(axisName: Axis.Name) extends Overlaying(axisName.asString)
   }
 
-  sealed abstract class Layer(val asString: String)
+  sealed abstract class Layer(val asString: String) extends JSEnum
 
   object Layer {
     case object AboveTraces extends Layer("above traces")
     case object BelowTraces extends Layer("below traces")
   }
+
+  implicit val encoder: Encoder[LayoutAxis] =
+    Encoder[LayoutAxis] { layoutAxis =>
+      Json.obj(
+        "visible" := layoutAxis.visible,
+        "color" := layoutAxis.color,
+        "title" := layoutAxis.title,
+        "titlefont" := layoutAxis.titlefont,
+        "type" := layoutAxis.`type`,
+        "autorange" := layoutAxis.autorange,
+        "rangemode" := layoutAxis.rangemode,
+        "range" := layoutAxis.range,
+        "mirror" := layoutAxis.mirror,
+        "showspikes" := layoutAxis.showspikes,
+        "spikecolor" := layoutAxis.spikecolor,
+        "spikethickness" := layoutAxis.spikethickness,
+        "categoryorder" := layoutAxis.categoryorder,
+        "categoryarray" := layoutAxis.categoryarray,
+        "separatethousands" := layoutAxis.separatethousands,
+        "hoverformat" := layoutAxis.hoverformat,
+        "showline" := layoutAxis.showline,
+        "linecolor" := layoutAxis.linecolor,
+        "linewidth" := layoutAxis.linewidth,
+        "showgrid" := layoutAxis.showgrid,
+        "gridcolor" := layoutAxis.gridcolor,
+        "gridwidth" := layoutAxis.gridwidth,
+        "zeroline" := layoutAxis.zeroline,
+        "zerolinecolor" := layoutAxis.zerolinecolor,
+        "zerolinewidth" := layoutAxis.zerolinewidth,
+        "calendar" := layoutAxis.calendar,
+        "fixedrange" := layoutAxis.fixedrange,
+        "scaleanchor" := layoutAxis.scaleanchor,
+        "scaleratio" := layoutAxis.scaleratio,
+        "constrain" := layoutAxis.constrain,
+        "constraintoward" := layoutAxis.constraintoward,
+        "spikedash" := layoutAxis.spikedash,
+        "spikemode" := layoutAxis.spikemode,
+        "anchor" := layoutAxis.anchor,
+        "side" := layoutAxis.side,
+        "overlaying" := layoutAxis.overlaying,
+        "layer" := layoutAxis.layer,
+        "domain" := layoutAxis.domain,
+        "position" := layoutAxis.position,
+        "rangeslider" := layoutAxis.rangeslider,
+        "rangeselector" := layoutAxis.rangeselector,
+        "automargin" := layoutAxis.automargin,
+        "autotick" := layoutAxis.autotick,
+      )
+    }.mergeFieldsFrom(_.tickProperties)
 
 }
 
@@ -285,3 +347,41 @@ final case class SceneAxis(
   backgroundcolor: Color,
   showaxeslabels: Boolean,
 ) extends Axis
+
+object SceneAxis {
+  implicit val encoder: Encoder[SceneAxis] =
+    Encoder[SceneAxis] { sceneAxis =>
+      Json.obj(
+        "visible" := sceneAxis.visible,
+        "color" := sceneAxis.color,
+        "title" := sceneAxis.title,
+        "titlefont" := sceneAxis.titlefont,
+        "type" := sceneAxis.`type`,
+        "autorange" := sceneAxis.autorange,
+        "rangemode" := sceneAxis.rangemode,
+        "range" := sceneAxis.range,
+        "mirror" := sceneAxis.mirror,
+        "showspikes" := sceneAxis.showspikes,
+        "spikecolor" := sceneAxis.spikecolor,
+        "spikethickness" := sceneAxis.spikethickness,
+        "categoryorder" := sceneAxis.categoryorder,
+        "categoryarray" := sceneAxis.categoryarray,
+        "separatethousands" := sceneAxis.separatethousands,
+        "hoverformat" := sceneAxis.hoverformat,
+        "showline" := sceneAxis.showline,
+        "linecolor" := sceneAxis.linecolor,
+        "linewidth" := sceneAxis.linewidth,
+        "showgrid" := sceneAxis.showgrid,
+        "gridcolor" := sceneAxis.gridcolor,
+        "gridwidth" := sceneAxis.gridwidth,
+        "zeroline" := sceneAxis.zeroline,
+        "zerolinecolor" := sceneAxis.zerolinecolor,
+        "zerolinewidth" := sceneAxis.zerolinewidth,
+        "calendar" := sceneAxis.calendar,
+        "spikesides" := sceneAxis.spikesides,
+        "showbackground" := sceneAxis.showbackground,
+        "backgroundcolor" := sceneAxis.backgroundcolor,
+        "showaxeslabels" := sceneAxis.showaxeslabels,
+      )
+    }.mergeFieldsFrom(_.tickProperties)
+}

@@ -1,6 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum}
+import io.circe.Encoder
 
 sealed trait Label extends Product {
   def bgcolor: Color
@@ -202,6 +203,48 @@ object RangeSelector {
       case object Backward extends StepMode("backward")
       case object ToDate   extends StepMode("todate")
     }
+
+    implicit val encoder: Encoder[Button] = Encoder.forProduct4(
+      "step",
+      "stepmode",
+      "count",
+      "label",
+    )(b =>
+      (
+        b.step,
+        b.stepmode,
+        b.count,
+        b.label,
+      ),
+    )
   }
+
+  implicit val encoder: Encoder[RangeSelector] = Encoder.forProduct11(
+    "bgcolor",
+    "bordercolor",
+    "font",
+    "buttons",
+    "visible",
+    "x",
+    "xanchor",
+    "y",
+    "yanchor",
+    "activecolor",
+    "borderwidth",
+  )(r =>
+    (
+      r.bgcolor,
+      r.bordercolor,
+      r.font,
+      r.buttons,
+      r.visible,
+      r.x,
+      r.xanchor,
+      r.y,
+      r.yanchor,
+      r.activecolor,
+      r.borderwidth,
+    ),
+  )
 
 }

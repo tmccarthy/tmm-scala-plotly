@@ -9,11 +9,12 @@ import io.circe.Encoder
 
 // TODO it would probably be a good idea to break this up into the valid fields for each plot type. This information is
 //      available in the JS docs.
+// TODO this should probably be called Trace
 final case class PlotData(
   `type`: PlotData.Type,
-  x: DataSequence,
-  y: DataSequence,
-  z: DataSequence, // TODO this can be 3 dimensional
+  x: DataArray,
+  y: DataArray,
+  z: DataArray, // TODO this can be 3 dimensional
   xy: Option[PlotData.FastXY],
   error_x: ErrorBar,
   error_y: ErrorBar,

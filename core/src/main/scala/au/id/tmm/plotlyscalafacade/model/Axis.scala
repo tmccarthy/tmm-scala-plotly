@@ -10,7 +10,7 @@ sealed trait Axis {
   def color: Color
   def title: Axis.Title
   def titlefont: Partial[Font]
-  def `type`: AxisType
+  def `type`: Axis.Type
   def autorange: BooleanOr[Axis.AutoRange]
   def rangemode: Axis.RangeMode
   def range: Axis.Range
@@ -36,92 +36,15 @@ sealed trait Axis {
 
 object Axis {
 
-  def apply(
-    visible: Boolean,
-    color: Color,
-    title: Axis.Title,
-    titlefont: Partial[Font],
-    `type`: AxisType,
-    autorange: BooleanOr[Axis.AutoRange],
-    rangemode: Axis.RangeMode,
-    range: Axis.Range,
-    tickProperties: TickProperties,
-    mirror: BooleanOr[Axis.Mirror],
-    showspikes: Boolean,
-    spikecolor: Color,
-    spikethickness: Number,
-    categoryorder: Axis.CategoryOrder,
-    categoryarray: Seq[CategoryIndex],
-    separatethousands: Boolean,
-    hoverformat: String,
-    showline: Boolean,
-    linecolor: Color,
-    linewidth: Number,
-    showgrid: Boolean,
-    gridcolor: Color,
-    gridwidth: Number,
-    zeroline: Boolean,
-    zerolinecolor: Color,
-    zerolinewidth: Number,
-    calendar: Calendar,
-  ): PlainAxis =
-    PlainAxis(
-      visible,
-      color,
-      title,
-      titlefont,
-      `type`,
-      autorange,
-      rangemode,
-      range,
-      tickProperties,
-      mirror,
-      showspikes,
-      spikecolor,
-      spikethickness,
-      categoryorder,
-      categoryarray,
-      hoverformat,
-      showline,
-      linecolor,
-      linewidth,
-      showgrid,
-      gridcolor,
-      gridwidth,
-      zeroline,
-      zerolinecolor,
-      zerolinewidth,
-      calendar,
-    )
+  sealed abstract class Type(val asString: String) extends JSEnum
 
-  final case class PlainAxis(
-    visible: Boolean,
-    color: Color,
-    title: Axis.Title,
-    titlefont: Partial[Font],
-    `type`: AxisType,
-    autorange: BooleanOr[Axis.AutoRange],
-    rangemode: Axis.RangeMode,
-    range: Axis.Range,
-    tickProperties: TickProperties,
-    mirror: BooleanOr[Axis.Mirror],
-    showspikes: Boolean,
-    spikecolor: Color,
-    spikethickness: Number,
-    categoryorder: Axis.CategoryOrder,
-    categoryarray: Seq[CategoryIndex],
-    hoverformat: String,
-    showline: Boolean,
-    linecolor: Color,
-    linewidth: Number,
-    showgrid: Boolean,
-    gridcolor: Color,
-    gridwidth: Number,
-    zeroline: Boolean,
-    zerolinecolor: Color,
-    zerolinewidth: Number,
-    calendar: Calendar,
-  ) extends Axis
+  object Type {
+    case object AutomaticallyDetermined extends Type("-")
+    case object Linear                  extends Type("linear")
+    case object Log                     extends Type("log")
+    case object Date                    extends Type("date")
+    case object Category                extends Type("category")
+  }
 
   sealed trait Title
 
@@ -194,7 +117,7 @@ final case class LayoutAxis(
   color: Color,
   title: Axis.Title,
   titlefont: Partial[Font],
-  `type`: AxisType,
+  `type`: Axis.Type,
   autorange: BooleanOr[Axis.AutoRange],
   rangemode: Axis.RangeMode,
   range: Axis.Range,
@@ -310,7 +233,7 @@ final case class SceneAxis(
   color: Color,
   title: Axis.Title,
   titlefont: Partial[Font],
-  `type`: AxisType,
+  `type`: Axis.Type,
   autorange: BooleanOr[Axis.AutoRange],
   rangemode: Axis.RangeMode,
   range: Axis.Range,

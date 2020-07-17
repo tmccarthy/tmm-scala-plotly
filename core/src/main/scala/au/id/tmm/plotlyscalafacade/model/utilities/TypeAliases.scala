@@ -22,6 +22,4 @@ private[model] trait TypeAliases {
 
   type Partial[A] = A // TODO find some way of handling this
 
-  type PlotSelectedData = Partial[PlotDatum]
-
 }

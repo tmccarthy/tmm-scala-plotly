@@ -76,7 +76,7 @@ object Transform {
 
   final case class Style(
     target: OneOrArrayOf[AxisPosition],
-    value: Partial[PlotData],
+    value: Partial[Trace],
   )
 
   object Style {

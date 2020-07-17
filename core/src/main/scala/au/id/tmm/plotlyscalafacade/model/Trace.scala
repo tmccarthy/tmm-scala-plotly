@@ -1,21 +1,20 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FalseOr, FlagList, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities._
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.instances.string.catsKernelStdOrderForString
 import cats.instances.tuple.catsKernelStdOrderForTuple2
 import cats.kernel.Order
-import io.circe.Encoder
+import io.circe.syntax._
+import io.circe.{Encoder, Json}
 
 // TODO it would probably be a good idea to break this up into the valid fields for each plot type. This information is
 //      available in the JS docs.
-// TODO this should probably be called Trace
-final case class PlotData(
-  `type`: PlotData.Type,
+final case class Trace(
+  `type`: Trace.Type,
   x: DataArray,
   y: DataArray,
   z: DataArray, // TODO this can be 3 dimensional
-  xy: Option[PlotData.FastXY],
   error_x: ErrorBar,
   error_y: ErrorBar,
   xaxis: String,
@@ -25,17 +24,17 @@ final case class PlotData(
   lon: Seq[Number],
   line: Partial[ScatterLine],
   marker: Partial[PlotMarker],
-  mode: PlotData.ScatterMode,
-  histfunc: PlotData.HistogramFunction,
-  hoveron: PlotData.HoverOn,
-  hoverinfo: PlotData.HoverInfo,
+  mode: Trace.ScatterMode,
+  histfunc: Trace.HistogramFunction,
+  hoveron: Trace.HoverOn,
+  hoverinfo: Trace.HoverInfo,
   hoverlabel: Partial[HoverLabel],
   hovertemplate: OneOrArrayOf[String],
   hovertext: OneOrArrayOf[String],
-  textinfo: PlotData.TextInfo,
-  textposition: PlotData.TextPosition,
+  textinfo: Trace.TextInfo,
+  textposition: Trace.TextPosition,
   textfont: Partial[Font],
-  fill: PlotData.Fill,
+  fill: Trace.Fill,
   fillcolor: String,
   showlegend: Boolean,
   legendgroup: String,
@@ -43,40 +42,38 @@ final case class PlotData(
   name: String,
   stackgroup: String,
   connectgaps: Boolean,
-  visible: BooleanOr[PlotData.Visibility],
+  visible: BooleanOr[Trace.Visibility],
   delta: Partial[Delta],
   gauge: Partial[Gauge],
   number: Partial[PlotNumber],
   transforms: Seq[Partial[Transform]],
-  orientation: PlotData.Orientation,
+  orientation: Trace.Orientation,
   width: OneOrArrayOf[Number],
-  boxmean: PlotData.BoxMean,
+  boxmean: Trace.BoxMean,
   opacity: Number,
   showscale: Boolean,
   colorscale: ColorScale,
-  zsmooth: FalseOr[PlotData.ZSmooth],
+  zsmooth: FalseOr[Trace.ZSmooth],
   ygap: Number,
   xgap: Number,
   transpose: Boolean,
   autobinx: Boolean,
-  xbins: PlotData.XBins,
+  xbins: Trace.XBins,
   value: Number,
   values: Seq[Datum],
   labels: Seq[Datum],
-  direction: PlotData.Direction,
+  direction: Trace.Direction,
   hole: Number,
   rotation: Number,
   theta: Seq[Datum],
   r: Seq[Datum],
   customdata: Seq[Datum],
-  domain: Partial[PlotData.Domain],
+  domain: Partial[Trace.Domain],
   title: Partial[DataTitle],
-  branchvalues: PlotData.BranchValues,
+  branchvalues: Trace.BranchValues,
 )
 
-object PlotData {
-
-  import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+object Trace {
 
   sealed abstract class Type(val asString: String) extends JSEnum
 
@@ -108,11 +105,6 @@ object PlotData {
     case object FunnelArea     extends Type("funnelarea")
     case object ScatterMapbox  extends Type("scattermapbox")
   }
-
-  /**
-    * Not supported
-    */
-  sealed trait FastXY
 
   sealed trait ScatterMode
 
@@ -192,29 +184,29 @@ object PlotData {
 
   object TextInfo {
 
-    case object None extends TextInfo
+    case object None                           extends TextInfo
     final case class Of(flags: FlagList[Flag]) extends TextInfo
 
     sealed abstract class Flag(val asString: String) extends JSEnum
 
     object Flag {
-      case object Label extends Flag("label")
-      case object Text extends Flag("text")
+      case object Label   extends Flag("label")
+      case object Text    extends Flag("text")
       case object Initial extends Flag("initial")
-      case object Delta extends Flag("delta")
-      case object Final extends Flag("final")
+      case object Delta   extends Flag("delta")
+      case object Final   extends Flag("final")
 
       implicit val order: Order[Flag] = Order.by[Flag, Int] {
-        case Label => 0
-        case Text => 1
+        case Label   => 0
+        case Text    => 1
         case Initial => 2
-        case Delta => 3
-        case Final => 4
+        case Delta   => 3
+        case Final   => 4
       }
     }
 
     implicit val encoder: Encoder[TextInfo] = {
-      case None => Encoder[String].apply("none")
+      case None      => Encoder[String].apply("none")
       case Of(flags) => Encoder[FlagList[Flag]].apply(flags)
     }
   }
@@ -222,29 +214,29 @@ object PlotData {
   sealed abstract class TextPosition(val asString: String) extends JSEnum
 
   object TextPosition {
-    case object TopLeft extends TextPosition("top left")
-    case object TopCenter extends TextPosition("top center")
-    case object TopRight extends TextPosition("top right")
-    case object MiddleLeft extends TextPosition("middle left")
+    case object TopLeft      extends TextPosition("top left")
+    case object TopCenter    extends TextPosition("top center")
+    case object TopRight     extends TextPosition("top right")
+    case object MiddleLeft   extends TextPosition("middle left")
     case object MiddleCenter extends TextPosition("middle center")
-    case object MiddleRight extends TextPosition("middle right")
-    case object BottomLeft extends TextPosition("bottom left")
+    case object MiddleRight  extends TextPosition("middle right")
+    case object BottomLeft   extends TextPosition("bottom left")
     case object BottomCenter extends TextPosition("bottom center")
-    case object BottomRight extends TextPosition("bottom right")
-    case object Inside extends TextPosition("inside")
-    case object Outside extends TextPosition("outside")
+    case object BottomRight  extends TextPosition("bottom right")
+    case object Inside       extends TextPosition("inside")
+    case object Outside      extends TextPosition("outside")
   }
 
   sealed abstract class Fill(val asString: String) extends JSEnum
 
   object Fill {
-    case object None extends Fill("none")
+    case object None    extends Fill("none")
     case object ToZeroY extends Fill("tozeroy")
     case object ToZeroX extends Fill("tozerox")
     case object ToNextY extends Fill("tonexty")
     case object ToNextX extends Fill("tonextx")
-    case object ToSelf extends Fill("toself")
-    case object ToNext extends Fill("tonext")
+    case object ToSelf  extends Fill("toself")
+    case object ToNext  extends Fill("tonext")
   }
 
   sealed abstract class Visibility(val asString: String) extends JSEnum
@@ -256,21 +248,21 @@ object PlotData {
   sealed abstract class Orientation(val asString: String) extends JSEnum
 
   object Orientation {
-    case object Vertical extends Orientation("v")
+    case object Vertical   extends Orientation("v")
     case object Horizontal extends Orientation("h")
   }
 
   sealed trait BoxMean
 
   object BoxMean {
-    case object True extends BoxMean
+    case object True                  extends BoxMean
     case object WithStandardDeviation extends BoxMean
-    case object False extends BoxMean
+    case object False                 extends BoxMean
 
     implicit val encoder: Encoder[BoxMean] = {
-      case True => Encoder[Boolean].apply(true)
+      case True                  => Encoder[Boolean].apply(true)
       case WithStandardDeviation => Encoder[String].apply("sd")
-      case False => Encoder[Boolean].apply(false)
+      case False                 => Encoder[Boolean].apply(false)
     }
   }
 
@@ -284,14 +276,14 @@ object PlotData {
   sealed abstract class Direction(val asString: String) extends JSEnum
 
   object Direction {
-    case object Clockwise extends Direction("clockwise")
+    case object Clockwise        extends Direction("clockwise")
     case object CounterClockwise extends Direction("counterclockwise")
   }
 
   sealed abstract class BranchValues(val asString: String) extends JSEnum
 
   object BranchValues {
-    case object Total extends BranchValues("total")
+    case object Total     extends BranchValues("total")
     case object Remainder extends BranchValues("remainder")
   }
 
@@ -307,5 +299,70 @@ object PlotData {
     x: Seq[Number],
     y: Seq[Number],
   )
+
+  implicit val encoder: Encoder[Trace] = Encoder[Trace] { trace =>
+    Json.obj(
+      "type" := trace.`type`,
+      "x" := trace.x,
+      "y" := trace.y,
+      "z" := trace.z,
+      "error_x" := trace.error_x,
+      "error_y" := trace.error_y,
+      "xaxis" := trace.xaxis,
+      "yaxis" := trace.yaxis,
+      "text" := trace.text,
+      "lat" := trace.lat,
+      "lon" := trace.lon,
+      "line" := trace.line,
+      "marker" := trace.marker,
+      "mode" := trace.mode,
+      "histfunc" := trace.histfunc,
+      "hoveron" := trace.hoveron,
+      "hoverinfo" := trace.hoverinfo,
+      "hoverlabel" := trace.hoverlabel,
+      "hovertemplate" := trace.hovertemplate,
+      "hovertext" := trace.hovertext,
+      "textinfo" := trace.textinfo,
+      "textposition" := trace.textposition,
+      "textfont" := trace.textfont,
+      "fill" := trace.fill,
+      "fillcolor" := trace.fillcolor,
+      "showlegend" := trace.showlegend,
+      "legendgroup" := trace.legendgroup,
+      "parents" := trace.parents,
+      "name" := trace.name,
+      "stackgroup" := trace.stackgroup,
+      "connectgaps" := trace.connectgaps,
+      "visible" := trace.visible,
+      "delta" := trace.delta,
+      "gauge" := trace.gauge,
+      "number" := trace.number,
+      "transforms" := trace.transforms,
+      "orientation" := trace.orientation,
+      "width" := trace.width,
+      "boxmean" := trace.boxmean,
+      "opacity" := trace.opacity,
+      "showscale" := trace.showscale,
+      "colorscale" := trace.colorscale,
+      "zsmooth" := trace.zsmooth,
+      "ygap" := trace.ygap,
+      "xgap" := trace.xgap,
+      "transpose" := trace.transpose,
+      "autobinx" := trace.autobinx,
+      "xbins" := trace.xbins,
+      "value" := trace.value,
+      "values" := trace.values,
+      "labels" := trace.labels,
+      "direction" := trace.direction,
+      "hole" := trace.hole,
+      "rotation" := trace.rotation,
+      "theta" := trace.theta,
+      "r" := trace.r,
+      "customdata" := trace.customdata,
+      "domain" := trace.domain,
+      "title" := trace.title,
+      "branchvalues" := trace.branchvalues,
+    )
+  }
 
 }

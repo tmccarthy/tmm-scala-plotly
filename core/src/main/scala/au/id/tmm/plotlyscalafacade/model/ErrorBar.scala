@@ -1,6 +1,8 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import io.circe.syntax.KeyOps
+import io.circe.{Encoder, Json}
 
 sealed trait ErrorBar {
   def visible: Boolean
@@ -60,6 +62,42 @@ object ErrorBar {
     arrayminus: Option[Seq[Datum]],
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Data.type = ErrorBar.Type.Data
+  }
+
+  implicit val encoder: Encoder[ErrorBar] = {
+    case c: Constant =>
+      Json.obj(
+        "visible" := c.visible,
+        "symmetric" := c.symmetric,
+        "color" := c.color,
+        "thickness" := c.thickness,
+        "width" := c.width,
+        "opacity" := c.opacity,
+        "value" := c.value,
+        "valueminus" := c.valueminus,
+      )
+    case p: Percent =>
+      Json.obj(
+        "visible" := p.visible,
+        "symmetric" := p.symmetric,
+        "color" := p.color,
+        "thickness" := p.thickness,
+        "width" := p.width,
+        "opacity" := p.opacity,
+        "value" := p.value,
+        "valueminus" := p.valueminus,
+      )
+    case d: Data =>
+      Json.obj(
+        "visible" := d.visible,
+        "symmetric" := d.symmetric,
+        "color" := d.color,
+        "thickness" := d.thickness,
+        "width" := d.width,
+        "opacity" := d.opacity,
+        "array" := d.array,
+        "arrayminus" := d.arrayminus,
+      )
   }
 
 }

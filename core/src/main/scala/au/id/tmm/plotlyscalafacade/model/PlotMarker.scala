@@ -6,7 +6,6 @@ import io.circe.Encoder
 final case class PlotMarker(
   symbol: OneOrArrayOf[PlotMarker.Symbol],
   color: OneOrArrayOf[Color],
-  colors: Seq[Color],
   colorscale: ColorScale,
   cauto: Boolean,
   cmax: Number,
@@ -44,7 +43,7 @@ object PlotMarker {
 
   final case class ScatterMarkerLine(
     width: OneOrArrayOf[Number],
-    color: Color,
+    color: OneOrArrayOf[Color], // TODO this is either a colour, an array of colours or an array of numbers that is combined with the colorscale
     colorscale: ColorScale,
     cauto: Boolean,
     cmax: Number,

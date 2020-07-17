@@ -1,8 +1,12 @@
 package au.id.tmm.plotlyscalafacade
 
+import java.net.URI
+import java.util.Locale
+
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 import cats.Show
 import io.circe.Encoder
+import io.circe.syntax.EncoderOps
 
 package object model extends utilities.TypeAliases with utilities.EncoderOps.ToEncoderOps {
 
@@ -11,5 +15,9 @@ package object model extends utilities.TypeAliases with utilities.EncoderOps.ToE
 
   private[model] implicit def plotlyFacadeShowForJsEnum[T <: JSEnum]: Show[T] =
     JSEnum.plotlyFacadeShowForJsEnum[T]
+
+  private[model] implicit val plotlyFacadeEncoderForURI: Encoder[URI] = _.toString.asJson
+
+  private[model] implicit val plotlyFacadeEncoderForLocale: Encoder[Locale] = _.toString.asJson
 
 }

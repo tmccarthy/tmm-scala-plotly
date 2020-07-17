@@ -1,6 +1,8 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import io.circe.Encoder
+import io.circe.syntax.EncoderOps
 
 import scala.collection.immutable.ArraySeq
 
@@ -8,11 +10,15 @@ sealed trait ColorScale
 
 object ColorScale {
 
-  final case class OfPallet(pallet: Pallet) extends ColorScale
-  final case class OfMapping(mapping: Seq[(Number, Color)])
+  final case class OfPallet(pallet: Pallet)                 extends ColorScale
+  final case class OfMapping(mapping: Seq[(Number, Color)]) extends ColorScale
 
   object OfMapping {
-    def apply(first: (Number, Color), second: (Number, Color), tail: (Number, Color)*): OfMapping =
+    def apply(
+      first: (Number, Color),
+      second: (Number, Color),
+      tail: (Number, Color)*,
+    ): OfMapping =
       new OfMapping(ArraySeq(first, second).appendedAll(tail))
   }
 
@@ -37,6 +43,11 @@ object ColorScale {
     case object Electric  extends Pallet("Electric")
     case object Viridis   extends Pallet("Viridis")
     case object Cividis   extends Pallet("Cividis")
+  }
+
+  implicit val encoder: Encoder[ColorScale] = {
+    case OfPallet(pallet)   => pallet.asJson
+    case OfMapping(mapping) => mapping.asJson
   }
 
 }

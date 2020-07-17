@@ -2,7 +2,7 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.time.Duration
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf, Range}
+import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 

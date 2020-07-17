@@ -6,7 +6,8 @@ import java.util.Locale
 import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FalseOr, FlagList, JSEnum}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
-import io.circe.Encoder
+import io.circe.syntax._
+import io.circe.{Encoder, Json}
 
 final case class Config(
   toImageButtonOptions: Partial[Config.ToImageButtonOptions],
@@ -63,6 +64,22 @@ object Config {
       case object Jpeg extends Format("jpeg")
       case object Webp extends Format("webp")
     }
+
+    implicit val encoder: Encoder[ToImageButtonOptions] = Encoder.forProduct5(
+      "filename",
+      "scale",
+      "format",
+      "height",
+      "width",
+    )(o =>
+      (
+        o.filename,
+        o.scale,
+        o.format,
+        o.height,
+        o.width,
+      ),
+    )
   }
 
   final case class Edits(
@@ -77,6 +94,34 @@ object Config {
     shapePosition: Boolean,
     titleText: Boolean,
   )
+
+  object Edits {
+    implicit val encoder: Encoder[Edits] = Encoder.forProduct10(
+      "annotationPosition",
+      "annotationTail",
+      "annotationText",
+      "axisTitleText",
+      "colorbarPosition",
+      "colorbarTitleText",
+      "legendPosition",
+      "legendText",
+      "shapePosition",
+      "titleText",
+    )(e =>
+      (
+        e.annotationPosition,
+        e.annotationTail,
+        e.annotationText,
+        e.axisTitleText,
+        e.colorbarPosition,
+        e.colorbarTitleText,
+        e.legendPosition,
+        e.legendText,
+        e.shapePosition,
+        e.titleText,
+      ),
+    )
+  }
 
   sealed abstract class DoubleClickFlag(val asString: String) extends JSEnum
 
@@ -151,8 +196,53 @@ object Config {
     buttons: Seq[ModeBarButton],
   )
 
+  object ModeBarButtons {
+    implicit val encoder: Encoder[ModeBarButtons] =
+      b => (b.buttons.map(_.asJson) ++ b.defaultButtons.map(_.asJson)).asJson
+  }
+
   final case class ModeBarButtonGroups(
     groups: Seq[ModeBarButtons],
   )
 
+  object ModeBarButtonGroups {
+    implicit val encoder: Encoder[ModeBarButtonGroups] = Encoder[Seq[ModeBarButtons]].contramap(_.groups)
+  }
+
+  implicit val encoder: Encoder[Config] = c =>
+    Json.obj(
+      "toImageButtonOptions" := c.toImageButtonOptions,
+      "staticPlot" := c.staticPlot,
+      "plotlyServerURL" := c.plotlyServerURL,
+      "editable" := c.editable,
+      "edits" := c.edits,
+      "autosizable" := c.autosizable,
+      "queueLength" := c.queueLength,
+      "fillFrame" := c.fillFrame,
+      "frameMargins" := c.frameMargins,
+      "scrollZoom" := c.scrollZoom,
+      "doubleClick" := c.doubleClick,
+      "showTips" := c.showTips,
+      "showAxisDragHandles" := c.showAxisDragHandles,
+      "showAxisRangeEntryBoxes" := c.showAxisRangeEntryBoxes,
+      "showLink" := c.showLink,
+      "sendData" := c.sendData,
+      "linkText" := c.linkText,
+      "showSources" := c.showSources,
+      "displayModeBar" := c.displayModeBar,
+      "showSendToCloud" := c.showSendToCloud,
+      "showEditInChartStudio" := c.showEditInChartStudio,
+      "modeBarButtonsToRemove" := c.modeBarButtonsToRemove,
+      "modeBarButtonsToAdd" := c.modeBarButtonsToAdd,
+      "modeBarButtons" := c.modeBarButtons,
+      "displaylogo" := c.displaylogo,
+      "plotGlPixelRatio" := c.plotGlPixelRatio,
+      "setBackground" := c.setBackground,
+      "topojsonURL" := c.topojsonURL,
+      "mapboxAccessToken" := c.mapboxAccessToken,
+      "logging" := c.logging,
+      "globalTransforms" := c.globalTransforms,
+      "locale" := c.locale,
+      "responsive" := c.responsive,
+    )
 }

@@ -1,6 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
+import io.circe.Encoder
 
 final case class Transform(
   `type`: Transform.Type,
@@ -57,6 +58,20 @@ object Transform {
       case object Sample     extends FunctionMode("sample")
       case object Population extends FunctionMode("population")
     }
+
+    implicit val encoder: Encoder[Aggregation] = Encoder.forProduct4(
+      "target",
+      "func",
+      "funcmode",
+      "enabled",
+    )(a =>
+      (
+        a.target,
+        a.func,
+        a.funcmode,
+        a.enabled,
+      ),
+    )
   }
 
   final case class Style(
@@ -64,11 +79,43 @@ object Transform {
     value: Partial[PlotData],
   )
 
+  object Style {
+    implicit val encoder: Encoder[Style] = Encoder.forProduct2("target", "value")(s => (s.target, s.value))
+  }
+
   sealed abstract class Order(val asString: String) extends JSEnum
 
   object Order {
     case object Ascending  extends Order("ascending")
     case object Descending extends Order("descending")
   }
+
+  implicit val encoder: Encoder[Transform] = Encoder.forProduct11(
+    "type",
+    "enabled",
+    "target",
+    "operation",
+    "aggregations",
+    "preservegaps",
+    "groups",
+    "nameformat",
+    "styles",
+    "value",
+    "order",
+  )(t =>
+    (
+      t.`type`,
+      t.enabled,
+      t.target,
+      t.operation,
+      t.aggregations,
+      t.preservegaps,
+      t.groups,
+      t.nameformat,
+      t.styles,
+      t.value,
+      t.order,
+    ),
+  )
 
 }

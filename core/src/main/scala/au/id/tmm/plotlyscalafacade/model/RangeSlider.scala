@@ -1,6 +1,5 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.Range
 import io.circe.Encoder
 
 final case class RangeSlider(

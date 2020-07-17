@@ -1,4 +1,4 @@
-package au.id.tmm.plotlyscalafacade.model.utilities
+package au.id.tmm.plotlyscalafacade.model
 
 import io.circe.Encoder
 

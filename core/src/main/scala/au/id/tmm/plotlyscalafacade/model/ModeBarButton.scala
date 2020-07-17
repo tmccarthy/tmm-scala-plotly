@@ -18,7 +18,7 @@ object ModeBarButton {
 
   object Icon {
     final case class OfString(asString: String) extends ModeBarButton.Icon
-    final case class OfIcon(icon: IconDetails)   extends ModeBarButton.Icon
+    final case class OfIcon(icon: IconDetails)  extends ModeBarButton.Icon
 
     implicit val encoder: Encoder[ModeBarButton.Icon] = {
       case OfString(asString) => Encoder[String].apply(asString)
@@ -61,5 +61,24 @@ object ModeBarButton {
     )
   }
 
+  implicit val encoder: Encoder[ModeBarButton] = Encoder.forProduct7(
+    "name",
+    "title",
+    "icon",
+    "gravity",
+    "attr",
+    "val",
+    "toggle",
+  )(b =>
+    (
+      b.name,
+      b.title,
+      b.icon,
+      b.gravity,
+      b.attr,
+      b.`val`,
+      b.toggle,
+    ),
+  )
 
 }

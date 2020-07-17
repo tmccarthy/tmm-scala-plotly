@@ -3,7 +3,6 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
-// TODO isn't this a Datum?
 sealed trait AxisPosition
 
 object AxisPosition {

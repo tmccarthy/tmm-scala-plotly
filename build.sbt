@@ -21,4 +21,10 @@ lazy val core = project
     libraryDependencies += "io.circe" %% "circe-core" % circeVersion,
   )
 
+lazy val examples = project
+  .in(file("examples"))
+  .settings(settingsHelper.settingsForSubprojectCalled("examples"))
+  .settings(publish / skip := true)
+  .dependsOn(core)
+
 addCommandAlias("check", ";+test;scalafmtCheckAll")

@@ -2,6 +2,8 @@ package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.Layout.Title.ContainerReference
 import au.id.tmm.plotlyscalafacade.model.utilities.{BlankOr, FalseOr, JSEnum}
+import io.circe.{Encoder, Json}
+import io.circe.syntax._
 
 final case class Layout(
   colorway: Option[Seq[Color]] = None,
@@ -197,6 +199,73 @@ object Layout {
     case object VerticalOnly   extends SelectDirection("v")
     case object DiagonalOnly   extends SelectDirection("d")
     case object Any            extends SelectDirection("a")
+  }
+
+  implicit val encoder: Encoder[Layout] = Encoder { layout =>
+    Json.obj(
+      "colorway"        := layout.colorway,
+      "title"           := layout.title,
+      "titlefont"       := layout.titlefont,
+      "autosize"        := layout.autosize,
+      "showlegend"      := layout.showlegend,
+      "paper_bgcolor"   := layout.paper_bgcolor,
+      "plot_bgcolor"    := layout.plot_bgcolor,
+      "separators"      := layout.separators,
+      "hidesources"     := layout.hidesources,
+      "xaxis"           := layout.xaxis,
+      "xaxis2"          := layout.xaxis2,
+      "xaxis3"          := layout.xaxis3,
+      "xaxis4"          := layout.xaxis4,
+      "xaxis5"          := layout.xaxis5,
+      "xaxis6"          := layout.xaxis6,
+      "xaxis7"          := layout.xaxis7,
+      "xaxis8"          := layout.xaxis8,
+      "xaxis9"          := layout.xaxis9,
+      "yaxis"           := layout.yaxis,
+      "yaxis2"          := layout.yaxis2,
+      "yaxis3"          := layout.yaxis3,
+      "yaxis4"          := layout.yaxis4,
+      "yaxis5"          := layout.yaxis5,
+      "yaxis6"          := layout.yaxis6,
+      "yaxis7"          := layout.yaxis7,
+      "yaxis8"          := layout.yaxis8,
+      "yaxis9"          := layout.yaxis9,
+      "margin"          := layout.margin,
+      "height"          := layout.height,
+      "width"           := layout.width,
+      "hovermode"       := layout.hovermode,
+      "hoverdistance"   := layout.hoverdistance,
+      "hoverlabel"      := layout.hoverlabel,
+      "calendar"        := layout.calendar,
+      "mapbox"          := layout.mapbox,
+      "subplot"         := layout.subplot,
+      "dragmode"        := layout.dragmode,
+      "orientation"     := layout.orientation,
+      "annotations"     := layout.annotations,
+      "shapes"          := layout.shapes,
+      "images"          := layout.images,
+      "sliders"         := layout.sliders,
+      "legend"          := layout.legend,
+      "font"            := layout.font,
+      "scene"           := layout.scene,
+      "barmode"         := layout.barmode,
+      "barnorm"         := layout.barnorm,
+      "bargap"          := layout.bargap,
+      "bargroupgap"     := layout.bargroupgap,
+      "selectdirection" := layout.selectdirection,
+      "hiddenlabels"    := layout.hiddenlabels,
+      "grid"            := layout.grid,
+      "polar"           := layout.polar,
+      "polar2"          := layout.polar2,
+      "polar3"          := layout.polar3,
+      "polar4"          := layout.polar4,
+      "polar5"          := layout.polar5,
+      "polar6"          := layout.polar6,
+      "polar7"          := layout.polar7,
+      "polar8"          := layout.polar8,
+      "polar9"          := layout.polar9,
+      "transition"      := layout.transition,
+    )
   }
 
 }

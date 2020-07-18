@@ -15,7 +15,7 @@ object Plotting {
 
   def openInBrowser(plot: Plot, plotlyVersion: PlotlyVersion = PlotlyVersion.Latest): Unit = {
     val path = Files.createTempFile(
-      inferTitleFor(plot).getOrElse("plot"),
+      inferTitleFor(plot).map(_.replaceAll("""\s""", "_").replaceAll("""\W""", "")).getOrElse("plot"),
       ".html",
     )
 
@@ -32,12 +32,13 @@ object Plotting {
         titleText <- title.text
       } yield titleText
 
-    fromLayoutTitle.map(_.replaceAll("""\s""", "_").replaceAll("""\W""", ""))
+    fromLayoutTitle
   }
 
   def newPlotHtmlPage(plot: Plot, plotlyVersion: PlotlyVersion = PlotlyVersion.Latest): String =
     templatedResource(
       resourceName = "newPlotHtmlPage.html",
+      "title"        -> inferTitleFor(plot).getOrElse("Plot"),
       "plot"         -> plot.asJson.printWith(circePrinter),
       "plotlyCdnUri" -> plotlyVersion.cdnUri.toString,
     )

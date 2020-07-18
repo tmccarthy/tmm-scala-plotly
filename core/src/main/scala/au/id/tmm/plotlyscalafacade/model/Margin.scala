@@ -1,9 +1,9 @@
 package au.id.tmm.plotlyscalafacade.model
 
 final case class Margin(
-  top: Number,
-  bottom: Number,
-  left: Number,
-  right: Number,
-  pad: Number,
+  top: Option[Number],
+  bottom: Option[Number],
+  left: Option[Number],
+  right: Option[Number],
+  pad: Option[Number],
 )

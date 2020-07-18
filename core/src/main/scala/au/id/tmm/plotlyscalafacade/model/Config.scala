@@ -10,49 +10,49 @@ import io.circe.syntax._
 import io.circe.{Encoder, Json}
 
 final case class Config(
-  toImageButtonOptions: Config.ToImageButtonOptions,
-  staticPlot: Boolean,
-  plotlyServerURL: URI,
-  editable: Boolean,
-  edits: Config.Edits,
-  autosizable: Boolean,
-  queueLength: Int,
-  fillFrame: Boolean,
-  frameMargins: Number,
-  scrollZoom: Boolean,
-  doubleClick: FalseOr[FlagList[Config.DoubleClickFlag]],
-  showTips: Boolean,
-  showAxisDragHandles: Boolean,
-  showAxisRangeEntryBoxes: Boolean,
-  showLink: Boolean,
-  sendData: Boolean,
-  linkText: String,
-  showSources: Boolean,
-  displayModeBar: BooleanOr[Config.DisplayModeBar],
-  showSendToCloud: Boolean,
-  showEditInChartStudio: Boolean,
-  modeBarButtonsToRemove: Seq[Config.ModeBarDefaultButtons],
-  modeBarButtonsToAdd: Config.ModeBarButtons,
-  modeBarButtons: FalseOr[Config.ModeBarButtonGroups],
-  displaylogo: Boolean,
-  plotGlPixelRatio: Number,
-  setBackground: Config.SetBackground,
-  topojsonURL: URI,
-  mapboxAccessToken: String,
-  logging: Boolean,
-  globalTransforms: Seq[Transform],
-  locale: Locale,
-  responsive: Boolean,
+  toImageButtonOptions: Option[Config.ToImageButtonOptions],
+  staticPlot: Option[Boolean],
+  plotlyServerURL: Option[URI],
+  editable: Option[Boolean],
+  edits: Option[Config.Edits],
+  autosizable: Option[Boolean],
+  queueLength: Option[Int],
+  fillFrame: Option[Boolean],
+  frameMargins: Option[Number],
+  scrollZoom: Option[Boolean],
+  doubleClick: Option[FalseOr[FlagList[Config.DoubleClickFlag]]],
+  showTips: Option[Boolean],
+  showAxisDragHandles: Option[Boolean],
+  showAxisRangeEntryBoxes: Option[Boolean],
+  showLink: Option[Boolean],
+  sendData: Option[Boolean],
+  linkText: Option[String],
+  showSources: Option[Boolean],
+  displayModeBar: Option[BooleanOr[Config.DisplayModeBar]],
+  showSendToCloud: Option[Boolean],
+  showEditInChartStudio: Option[Boolean],
+  modeBarButtonsToRemove: Option[Seq[Config.ModeBarDefaultButtons]],
+  modeBarButtonsToAdd: Option[Config.ModeBarButtons],
+  modeBarButtons: Option[FalseOr[Config.ModeBarButtonGroups]],
+  displaylogo: Option[Boolean],
+  plotGlPixelRatio: Option[Number],
+  setBackground: Option[Config.SetBackground],
+  topojsonURL: Option[URI],
+  mapboxAccessToken: Option[String],
+  logging: Option[Boolean],
+  globalTransforms: Option[Seq[Transform]],
+  locale: Option[Locale],
+  responsive: Option[Boolean],
 )
 
 object Config {
 
   final case class ToImageButtonOptions(
-    filename: String,
-    scale: Number,
-    format: ToImageButtonOptions.Format,
-    height: Number,
-    width: Number,
+    filename: Option[String],
+    scale: Option[Number],
+    format: Option[ToImageButtonOptions.Format],
+    height: Option[Number],
+    width: Option[Number],
   )
 
   object ToImageButtonOptions {
@@ -83,16 +83,16 @@ object Config {
   }
 
   final case class Edits(
-    annotationPosition: Boolean,
-    annotationTail: Boolean,
-    annotationText: Boolean,
-    axisTitleText: Boolean,
-    colorbarPosition: Boolean,
-    colorbarTitleText: Boolean,
-    legendPosition: Boolean,
-    legendText: Boolean,
-    shapePosition: Boolean,
-    titleText: Boolean,
+    annotationPosition: Option[Boolean],
+    annotationTail: Option[Boolean],
+    annotationText: Option[Boolean],
+    axisTitleText: Option[Boolean],
+    colorbarPosition: Option[Boolean],
+    colorbarTitleText: Option[Boolean],
+    legendPosition: Option[Boolean],
+    legendText: Option[Boolean],
+    shapePosition: Option[Boolean],
+    titleText: Option[Boolean],
   )
 
   object Edits {
@@ -153,8 +153,8 @@ object Config {
     sealed trait Fn extends SetBackground
 
     implicit val encoder: Encoder[SetBackground] = {
-      case Opaque      => Encoder[String].apply("opaque")
-      case Transparent => Encoder[String].apply("transparent")
+      case Opaque      => "opaque".asJson
+      case Transparent => "transparent".asJson
     }
   }
 

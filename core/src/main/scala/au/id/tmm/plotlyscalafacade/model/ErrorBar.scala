@@ -5,12 +5,12 @@ import io.circe.syntax.KeyOps
 import io.circe.{Encoder, Json}
 
 sealed trait ErrorBar {
-  def visible: Boolean
-  def symmetric: Boolean
-  def color: Color
-  def thickness: Number
-  def width: Number
-  def opacity: Number
+  def visible: Option[Boolean]
+  def symmetric: Option[Boolean]
+  def color: Option[Color]
+  def thickness: Option[Number]
+  def width: Option[Number]
+  def opacity: Option[Number]
 
   def `type`: ErrorBar.Type
 }
@@ -26,39 +26,39 @@ object ErrorBar {
   }
 
   final case class Constant(
-    visible: Boolean,
-    symmetric: Boolean,
-    color: Color,
-    thickness: Number,
-    width: Number,
-    opacity: Number,
-    value: Number,
+    visible: Option[Boolean],
+    symmetric: Option[Boolean],
+    color: Option[Color],
+    thickness: Option[Number],
+    width: Option[Number],
+    opacity: Option[Number],
+    value: Option[Number],
     valueminus: Option[Number],
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Constant.type = ErrorBar.Type.Constant
   }
 
   final case class Percent(
-    visible: Boolean,
-    symmetric: Boolean,
-    color: Color,
-    thickness: Number,
-    width: Number,
-    opacity: Number,
-    value: Number,
+    visible: Option[Boolean],
+    symmetric: Option[Boolean],
+    color: Option[Color],
+    thickness: Option[Number],
+    width: Option[Number],
+    opacity: Option[Number],
+    value: Option[Number],
     valueminus: Option[Number],
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Percent.type = ErrorBar.Type.Percent
   }
 
   final case class Data(
-    visible: Boolean,
-    symmetric: Boolean,
-    color: Color,
-    thickness: Number,
-    width: Number,
-    opacity: Number,
-    array: Seq[Datum],
+    visible: Option[Boolean],
+    symmetric: Option[Boolean],
+    color: Option[Color],
+    thickness: Option[Number],
+    width: Option[Number],
+    opacity: Option[Number],
+    array: Option[Seq[Datum]],
     arrayminus: Option[Seq[Datum]],
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Data.type = ErrorBar.Type.Data

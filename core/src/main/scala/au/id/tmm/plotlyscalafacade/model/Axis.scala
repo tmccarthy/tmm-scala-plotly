@@ -7,32 +7,32 @@ import io.circe.syntax.{EncoderOps, KeyOps}
 import io.circe.{Encoder, Json}
 
 sealed trait Axis {
-  def visible: Boolean
-  def color: Color
-  def title: Axis.Title
-  def titlefont: Font
-  def `type`: Axis.Type
-  def autorange: BooleanOr[Axis.AutoRange]
-  def rangemode: Axis.RangeMode
-  def range: Axis.Range
-  def mirror: BooleanOr[Axis.Mirror]
-  def showspikes: Boolean
-  def spikecolor: Color
-  def spikethickness: Number
-  def categoryorder: Axis.CategoryOrder
-  def categoryarray: Seq[CategoryIndex]
-  def tickProperties: TickProperties
-  def hoverformat: String
-  def showline: Boolean
-  def linecolor: Color
-  def linewidth: Number
-  def showgrid: Boolean
-  def gridcolor: Color
-  def gridwidth: Number
-  def zeroline: Boolean
-  def zerolinecolor: Color
-  def zerolinewidth: Number
-  def calendar: Calendar
+  def visible: Option[Boolean]
+  def color: Option[Color]
+  def title: Option[Axis.Title]
+  def titlefont: Option[Font]
+  def `type`: Option[Axis.Type]
+  def autorange: Option[BooleanOr[Axis.AutoRange]]
+  def rangemode: Option[Axis.RangeMode]
+  def range: Option[Axis.Range]
+  def mirror: Option[BooleanOr[Axis.Mirror]]
+  def showspikes: Option[Boolean]
+  def spikecolor: Option[Color]
+  def spikethickness: Option[Number]
+  def categoryorder: Option[Axis.CategoryOrder]
+  def categoryarray: Option[Seq[CategoryIndex]]
+  def tickProperties: Option[TickProperties]
+  def hoverformat: Option[String]
+  def showline: Option[Boolean]
+  def linecolor: Option[Color]
+  def linewidth: Option[Number]
+  def showgrid: Option[Boolean]
+  def gridcolor: Option[Color]
+  def gridwidth: Option[Number]
+  def zeroline: Option[Boolean]
+  def zerolinecolor: Option[Color]
+  def zerolinewidth: Option[Number]
+  def calendar: Option[Calendar]
 }
 
 object Axis {
@@ -150,50 +150,50 @@ object Axis {
 }
 
 final case class LayoutAxis(
-  visible: Boolean,
-  color: Color,
-  title: Axis.Title,
-  titlefont: Font,
-  `type`: Axis.Type,
-  autorange: BooleanOr[Axis.AutoRange],
-  rangemode: Axis.RangeMode,
-  range: Axis.Range,
-  tickProperties: TickProperties,
-  mirror: BooleanOr[Axis.Mirror],
-  showspikes: Boolean,
-  spikecolor: Color,
-  spikethickness: Number,
-  categoryorder: Axis.CategoryOrder,
-  categoryarray: Seq[CategoryIndex],
-  separatethousands: Boolean,
-  hoverformat: String,
-  showline: Boolean,
-  linecolor: Color,
-  linewidth: Number,
-  showgrid: Boolean,
-  gridcolor: Color,
-  gridwidth: Number,
-  zeroline: Boolean,
-  zerolinecolor: Color,
-  zerolinewidth: Number,
-  calendar: Calendar,
-  fixedrange: Boolean,
-  scaleanchor: Axis.Name,
-  scaleratio: Number,
-  constrain: LayoutAxis.Constrain,
-  constraintoward: LayoutAxis.ConstrainToward,
-  spikedash: String,
-  spikemode: FlagList[LayoutAxis.SpikeMode],
-  anchor: LayoutAxis.Anchor,
-  side: LayoutAxis.Side,
-  overlaying: LayoutAxis.Overlaying,
-  layer: LayoutAxis.Layer,
-  domain: Seq[Number],
-  position: Number,
-  rangeslider: RangeSlider,
-  rangeselector: RangeSelector,
-  automargin: Boolean,
-  autotick: Boolean,
+  visible: Option[Boolean],
+  color: Option[Color],
+  title: Option[Axis.Title],
+  titlefont: Option[Font],
+  `type`: Option[Axis.Type],
+  autorange: Option[BooleanOr[Axis.AutoRange]],
+  rangemode: Option[Axis.RangeMode],
+  range: Option[Axis.Range],
+  tickProperties: Option[TickProperties],
+  mirror: Option[BooleanOr[Axis.Mirror]],
+  showspikes: Option[Boolean],
+  spikecolor: Option[Color],
+  spikethickness: Option[Number],
+  categoryorder: Option[Axis.CategoryOrder],
+  categoryarray: Option[Seq[CategoryIndex]],
+  separatethousands: Option[Boolean],
+  hoverformat: Option[String],
+  showline: Option[Boolean],
+  linecolor: Option[Color],
+  linewidth: Option[Number],
+  showgrid: Option[Boolean],
+  gridcolor: Option[Color],
+  gridwidth: Option[Number],
+  zeroline: Option[Boolean],
+  zerolinecolor: Option[Color],
+  zerolinewidth: Option[Number],
+  calendar: Option[Calendar],
+  fixedrange: Option[Boolean],
+  scaleanchor: Option[Axis.Name],
+  scaleratio: Option[Number],
+  constrain: Option[LayoutAxis.Constrain],
+  constraintoward: Option[LayoutAxis.ConstrainToward],
+  spikedash: Option[String],
+  spikemode: Option[FlagList[LayoutAxis.SpikeMode]],
+  anchor: Option[LayoutAxis.Anchor],
+  side: Option[LayoutAxis.Side],
+  overlaying: Option[LayoutAxis.Overlaying],
+  layer: Option[LayoutAxis.Layer],
+  domain: Option[Seq[Number]],
+  position: Option[Number],
+  rangeslider: Option[RangeSlider],
+  rangeselector: Option[RangeSelector],
+  automargin: Option[Boolean],
+  autotick: Option[Boolean],
 ) extends Axis
 
 object LayoutAxis {
@@ -315,37 +315,37 @@ object LayoutAxis {
 }
 
 final case class SceneAxis(
-  visible: Boolean,
-  color: Color,
-  title: Axis.Title,
-  titlefont: Font,
-  `type`: Axis.Type,
-  autorange: BooleanOr[Axis.AutoRange],
-  rangemode: Axis.RangeMode,
-  range: Axis.Range,
-  tickProperties: TickProperties,
-  mirror: BooleanOr[Axis.Mirror],
-  showspikes: Boolean,
-  spikecolor: Color,
-  spikethickness: Number,
-  categoryorder: Axis.CategoryOrder,
-  categoryarray: Seq[CategoryIndex],
-  separatethousands: Boolean,
-  hoverformat: String,
-  showline: Boolean,
-  linecolor: Color,
-  linewidth: Number,
-  showgrid: Boolean,
-  gridcolor: Color,
-  gridwidth: Number,
-  zeroline: Boolean,
-  zerolinecolor: Color,
-  zerolinewidth: Number,
-  calendar: Calendar,
-  spikesides: Boolean,
-  showbackground: Boolean,
-  backgroundcolor: Color,
-  showaxeslabels: Boolean,
+  visible: Option[Boolean],
+  color: Option[Color],
+  title: Option[Axis.Title],
+  titlefont: Option[Font],
+  `type`: Option[Axis.Type],
+  autorange: Option[BooleanOr[Axis.AutoRange]],
+  rangemode: Option[Axis.RangeMode],
+  range: Option[Axis.Range],
+  tickProperties: Option[TickProperties],
+  mirror: Option[BooleanOr[Axis.Mirror]],
+  showspikes: Option[Boolean],
+  spikecolor: Option[Color],
+  spikethickness: Option[Number],
+  categoryorder: Option[Axis.CategoryOrder],
+  categoryarray: Option[Seq[CategoryIndex]],
+  separatethousands: Option[Boolean],
+  hoverformat: Option[String],
+  showline: Option[Boolean],
+  linecolor: Option[Color],
+  linewidth: Option[Number],
+  showgrid: Option[Boolean],
+  gridcolor: Option[Color],
+  gridwidth: Option[Number],
+  zeroline: Option[Boolean],
+  zerolinecolor: Option[Color],
+  zerolinewidth: Option[Number],
+  calendar: Option[Calendar],
+  spikesides: Option[Boolean],
+  showbackground: Option[Boolean],
+  backgroundcolor: Option[Color],
+  showaxeslabels: Option[Boolean],
 ) extends Axis
 
 object SceneAxis {

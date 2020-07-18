@@ -3,9 +3,9 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 
 final case class ModeBarButton(
-  name: String,
-  title: String,
-  icon: ModeBarButton.Icon,
+  name: Option[String],
+  title: Option[String],
+  icon: Option[ModeBarButton.Icon],
   gravity: Option[String],
   attr: Option[String],
   `val`: Option[String],

@@ -3,8 +3,8 @@ package au.id.tmm.plotlyscalafacade.model
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class Transition(
-  duration: Number,
-  easing: Transition.Easing,
+  duration: Option[Number],
+  easing: Option[Transition.Easing],
   ordering: Option[Transition.Ordering],
 )
 

@@ -4,12 +4,12 @@ import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 import io.circe.Encoder
 
 final case class Delta(
-  reference: Number,
-  position: Delta.Position,
-  relative: Boolean,
-  valueformat: String,
-  increasing: Delta.Symbol,
-  decreasing: Delta.Symbol,
+  reference: Option[Number],
+  position: Option[Delta.Position],
+  relative: Option[Boolean],
+  valueformat: Option[String],
+  increasing: Option[Delta.Symbol],
+  decreasing: Option[Delta.Symbol],
 )
 
 object Delta {

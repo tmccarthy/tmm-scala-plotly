@@ -3,10 +3,10 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 
 final case class Padding(
-  top: Number,
-  right: Number,
-  bottom: Number,
-  left: Number,
+  top: Option[Number],
+  right: Option[Number],
+  bottom: Option[Number],
+  left: Option[Number],
 )
 
 object Padding {

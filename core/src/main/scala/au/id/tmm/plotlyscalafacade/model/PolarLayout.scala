@@ -3,13 +3,13 @@ package au.id.tmm.plotlyscalafacade.model
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class PolarLayout(
-  domain: Domain,
-  sector: NumberArray,
-  hole: Number,
-  bgcolor: Color,
-  radialaxis: LayoutAxis,
-  angularaxis: LayoutAxis,
-  gridshape: PolarLayout.GridShape,
+  domain: Option[Domain],
+  sector: Option[NumberArray],
+  hole: Option[Number],
+  bgcolor: Option[Color],
+  radialaxis: Option[LayoutAxis],
+  angularaxis: Option[LayoutAxis],
+  gridshape: Option[PolarLayout.GridShape],
   uirevision: Option[Nothing],
 )
 

@@ -5,24 +5,24 @@ import java.net.URI
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class MapboxLayers(
-  visible: Boolean,
-  sourcetype: MapboxLayers.SourceType,
-  source: MapboxLayers.Source,
-  sourcelayer: String,
-  sourceattribution: String,
-  `type`: MapboxLayers.Type,
-  coordinates: MapboxLayers.Coordinates,
-  below: String,
-  color: Color,
-  opacity: Number,
-  minzoom: Number,
-  maxzoom: Number,
-  circle: MapboxLayers.Circle,
-  line: ShapeLine,
-  fill: MapboxLayers.Fill,
-  symbol: MapboxLayers.MapboxSymbol,
-  name: String,
-  templateitemname: String,
+  visible: Option[Boolean],
+  sourcetype: Option[MapboxLayers.SourceType],
+  source: Option[MapboxLayers.Source],
+  sourcelayer: Option[String],
+  sourceattribution: Option[String],
+  `type`: Option[MapboxLayers.Type],
+  coordinates: Option[MapboxLayers.Coordinates],
+  below: Option[String],
+  color: Option[Color],
+  opacity: Option[Number],
+  minzoom: Option[Number],
+  maxzoom: Option[Number],
+  circle: Option[MapboxLayers.Circle],
+  line: Option[ShapeLine],
+  fill: Option[MapboxLayers.Fill],
+  symbol: Option[MapboxLayers.MapboxSymbol],
+  name: Option[String],
+  templateitemname: Option[String],
 )
 
 object MapboxLayers {
@@ -69,12 +69,12 @@ object MapboxLayers {
   final case class Fill(outlineColor: Color)
 
   final case class MapboxSymbol(
-    icon: String,
-    iconsize: Number,
-    text: String,
-    placement: MapboxSymbol.Placement,
-    textfont: Font,
-    textposition: TextPosition,
+    icon: Option[String],
+    iconsize: Option[Number],
+    text: Option[String],
+    placement: Option[MapboxSymbol.Placement],
+    textfont: Option[Font],
+    textposition: Option[TextPosition],
   )
 
   object MapboxSymbol {

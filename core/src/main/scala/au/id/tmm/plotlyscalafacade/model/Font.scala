@@ -3,9 +3,9 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 
 final case class Font(
-  family: String,
-  size: Number,
-  color: Color,
+  family: Option[String],
+  size: Option[Number],
+  color: Option[Color],
 )
 
 object Font {

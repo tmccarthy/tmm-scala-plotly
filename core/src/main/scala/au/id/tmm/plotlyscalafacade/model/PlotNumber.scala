@@ -3,10 +3,10 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 
 final case class PlotNumber(
-  valueformat: String,
-  font: Font,
-  prefix: String,
-  suffix: String,
+  valueformat: Option[String],
+  font: Option[Font],
+  prefix: Option[String],
+  suffix: Option[String],
 )
 
 object PlotNumber {

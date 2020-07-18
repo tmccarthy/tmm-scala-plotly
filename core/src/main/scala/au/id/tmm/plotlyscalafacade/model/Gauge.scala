@@ -4,14 +4,14 @@ import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 import io.circe.Encoder
 
 final case class Gauge(
-  shape: Gauge.Shape,
-  bar: Gauge.Bar,
-  bgcolor: Color,
-  bordercolor: Color,
-  borderwidth: Number,
-  axis: Axis,
-  steps: Seq[Gauge.Step],
-  threshold: Gauge.Threshold,
+  shape: Option[Gauge.Shape],
+  bar: Option[Gauge.Bar],
+  bgcolor: Option[Color],
+  bordercolor: Option[Color],
+  borderwidth: Option[Number],
+  axis: Option[Axis],
+  steps: Option[Seq[Gauge.Step]],
+  threshold: Option[Gauge.Threshold],
 )
 
 object Gauge {
@@ -24,9 +24,9 @@ object Gauge {
   }
 
   final case class Bar(
-    color: Color,
-    line: Gauge.Line,
-    thickness: Number,
+    color: Option[Color],
+    line: Option[Gauge.Line],
+    thickness: Option[Number],
   )
 
   object Bar {
@@ -44,8 +44,8 @@ object Gauge {
   }
 
   final case class Line(
-    color: Color,
-    width: Number,
+    color: Option[Color],
+    width: Option[Number],
   )
 
   object Line {
@@ -53,9 +53,9 @@ object Gauge {
   }
 
   final case class Threshold(
-    line: Gauge.Line,
-    value: Number,
-    thickness: Number,
+    line: Option[Gauge.Line],
+    value: Option[Number],
+    thickness: Option[Number],
   )
 
   object Threshold {
@@ -73,8 +73,8 @@ object Gauge {
   }
 
   final case class Step(
-    range: NumberArray,
-    color: Color,
+    range: Option[NumberArray],
+    color: Option[Color],
   )
 
   object Step {

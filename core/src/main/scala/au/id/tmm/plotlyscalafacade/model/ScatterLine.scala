@@ -4,12 +4,12 @@ import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 import io.circe.Encoder
 
 final case class ScatterLine(
-  color: Color,
-  width: Number,
-  dash: Dash,
-  shape: ScatterLine.Shape,
-  smoothing: Number,
-  simplify: Boolean,
+  color: Option[Color],
+  width: Option[Number],
+  dash: Option[Dash],
+  shape: Option[ScatterLine.Shape],
+  smoothing: Option[Number],
+  simplify: Option[Boolean],
 )
 
 object ScatterLine {

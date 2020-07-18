@@ -3,19 +3,19 @@ package au.id.tmm.plotlyscalafacade.model
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class Image(
-  visible: Boolean,
-  source: String,
-  layer: Image.Layer,
-  sizex: Number,
-  sizey: Number,
-  sizing: Image.Sizing,
-  opacity: Number,
-  x: AxisPosition,
-  y: AxisPosition,
-  xanchor: Anchor.X,
-  yanchor: Anchor.Y,
-  xref: Image.CoordinateReference.X,
-  yref: Image.CoordinateReference.Y,
+  visible: Option[Boolean],
+  source: Option[String],
+  layer: Option[Image.Layer],
+  sizex: Option[Number],
+  sizey: Option[Number],
+  sizing: Option[Image.Sizing],
+  opacity: Option[Number],
+  x: Option[AxisPosition],
+  y: Option[AxisPosition],
+  xanchor: Option[Anchor.X],
+  yanchor: Option[Anchor.Y],
+  xref: Option[Image.CoordinateReference.X],
+  yref: Option[Image.CoordinateReference.Y],
 )
 
 object Image {

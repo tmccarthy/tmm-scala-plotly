@@ -8,28 +8,28 @@ import io.circe.syntax.EncoderOps
 
 // TODO encode this using FieldsFromEncoder
 final case class TickProperties(
-  tickmode: TickProperties.TickMode,
-  nticks: Int,
-  tick0: AxisPosition,
-  dtick: TickProperties.DTick,
-  tickvals: DataArray,
-  tickText: DataArray,
-  ticks: TickProperties.DrawMode,
-  ticklen: Number,
-  tickwidth: Number,
-  tickcolor: Color,
-  showticklabels: Boolean,
-  tickfont: Font,
-  tickangle: Number,
-  tickformat: String,
-  tickformatstops: OneOrArrayOf[TickProperties.FormatStop],
-  tickprefix: String,
-  showtickprefix: TickProperties.ShowRule,
-  ticksuffix: String,
-  showticksuffix: TickProperties.ShowRule,
-  separatethousands: Boolean,
-  exponentformat: TickProperties.ExponentFormat,
-  showexponent: TickProperties.ShowRule,
+  tickmode: Option[TickProperties.TickMode],
+  nticks: Option[Int],
+  tick0: Option[AxisPosition],
+  dtick: Option[TickProperties.DTick],
+  tickvals: Option[DataArray],
+  tickText: Option[DataArray],
+  ticks: Option[TickProperties.DrawMode],
+  ticklen: Option[Number],
+  tickwidth: Option[Number],
+  tickcolor: Option[Color],
+  showticklabels: Option[Boolean],
+  tickfont: Option[Font],
+  tickangle: Option[Number],
+  tickformat: Option[String],
+  tickformatstops: Option[OneOrArrayOf[TickProperties.FormatStop]],
+  tickprefix: Option[String],
+  showtickprefix: Option[TickProperties.ShowRule],
+  ticksuffix: Option[String],
+  showticksuffix: Option[TickProperties.ShowRule],
+  separatethousands: Option[Boolean],
+  exponentformat: Option[TickProperties.ExponentFormat],
+  showexponent: Option[TickProperties.ShowRule],
 )
 
 object TickProperties {
@@ -115,11 +115,11 @@ object TickProperties {
   }
 
   final case class FormatStop(
-    enabled: Boolean,
-    dtickrange: Range[Datum],
-    value: String,
-    name: String,
-    templateitemname: String,
+    enabled: Option[Boolean],
+    dtickrange: Option[Range[Datum]],
+    value: Option[String],
+    name: Option[String],
+    templateitemname: Option[String],
   )
 
   object FormatStop {

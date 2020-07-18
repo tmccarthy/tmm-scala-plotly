@@ -4,14 +4,14 @@ import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 import io.circe.Encoder
 
 final case class Gauge(
-  shape: Option[Gauge.Shape],
-  bar: Option[Gauge.Bar],
-  bgcolor: Option[Color],
-  bordercolor: Option[Color],
-  borderwidth: Option[Number],
-  axis: Option[Axis],
-  steps: Option[Seq[Gauge.Step]],
-  threshold: Option[Gauge.Threshold],
+  shape: Option[Gauge.Shape] = None,
+  bar: Option[Gauge.Bar] = None,
+  bgcolor: Option[Color] = None,
+  bordercolor: Option[Color] = None,
+  borderwidth: Option[Number] = None,
+  axis: Option[Axis] = None,
+  steps: Option[Seq[Gauge.Step]] = None,
+  threshold: Option[Gauge.Threshold] = None,
 )
 
 object Gauge {
@@ -24,9 +24,9 @@ object Gauge {
   }
 
   final case class Bar(
-    color: Option[Color],
-    line: Option[Gauge.Line],
-    thickness: Option[Number],
+    color: Option[Color] = None,
+    line: Option[Gauge.Line] = None,
+    thickness: Option[Number] = None,
   )
 
   object Bar {
@@ -44,8 +44,8 @@ object Gauge {
   }
 
   final case class Line(
-    color: Option[Color],
-    width: Option[Number],
+    color: Option[Color] = None,
+    width: Option[Number] = None,
   )
 
   object Line {
@@ -53,9 +53,9 @@ object Gauge {
   }
 
   final case class Threshold(
-    line: Option[Gauge.Line],
-    value: Option[Number],
-    thickness: Option[Number],
+    line: Option[Gauge.Line] = None,
+    value: Option[Number] = None,
+    thickness: Option[Number] = None,
   )
 
   object Threshold {
@@ -73,8 +73,8 @@ object Gauge {
   }
 
   final case class Step(
-    range: Option[NumberArray],
-    color: Option[Color],
+    range: Option[NumberArray] = None,
+    color: Option[Color] = None,
   )
 
   object Step {

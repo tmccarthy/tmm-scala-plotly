@@ -3,12 +3,12 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 
 final case class RangeSlider(
-  visible: Option[Boolean],
-  thickness: Option[Number],
-  range: Option[Range[Datum]],
-  borderwidth: Option[Number],
-  bordercolor: Option[Color],
-  bgcolor: Option[Color],
+  visible: Option[Boolean] = None,
+  thickness: Option[Number] = None,
+  range: Option[Range[Datum]] = None,
+  borderwidth: Option[Number] = None,
+  bordercolor: Option[Color] = None,
+  bgcolor: Option[Color] = None,
 )
 
 object RangeSlider {

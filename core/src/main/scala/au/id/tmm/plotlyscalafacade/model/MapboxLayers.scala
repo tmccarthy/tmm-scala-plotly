@@ -5,24 +5,24 @@ import java.net.URI
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class MapboxLayers(
-  visible: Option[Boolean],
-  sourcetype: Option[MapboxLayers.SourceType],
-  source: Option[MapboxLayers.Source],
-  sourcelayer: Option[String],
-  sourceattribution: Option[String],
-  `type`: Option[MapboxLayers.Type],
-  coordinates: Option[MapboxLayers.Coordinates],
-  below: Option[String],
-  color: Option[Color],
-  opacity: Option[Number],
-  minzoom: Option[Number],
-  maxzoom: Option[Number],
-  circle: Option[MapboxLayers.Circle],
-  line: Option[ShapeLine],
-  fill: Option[MapboxLayers.Fill],
-  symbol: Option[MapboxLayers.MapboxSymbol],
-  name: Option[String],
-  templateitemname: Option[String],
+  visible: Option[Boolean] = None,
+  sourcetype: Option[MapboxLayers.SourceType] = None,
+  source: Option[MapboxLayers.Source] = None,
+  sourcelayer: Option[String] = None,
+  sourceattribution: Option[String] = None,
+  `type`: Option[MapboxLayers.Type] = None,
+  coordinates: Option[MapboxLayers.Coordinates] = None,
+  below: Option[String] = None,
+  color: Option[Color] = None,
+  opacity: Option[Number] = None,
+  minzoom: Option[Number] = None,
+  maxzoom: Option[Number] = None,
+  circle: Option[MapboxLayers.Circle] = None,
+  line: Option[ShapeLine] = None,
+  fill: Option[MapboxLayers.Fill] = None,
+  symbol: Option[MapboxLayers.MapboxSymbol] = None,
+  name: Option[String] = None,
+  templateitemname: Option[String] = None,
 )
 
 object MapboxLayers {
@@ -69,12 +69,12 @@ object MapboxLayers {
   final case class Fill(outlineColor: Color)
 
   final case class MapboxSymbol(
-    icon: Option[String],
-    iconsize: Option[Number],
-    text: Option[String],
-    placement: Option[MapboxSymbol.Placement],
-    textfont: Option[Font],
-    textposition: Option[TextPosition],
+    icon: Option[String] = None,
+    iconsize: Option[Number] = None,
+    text: Option[String] = None,
+    placement: Option[MapboxSymbol.Placement] = None,
+    textfont: Option[Font] = None,
+    textposition: Option[TextPosition] = None,
   )
 
   object MapboxSymbol {

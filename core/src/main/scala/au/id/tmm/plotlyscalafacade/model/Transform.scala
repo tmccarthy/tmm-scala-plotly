@@ -4,17 +4,17 @@ import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class Transform(
-  `type`: Option[Transform.Type],
-  enabled: Option[Boolean],
-  target: Option[OneOrArrayOf[AxisPosition]],
-  operation: Option[String],
-  aggregations: Option[Seq[Transform.Aggregation]],
-  preservegaps: Option[Boolean],
-  groups: Option[OneOrArrayOf[AxisPosition]],
-  nameformat: Option[String],
-  styles: Option[Seq[Transform.Style]],
-  value: Option[Datum],
-  order: Option[Transform.Order],
+  `type`: Option[Transform.Type] = None,
+  enabled: Option[Boolean] = None,
+  target: Option[OneOrArrayOf[AxisPosition]] = None,
+  operation: Option[String] = None,
+  aggregations: Option[Seq[Transform.Aggregation]] = None,
+  preservegaps: Option[Boolean] = None,
+  groups: Option[OneOrArrayOf[AxisPosition]] = None,
+  nameformat: Option[String] = None,
+  styles: Option[Seq[Transform.Style]] = None,
+  value: Option[Datum] = None,
+  order: Option[Transform.Order] = None,
 )
 
 object Transform {
@@ -30,9 +30,9 @@ object Transform {
 
   final case class Aggregation(
     target: String,
-    func: Option[Aggregation.Function],
-    funcmode: Option[Aggregation.FunctionMode],
-    enabled: Option[Boolean],
+    func: Option[Aggregation.Function] = None,
+    funcmode: Option[Aggregation.FunctionMode] = None,
+    enabled: Option[Boolean] = None,
   )
 
   object Aggregation {

@@ -3,18 +3,18 @@ package au.id.tmm.plotlyscalafacade.model
 import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum, OneOrArrayOf}
 
 final case class Scene(
-  bgcolor: Option[Color],
-  camera: Option[Scene.Camera],
-  domain: Option[Domain],
-  aspectmode: Option[Scene.AspectMode],
-  aspectratio: Option[Scene.Point],
-  xaxis: Option[SceneAxis],
-  yaxis: Option[SceneAxis],
-  zaxis: Option[SceneAxis],
-  dragmode: Option[FalseOr[Scene.DragMode]],
-  hovermode: Option[FalseOr[Scene.HoverMode]],
-  annotations: Option[OneOrArrayOf[Annotations]],
-  captureevents: Option[Boolean],
+  bgcolor: Option[Color] = None,
+  camera: Option[Scene.Camera] = None,
+  domain: Option[Domain] = None,
+  aspectmode: Option[Scene.AspectMode] = None,
+  aspectratio: Option[Scene.Point] = None,
+  xaxis: Option[SceneAxis] = None,
+  yaxis: Option[SceneAxis] = None,
+  zaxis: Option[SceneAxis] = None,
+  dragmode: Option[FalseOr[Scene.DragMode]] = None,
+  hovermode: Option[FalseOr[Scene.HoverMode]] = None,
+  annotations: Option[OneOrArrayOf[Annotations]] = None,
+  captureevents: Option[Boolean] = None,
 )
 
 object Scene {

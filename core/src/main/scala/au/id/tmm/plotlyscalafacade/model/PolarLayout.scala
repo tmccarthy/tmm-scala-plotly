@@ -3,14 +3,14 @@ package au.id.tmm.plotlyscalafacade.model
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class PolarLayout(
-  domain: Option[Domain],
-  sector: Option[NumberArray],
-  hole: Option[Number],
-  bgcolor: Option[Color],
-  radialaxis: Option[LayoutAxis],
-  angularaxis: Option[LayoutAxis],
-  gridshape: Option[PolarLayout.GridShape],
-  uirevision: Option[Nothing],
+  domain: Option[Domain] = None,
+  sector: Option[NumberArray] = None,
+  hole: Option[Number] = None,
+  bgcolor: Option[Color] = None,
+  radialaxis: Option[LayoutAxis] = None,
+  angularaxis: Option[LayoutAxis] = None,
+  gridshape: Option[PolarLayout.GridShape] = None,
+  uirevision: Option[Nothing] = None,
 )
 
 object PolarLayout {

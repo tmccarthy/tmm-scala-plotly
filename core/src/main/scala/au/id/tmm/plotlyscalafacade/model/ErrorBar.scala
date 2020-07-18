@@ -26,40 +26,40 @@ object ErrorBar {
   }
 
   final case class Constant(
-    visible: Option[Boolean],
-    symmetric: Option[Boolean],
-    color: Option[Color],
-    thickness: Option[Number],
-    width: Option[Number],
-    opacity: Option[Number],
-    value: Option[Number],
-    valueminus: Option[Number],
+    visible: Option[Boolean] = None,
+    symmetric: Option[Boolean] = None,
+    color: Option[Color] = None,
+    thickness: Option[Number] = None,
+    width: Option[Number] = None,
+    opacity: Option[Number] = None,
+    value: Option[Number] = None,
+    valueminus: Option[Number] = None,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Constant.type = ErrorBar.Type.Constant
   }
 
   final case class Percent(
-    visible: Option[Boolean],
-    symmetric: Option[Boolean],
-    color: Option[Color],
-    thickness: Option[Number],
-    width: Option[Number],
-    opacity: Option[Number],
-    value: Option[Number],
-    valueminus: Option[Number],
+    visible: Option[Boolean] = None,
+    symmetric: Option[Boolean] = None,
+    color: Option[Color] = None,
+    thickness: Option[Number] = None,
+    width: Option[Number] = None,
+    opacity: Option[Number] = None,
+    value: Option[Number] = None,
+    valueminus: Option[Number] = None,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Percent.type = ErrorBar.Type.Percent
   }
 
   final case class Data(
-    visible: Option[Boolean],
-    symmetric: Option[Boolean],
-    color: Option[Color],
-    thickness: Option[Number],
-    width: Option[Number],
-    opacity: Option[Number],
-    array: Option[Seq[Datum]],
-    arrayminus: Option[Seq[Datum]],
+    visible: Option[Boolean] = None,
+    symmetric: Option[Boolean] = None,
+    color: Option[Color] = None,
+    thickness: Option[Number] = None,
+    width: Option[Number] = None,
+    opacity: Option[Number] = None,
+    array: Option[Seq[Datum]] = None,
+    arrayminus: Option[Seq[Datum]] = None,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Data.type = ErrorBar.Type.Data
   }

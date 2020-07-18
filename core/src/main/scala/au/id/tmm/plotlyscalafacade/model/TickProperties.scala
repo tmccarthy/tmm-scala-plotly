@@ -8,28 +8,28 @@ import io.circe.syntax.EncoderOps
 
 // TODO encode this using FieldsFromEncoder
 final case class TickProperties(
-  tickmode: Option[TickProperties.TickMode],
-  nticks: Option[Int],
-  tick0: Option[AxisPosition],
-  dtick: Option[TickProperties.DTick],
-  tickvals: Option[DataArray],
-  tickText: Option[DataArray],
-  ticks: Option[TickProperties.DrawMode],
-  ticklen: Option[Number],
-  tickwidth: Option[Number],
-  tickcolor: Option[Color],
-  showticklabels: Option[Boolean],
-  tickfont: Option[Font],
-  tickangle: Option[Number],
-  tickformat: Option[String],
-  tickformatstops: Option[OneOrArrayOf[TickProperties.FormatStop]],
-  tickprefix: Option[String],
-  showtickprefix: Option[TickProperties.ShowRule],
-  ticksuffix: Option[String],
-  showticksuffix: Option[TickProperties.ShowRule],
-  separatethousands: Option[Boolean],
-  exponentformat: Option[TickProperties.ExponentFormat],
-  showexponent: Option[TickProperties.ShowRule],
+  tickmode: Option[TickProperties.TickMode] = None,
+  nticks: Option[Int] = None,
+  tick0: Option[AxisPosition] = None,
+  dtick: Option[TickProperties.DTick] = None,
+  tickvals: Option[DataArray] = None,
+  tickText: Option[DataArray] = None,
+  ticks: Option[TickProperties.DrawMode] = None,
+  ticklen: Option[Number] = None,
+  tickwidth: Option[Number] = None,
+  tickcolor: Option[Color] = None,
+  showticklabels: Option[Boolean] = None,
+  tickfont: Option[Font] = None,
+  tickangle: Option[Number] = None,
+  tickformat: Option[String] = None,
+  tickformatstops: Option[OneOrArrayOf[TickProperties.FormatStop]] = None,
+  tickprefix: Option[String] = None,
+  showtickprefix: Option[TickProperties.ShowRule] = None,
+  ticksuffix: Option[String] = None,
+  showticksuffix: Option[TickProperties.ShowRule] = None,
+  separatethousands: Option[Boolean] = None,
+  exponentformat: Option[TickProperties.ExponentFormat] = None,
+  showexponent: Option[TickProperties.ShowRule] = None,
 )
 
 object TickProperties {
@@ -115,11 +115,11 @@ object TickProperties {
   }
 
   final case class FormatStop(
-    enabled: Option[Boolean],
-    dtickrange: Option[Range[Datum]],
-    value: Option[String],
-    name: Option[String],
-    templateitemname: Option[String],
+    enabled: Option[Boolean] = None,
+    dtickrange: Option[Range[Datum]] = None,
+    value: Option[String] = None,
+    name: Option[String] = None,
+    templateitemname: Option[String] = None,
   )
 
   object FormatStop {

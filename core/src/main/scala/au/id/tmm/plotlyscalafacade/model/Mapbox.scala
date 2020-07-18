@@ -5,15 +5,15 @@ import java.net.URI
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class Mapbox(
-  domain: Option[Domain],
-  accesstoken: Option[String],
-  style: Option[Mapbox.Style],
-  center: Option[Mapbox.Center],
-  zoom: Option[Number],
-  bearing: Option[Number],
-  pitch: Option[Number],
-  layers: Option[Seq[MapboxLayers]],
-  uirevision: Option[Mapbox.UiRevision],
+  domain: Option[Domain] = None,
+  accesstoken: Option[String] = None,
+  style: Option[Mapbox.Style] = None,
+  center: Option[Mapbox.Center] = None,
+  zoom: Option[Number] = None,
+  bearing: Option[Number] = None,
+  pitch: Option[Number] = None,
+  layers: Option[Seq[MapboxLayers]] = None,
+  uirevision: Option[Mapbox.UiRevision] = None,
 )
 
 object Mapbox {
@@ -51,8 +51,8 @@ object Mapbox {
   }
 
   final case class Center(
-    lon: Option[Number],
-    lat: Option[Number],
+    lon: Option[Number] = None,
+    lat: Option[Number] = None,
   )
 
   sealed abstract class UiRevision(val asString: String) extends JSEnum

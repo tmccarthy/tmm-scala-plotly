@@ -3,13 +3,13 @@ package au.id.tmm.plotlyscalafacade.model
 import io.circe.Encoder
 
 final case class ModeBarButton(
-  name: Option[String],
-  title: Option[String],
-  icon: Option[ModeBarButton.Icon],
-  gravity: Option[String],
-  attr: Option[String],
-  `val`: Option[String],
-  toggle: Option[Boolean],
+  name: Option[String] = None,
+  title: Option[String] = None,
+  icon: Option[ModeBarButton.Icon] = None,
+  gravity: Option[String] = None,
+  attr: Option[String] = None,
+  `val`: Option[String] = None,
+  toggle: Option[Boolean] = None,
 )
 
 object ModeBarButton {
@@ -27,14 +27,14 @@ object ModeBarButton {
   }
 
   final case class IconDetails(
-    height: Option[Number],
-    width: Option[Number],
-    ascent: Option[Number],
-    descent: Option[Number],
-    name: Option[String],
-    path: Option[String],
-    svg: Option[String],
-    transform: Option[String],
+    height: Option[Number] = None,
+    width: Option[Number] = None,
+    ascent: Option[Number] = None,
+    descent: Option[Number] = None,
+    name: Option[String] = None,
+    path: Option[String] = None,
+    svg: Option[String] = None,
+    transform: Option[String] = None,
   )
 
   object IconDetails {

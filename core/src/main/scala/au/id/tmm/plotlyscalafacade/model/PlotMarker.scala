@@ -4,27 +4,27 @@ import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class PlotMarker(
-  symbol: Option[OneOrArrayOf[PlotMarker.Symbol]],
-  color: Option[OneOrArrayOf[Color]],
-  colorscale: Option[ColorScale],
-  cauto: Option[Boolean],
-  cmax: Option[Number],
-  cmin: Option[Number],
-  autocolorscale: Option[Boolean],
-  reversescale: Option[Boolean],
-  opacity: Option[OneOrArrayOf[Number]],
-  size: Option[OneOrArrayOf[Number]],
-  maxdisplayed: Option[Number],
-  sizeref: Option[Number],
-  sizemax: Option[Number],
-  sizemin: Option[Number],
-  sizemode: Option[PlotMarker.SizeMode],
-  showscale: Option[Boolean],
-  line: Option[PlotMarker.ScatterMarkerLine],
-  pad: Option[Padding],
-  width: Option[Number],
-  colorbar: Option[PlotMarker.ColorBar],
-  gradient: Option[PlotMarker.Gradient],
+  symbol: Option[OneOrArrayOf[PlotMarker.Symbol]] = None,
+  color: Option[OneOrArrayOf[Color]] = None,
+  colorscale: Option[ColorScale] = None,
+  cauto: Option[Boolean] = None,
+  cmax: Option[Number] = None,
+  cmin: Option[Number] = None,
+  autocolorscale: Option[Boolean] = None,
+  reversescale: Option[Boolean] = None,
+  opacity: Option[OneOrArrayOf[Number]] = None,
+  size: Option[OneOrArrayOf[Number]] = None,
+  maxdisplayed: Option[Number] = None,
+  sizeref: Option[Number] = None,
+  sizemax: Option[Number] = None,
+  sizemin: Option[Number] = None,
+  sizemode: Option[PlotMarker.SizeMode] = None,
+  showscale: Option[Boolean] = None,
+  line: Option[PlotMarker.ScatterMarkerLine] = None,
+  pad: Option[Padding] = None,
+  width: Option[Number] = None,
+  colorbar: Option[PlotMarker.ColorBar] = None,
+  gradient: Option[PlotMarker.Gradient] = None,
 )
 
 object PlotMarker {
@@ -42,15 +42,15 @@ object PlotMarker {
   }
 
   final case class ScatterMarkerLine(
-    width: Option[OneOrArrayOf[Number]],
+    width: Option[OneOrArrayOf[Number]] = None,
     // TODO this is either a colour, an array of colours or an array of numbers that is combined with the colorscale
-    color: Option[OneOrArrayOf[Color]],
-    colorscale: Option[ColorScale],
-    cauto: Option[Boolean],
-    cmax: Option[Number],
-    cmin: Option[Number],
-    autocolorscale: Option[Boolean],
-    reversescale: Option[Boolean],
+    color: Option[OneOrArrayOf[Color]] = None,
+    colorscale: Option[ColorScale] = None,
+    cauto: Option[Boolean] = None,
+    cmax: Option[Number] = None,
+    cmin: Option[Number] = None,
+    autocolorscale: Option[Boolean] = None,
+    reversescale: Option[Boolean] = None,
   )
 
   object ScatterMarkerLine {
@@ -85,25 +85,25 @@ object PlotMarker {
   }
 
   final case class ColorBar(
-    thicknessmode: Option[ColorBar.LineSizeMode],
-    thickness: Option[Number],
-    lenmode: Option[ColorBar.LineSizeMode],
-    len: Option[Number],
-    x: Option[Number],
-    xanchor: Option[Anchor.X],
-    xpad: Option[Number],
-    y: Option[Number],
-    yanchor: Option[Anchor.Y],
-    ypad: Option[Number],
-    outlinecolor: Option[Color],
-    outlinewidth: Option[Number],
-    bordercolor: Option[Color],
-    borderwidth: Option[Color],
-    bgcolor: Option[Color],
-    tickProperties: Option[TickProperties],
-    title: Option[String],
-    titlefont: Option[Font],
-    titleside: Option[ColorBar.TitleSide],
+    thicknessmode: Option[ColorBar.LineSizeMode] = None,
+    thickness: Option[Number] = None,
+    lenmode: Option[ColorBar.LineSizeMode] = None,
+    len: Option[Number] = None,
+    x: Option[Number] = None,
+    xanchor: Option[Anchor.X] = None,
+    xpad: Option[Number] = None,
+    y: Option[Number] = None,
+    yanchor: Option[Anchor.Y] = None,
+    ypad: Option[Number] = None,
+    outlinecolor: Option[Color] = None,
+    outlinewidth: Option[Number] = None,
+    bordercolor: Option[Color] = None,
+    borderwidth: Option[Color] = None,
+    bgcolor: Option[Color] = None,
+    tickProperties: Option[TickProperties] = None,
+    title: Option[String] = None,
+    titlefont: Option[Font] = None,
+    titleside: Option[ColorBar.TitleSide] = None,
   )
 
   object ColorBar {
@@ -168,8 +168,8 @@ object PlotMarker {
   }
 
   final case class Gradient(
-    `type`: Option[OneOrArrayOf[Gradient.Type]],
-    color: Option[OneOrArrayOf[Color]],
+    `type`: Option[OneOrArrayOf[Gradient.Type]] = None,
+    color: Option[OneOrArrayOf[Color]] = None,
   )
 
   object Gradient {

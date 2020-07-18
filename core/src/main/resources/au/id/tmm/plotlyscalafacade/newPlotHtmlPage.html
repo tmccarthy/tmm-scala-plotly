@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
     <title>title</title>
     <link rel="stylesheet" href="style.css">
     <script src="$plotlyCdnUri"></script>
-    <script type="text/javascript">
-        var divId = 'plotlyDiv';
-        var plot = $plot;
-
-        Plotly.newPlot(divId, plot);
-    </script>
 </head>
 <body>
 <div id="plotlyDiv"></div>
+<script type="text/javascript">
+    var divId = 'plotlyDiv';
+    var plot = $plot;
+
+    Plotly.newPlot(divId, plot);
+</script>
 </body>
 </html>

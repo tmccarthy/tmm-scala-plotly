@@ -10,7 +10,7 @@ object Histogram {
 
   def main(args: Array[String]): Unit = {
 
-    val data = ArraySeq.fill(1_000) {
+    val data = ArraySeq.fill(10_000) {
       val diceRoll1 = Random.nextInt(6) + 1
       val diceRoll2 = Random.nextInt(6) + 1
 

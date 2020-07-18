@@ -1,14 +1,17 @@
 package au.id.tmm.plotlyscalafacade
 
-import java.io.{BufferedInputStream, ByteArrayOutputStream}
-import java.nio.charset.Charset
+import java.io.InputStream
 import java.nio.file.Files
 
+import io.circe.Printer
 import io.circe.syntax.EncoderOps
 
 import scala.annotation.tailrec
+import scala.io.{Codec, Source}
 
 object Plotting {
+
+  private val circePrinter: Printer = Printer.noSpaces.copy(dropNullValues = true)
 
   def openInBrowser(plot: Plot, plotlyVersion: PlotlyVersion = PlotlyVersion.Latest): Unit = {
     val path = Files.createTempFile(
@@ -24,8 +27,8 @@ object Plotting {
   private def inferTitleFor(plot: Plot): Option[String] = {
     def fromLayoutTitle =
       for {
-        layout <- plot.layout
-        title <- layout.title
+        layout    <- plot.layout
+        title     <- layout.title
         titleText <- title.text
       } yield titleText
 
@@ -35,7 +38,7 @@ object Plotting {
   def newPlotHtmlPage(plot: Plot, plotlyVersion: PlotlyVersion = PlotlyVersion.Latest): String =
     templatedResource(
       resourceName = "newPlotHtmlPage.html",
-      "plot"         -> plot.asJson.noSpaces,
+      "plot"         -> plot.asJson.printWith(circePrinter),
       "plotlyCdnUri" -> plotlyVersion.cdnUri.toString,
     )
 
@@ -43,7 +46,7 @@ object Plotting {
     templatedResource(
       resourceName = "newPlotInlineHtmlFragment.html",
       "divId" -> divId,
-      "plot"  -> plot.asJson.noSpaces,
+      "plot"  -> plot.asJson.printWith(circePrinter),
     )
 
   /**
@@ -53,7 +56,7 @@ object Plotting {
     templatedResource(
       resourceName = "newPlotFragment.js",
       "divId" -> divId,
-      "plot"  -> plot.asJson.noSpaces,
+      "plot"  -> plot.asJson.printWith(circePrinter),
     )
 
   private def templatedResource(
@@ -62,27 +65,18 @@ object Plotting {
   ): String = {
     val template = readToString(resourceName)
 
-    applyTempatedTo(template, templated.toList)
+    applyTempatedTo(template, templated.sortBy(_._1.length).reverse.toList)
   }
 
   private def readToString(resourceName: String): String = {
-    var is: BufferedInputStream = null
+    var is: InputStream = null
 
     try {
-      is = new BufferedInputStream(getClass.getResourceAsStream(resourceName))
-      val bytes = new ByteArrayOutputStream()
+      is = getClass.getResourceAsStream(resourceName)
 
-      val buffer = new Array[Byte](1_000)
-
-      var lengthSoFar = 0
-
-      while ((lengthSoFar = is.read(buffer)) != -1) {
-        bytes.write(buffer, 0, lengthSoFar)
-      }
-
-      new String(bytes.toByteArray, Charset.forName("UTF-8"))
+      Source.fromInputStream(is)(Codec.UTF8).getLines().mkString("\n")
     } finally {
-      is.close()
+      if (is != null) is.close()
     }
   }
 

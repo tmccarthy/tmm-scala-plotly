@@ -7,6 +7,6 @@ sealed abstract class PlotlyVersion(val minifiedJsName: String) {
 }
 
 object PlotlyVersion {
-  case object Latest extends PlotlyVersion("plotly-latest.min.js")
+  case object Latest                         extends PlotlyVersion("plotly-latest.min.js")
   final case class Specific(version: String) extends PlotlyVersion(s"plotly-$version.min.js")
 }

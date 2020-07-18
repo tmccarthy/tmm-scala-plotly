@@ -1,17 +1,17 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.Encoder
 
 final case class Gauge(
-  shape: Option[Gauge.Shape] = None,
-  bar: Option[Gauge.Bar] = None,
-  bgcolor: Option[Color] = None,
-  bordercolor: Option[Color] = None,
-  borderwidth: Option[Number] = None,
-  axis: Option[Axis] = None,
-  steps: Option[Seq[Gauge.Step]] = None,
-  threshold: Option[Gauge.Threshold] = None,
+  shape: Arg[Gauge.Shape] = Arg.Undefined,
+  bar: Arg[Gauge.Bar] = Arg.Undefined,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  bordercolor: Arg[Color] = Arg.Undefined,
+  borderwidth: Arg[Number] = Arg.Undefined,
+  axis: Arg[Axis] = Arg.Undefined,
+  steps: Arg[Seq[Gauge.Step]] = Arg.Undefined,
+  threshold: Arg[Gauge.Threshold] = Arg.Undefined,
 )
 
 object Gauge {
@@ -24,9 +24,9 @@ object Gauge {
   }
 
   final case class Bar(
-    color: Option[Color] = None,
-    line: Option[Gauge.Line] = None,
-    thickness: Option[Number] = None,
+    color: Arg[Color] = Arg.Undefined,
+    line: Arg[Gauge.Line] = Arg.Undefined,
+    thickness: Arg[Number] = Arg.Undefined,
   )
 
   object Bar {
@@ -44,8 +44,8 @@ object Gauge {
   }
 
   final case class Line(
-    color: Option[Color] = None,
-    width: Option[Number] = None,
+    color: Arg[Color] = Arg.Undefined,
+    width: Arg[Number] = Arg.Undefined,
   )
 
   object Line {
@@ -53,9 +53,9 @@ object Gauge {
   }
 
   final case class Threshold(
-    line: Option[Gauge.Line] = None,
-    value: Option[Number] = None,
-    thickness: Option[Number] = None,
+    line: Arg[Gauge.Line] = Arg.Undefined,
+    value: Arg[Number] = Arg.Undefined,
+    thickness: Arg[Number] = Arg.Undefined,
   )
 
   object Threshold {
@@ -73,8 +73,8 @@ object Gauge {
   }
 
   final case class Step(
-    range: Option[NumberArray] = None,
-    color: Option[Color] = None,
+    range: Arg[NumberArray] = Arg.Undefined,
+    color: Arg[Color] = Arg.Undefined,
   )
 
   object Step {

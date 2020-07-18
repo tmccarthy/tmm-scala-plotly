@@ -1,22 +1,22 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.Encoder
 
 final case class Image(
-  visible: Option[Boolean] = None,
-  source: Option[String] = None,
-  layer: Option[Image.Layer] = None,
-  sizex: Option[Number] = None,
-  sizey: Option[Number] = None,
-  sizing: Option[Image.Sizing] = None,
-  opacity: Option[Number] = None,
-  x: Option[AxisPosition] = None,
-  y: Option[AxisPosition] = None,
-  xanchor: Option[Anchor.X] = None,
-  yanchor: Option[Anchor.Y] = None,
-  xref: Option[Image.CoordinateReference.X] = None,
-  yref: Option[Image.CoordinateReference.Y] = None,
+  visible: Arg[Boolean] = Arg.Undefined,
+  source: Arg[String] = Arg.Undefined,
+  layer: Arg[Image.Layer] = Arg.Undefined,
+  sizex: Arg[Number] = Arg.Undefined,
+  sizey: Arg[Number] = Arg.Undefined,
+  sizing: Arg[Image.Sizing] = Arg.Undefined,
+  opacity: Arg[Number] = Arg.Undefined,
+  x: Arg[AxisPosition] = Arg.Undefined,
+  y: Arg[AxisPosition] = Arg.Undefined,
+  xanchor: Arg[Anchor.X] = Arg.Undefined,
+  yanchor: Arg[Anchor.Y] = Arg.Undefined,
+  xref: Arg[Image.CoordinateReference.X] = Arg.Undefined,
+  yref: Arg[Image.CoordinateReference.Y] = Arg.Undefined,
 )
 
 object Image {

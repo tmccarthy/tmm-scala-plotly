@@ -2,34 +2,34 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.time.Duration
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 // TODO encode this using FieldsFromEncoder
 final case class TickProperties(
-  tickmode: Option[TickProperties.TickMode] = None,
-  nticks: Option[Int] = None,
-  tick0: Option[AxisPosition] = None,
-  dtick: Option[TickProperties.DTick] = None,
-  tickvals: Option[DataArray] = None,
-  tickText: Option[DataArray] = None,
-  ticks: Option[TickProperties.DrawMode] = None,
-  ticklen: Option[Number] = None,
-  tickwidth: Option[Number] = None,
-  tickcolor: Option[Color] = None,
-  showticklabels: Option[Boolean] = None,
-  tickfont: Option[Font] = None,
-  tickangle: Option[Number] = None,
-  tickformat: Option[String] = None,
-  tickformatstops: Option[OneOrArrayOf[TickProperties.FormatStop]] = None,
-  tickprefix: Option[String] = None,
-  showtickprefix: Option[TickProperties.ShowRule] = None,
-  ticksuffix: Option[String] = None,
-  showticksuffix: Option[TickProperties.ShowRule] = None,
-  separatethousands: Option[Boolean] = None,
-  exponentformat: Option[TickProperties.ExponentFormat] = None,
-  showexponent: Option[TickProperties.ShowRule] = None,
+  tickmode: Arg[TickProperties.TickMode] = Arg.Undefined,
+  nticks: Arg[Int] = Arg.Undefined,
+  tick0: Arg[AxisPosition] = Arg.Undefined,
+  dtick: Arg[TickProperties.DTick] = Arg.Undefined,
+  tickvals: Arg[DataArray] = Arg.Undefined,
+  tickText: Arg[DataArray] = Arg.Undefined,
+  ticks: Arg[TickProperties.DrawMode] = Arg.Undefined,
+  ticklen: Arg[Number] = Arg.Undefined,
+  tickwidth: Arg[Number] = Arg.Undefined,
+  tickcolor: Arg[Color] = Arg.Undefined,
+  showticklabels: Arg[Boolean] = Arg.Undefined,
+  tickfont: Arg[Font] = Arg.Undefined,
+  tickangle: Arg[Number] = Arg.Undefined,
+  tickformat: Arg[String] = Arg.Undefined,
+  tickformatstops: Arg[OneOrArrayOf[TickProperties.FormatStop]] = Arg.Undefined,
+  tickprefix: Arg[String] = Arg.Undefined,
+  showtickprefix: Arg[TickProperties.ShowRule] = Arg.Undefined,
+  ticksuffix: Arg[String] = Arg.Undefined,
+  showticksuffix: Arg[TickProperties.ShowRule] = Arg.Undefined,
+  separatethousands: Arg[Boolean] = Arg.Undefined,
+  exponentformat: Arg[TickProperties.ExponentFormat] = Arg.Undefined,
+  showexponent: Arg[TickProperties.ShowRule] = Arg.Undefined,
 )
 
 object TickProperties {
@@ -115,11 +115,11 @@ object TickProperties {
   }
 
   final case class FormatStop(
-    enabled: Option[Boolean] = None,
-    dtickrange: Option[Range[Datum]] = None,
-    value: Option[String] = None,
-    name: Option[String] = None,
-    templateitemname: Option[String] = None,
+    enabled: Arg[Boolean] = Arg.Undefined,
+    dtickrange: Arg[Range[Datum]] = Arg.Undefined,
+    value: Arg[String] = Arg.Undefined,
+    name: Arg[String] = Arg.Undefined,
+    templateitemname: Arg[String] = Arg.Undefined,
   )
 
   object FormatStop {

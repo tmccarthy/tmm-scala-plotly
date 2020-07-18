@@ -2,28 +2,28 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.net.URI
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class MapboxLayers(
-  visible: Option[Boolean] = None,
-  sourcetype: Option[MapboxLayers.SourceType] = None,
-  source: Option[OneOrArrayOf[URI]] = None,
-  sourcelayer: Option[String] = None,
-  sourceattribution: Option[String] = None,
-  `type`: Option[MapboxLayers.Type] = None,
-  coordinates: Option[MapboxLayers.Coordinates] = None,
-  below: Option[String] = None,
-  color: Option[Color] = None,
-  opacity: Option[Number] = None,
-  minzoom: Option[Number] = None,
-  maxzoom: Option[Number] = None,
-  circle: Option[MapboxLayers.Circle] = None,
-  line: Option[ShapeLine] = None,
-  fill: Option[MapboxLayers.Fill] = None,
-  symbol: Option[MapboxLayers.MapboxSymbol] = None,
-  name: Option[String] = None,
-  templateitemname: Option[String] = None,
+  visible: Arg[Boolean] = Arg.Undefined,
+  sourcetype: Arg[MapboxLayers.SourceType] = Arg.Undefined,
+  source: Arg[OneOrArrayOf[URI]] = Arg.Undefined,
+  sourcelayer: Arg[String] = Arg.Undefined,
+  sourceattribution: Arg[String] = Arg.Undefined,
+  `type`: Arg[MapboxLayers.Type] = Arg.Undefined,
+  coordinates: Arg[MapboxLayers.Coordinates] = Arg.Undefined,
+  below: Arg[String] = Arg.Undefined,
+  color: Arg[Color] = Arg.Undefined,
+  opacity: Arg[Number] = Arg.Undefined,
+  minzoom: Arg[Number] = Arg.Undefined,
+  maxzoom: Arg[Number] = Arg.Undefined,
+  circle: Arg[MapboxLayers.Circle] = Arg.Undefined,
+  line: Arg[ShapeLine] = Arg.Undefined,
+  fill: Arg[MapboxLayers.Fill] = Arg.Undefined,
+  symbol: Arg[MapboxLayers.MapboxSymbol] = Arg.Undefined,
+  name: Arg[String] = Arg.Undefined,
+  templateitemname: Arg[String] = Arg.Undefined,
 )
 
 object MapboxLayers {
@@ -90,12 +90,12 @@ object MapboxLayers {
   }
 
   final case class MapboxSymbol(
-    icon: Option[String] = None,
-    iconsize: Option[Number] = None,
-    text: Option[String] = None,
-    placement: Option[MapboxSymbol.Placement] = None,
-    textfont: Option[Font] = None,
-    textposition: Option[TextPosition] = None,
+    icon: Arg[String] = Arg.Undefined,
+    iconsize: Arg[Number] = Arg.Undefined,
+    text: Arg[String] = Arg.Undefined,
+    placement: Arg[MapboxSymbol.Placement] = Arg.Undefined,
+    textfont: Arg[Font] = Arg.Undefined,
+    textposition: Arg[TextPosition] = Arg.Undefined,
   )
 
   object MapboxSymbol {

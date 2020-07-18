@@ -1,27 +1,27 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, FalseOr, JSEnum}
 import io.circe.syntax._
 import io.circe.{Encoder, Json}
 
 sealed trait Label extends Product {
-  def bgcolor: Option[Color]
-  def bordercolor: Option[Color]
-  def font: Option[Font]
+  def bgcolor: Arg[Color]
+  def bordercolor: Arg[Color]
+  def font: Arg[Font]
 }
 
 object Label {
 
   def apply(
-    bgcolor: Option[Color] = None,
-    bordercolor: Option[Color] = None,
-    font: Option[Font] = None,
+    bgcolor: Arg[Color] = Arg.Undefined,
+    bordercolor: Arg[Color] = Arg.Undefined,
+    font: Arg[Font] = Arg.Undefined,
   ): PlainLabel = PlainLabel(bgcolor, bordercolor, font)
 
   final case class PlainLabel(
-    bgcolor: Option[Color] = None,
-    bordercolor: Option[Color] = None,
-    font: Option[Font] = None,
+    bgcolor: Arg[Color] = Arg.Undefined,
+    bordercolor: Arg[Color] = Arg.Undefined,
+    font: Arg[Font] = Arg.Undefined,
   ) extends Label
 
   object Alignment {
@@ -47,11 +47,11 @@ object Label {
 }
 
 final case class HoverLabel(
-  bgcolor: Option[Color] = None,
-  bordercolor: Option[Color] = None,
-  font: Option[Font] = None,
-  align: Option[Label.Alignment.Horizontal] = None,
-  namelength: Option[Number] = None,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  bordercolor: Arg[Color] = Arg.Undefined,
+  font: Arg[Font] = Arg.Undefined,
+  align: Arg[Label.Alignment.Horizontal] = Arg.Undefined,
+  namelength: Arg[Number] = Arg.Undefined,
 ) extends Label
 
 object HoverLabel {
@@ -73,17 +73,17 @@ object HoverLabel {
 }
 
 final case class Legend(
-  bgcolor: Option[Color] = None,
-  bordercolor: Option[Color] = None,
-  font: Option[Font] = None,
-  traceorder: Option[Legend.TraceOrder] = None,
-  x: Option[Number] = None,
-  y: Option[Number] = None,
-  borderwidth: Option[Number] = None,
-  orientation: Option[Legend.Orientation] = None,
-  tracegroupgap: Option[Number] = None,
-  xanchor: Option[Anchor.X] = None,
-  yanchor: Option[Anchor.Y] = None,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  bordercolor: Arg[Color] = Arg.Undefined,
+  font: Arg[Font] = Arg.Undefined,
+  traceorder: Arg[Legend.TraceOrder] = Arg.Undefined,
+  x: Arg[Number] = Arg.Undefined,
+  y: Arg[Number] = Arg.Undefined,
+  borderwidth: Arg[Number] = Arg.Undefined,
+  orientation: Arg[Legend.Orientation] = Arg.Undefined,
+  tracegroupgap: Arg[Number] = Arg.Undefined,
+  xanchor: Arg[Anchor.X] = Arg.Undefined,
+  yanchor: Arg[Anchor.Y] = Arg.Undefined,
 ) extends Label
 
 object Legend {
@@ -132,44 +132,44 @@ object Legend {
 }
 
 final case class Annotations(
-  bgcolor: Option[Color] = None,
-  bordercolor: Option[Color] = None,
-  font: Option[Font] = None,
-  visible: Option[Boolean] = None,
-  text: Option[String] = None,
-  textangle: Option[String] = None,
-  width: Option[Number] = None,
-  height: Option[Number] = None,
-  opacity: Option[Number] = None,
-  align: Option[Label.Alignment.Horizontal] = None,
-  valign: Option[Label.Alignment.Vertical] = None,
-  borderpad: Option[Number] = None,
-  borderwidth: Option[Number] = None,
-  showarrow: Option[Boolean] = None,
-  arrowcolor: Option[String] = None,
-  arrowhead: Option[Number] = None,
-  startarrowhead: Option[Number] = None,
-  arrowside: Option[Annotations.ArrowSide] = None,
-  startarrowsize: Option[Number] = None,
-  arrowwidth: Option[Number] = None,
-  standoff: Option[Number] = None,
-  startstandoff: Option[Number] = None,
-  ax: Option[Number] = None,
-  ay: Option[Number] = None,
-  xref: Option[Annotations.CoordinateReference.X] = None,
-  x: Option[AxisPosition] = None,
-  xanchor: Option[Anchor.X] = None,
-  xshift: Option[Number] = None,
-  yref: Option[Annotations.CoordinateReference.Y] = None,
-  y: Option[AxisPosition] = None,
-  yanchor: Option[Anchor.Y] = None,
-  yshift: Option[Number] = None,
-  clicktoshow: Option[FalseOr[Annotations.ClickToShow]] = None,
-  xclick: Option[AxisPosition] = None,
-  yclick: Option[AxisPosition] = None,
-  hovertext: Option[String] = None,
-  hoverlabel: Option[HoverLabel] = None,
-  captureevents: Option[Boolean] = None,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  bordercolor: Arg[Color] = Arg.Undefined,
+  font: Arg[Font] = Arg.Undefined,
+  visible: Arg[Boolean] = Arg.Undefined,
+  text: Arg[String] = Arg.Undefined,
+  textangle: Arg[String] = Arg.Undefined,
+  width: Arg[Number] = Arg.Undefined,
+  height: Arg[Number] = Arg.Undefined,
+  opacity: Arg[Number] = Arg.Undefined,
+  align: Arg[Label.Alignment.Horizontal] = Arg.Undefined,
+  valign: Arg[Label.Alignment.Vertical] = Arg.Undefined,
+  borderpad: Arg[Number] = Arg.Undefined,
+  borderwidth: Arg[Number] = Arg.Undefined,
+  showarrow: Arg[Boolean] = Arg.Undefined,
+  arrowcolor: Arg[String] = Arg.Undefined,
+  arrowhead: Arg[Number] = Arg.Undefined,
+  startarrowhead: Arg[Number] = Arg.Undefined,
+  arrowside: Arg[Annotations.ArrowSide] = Arg.Undefined,
+  startarrowsize: Arg[Number] = Arg.Undefined,
+  arrowwidth: Arg[Number] = Arg.Undefined,
+  standoff: Arg[Number] = Arg.Undefined,
+  startstandoff: Arg[Number] = Arg.Undefined,
+  ax: Arg[Number] = Arg.Undefined,
+  ay: Arg[Number] = Arg.Undefined,
+  xref: Arg[Annotations.CoordinateReference.X] = Arg.Undefined,
+  x: Arg[AxisPosition] = Arg.Undefined,
+  xanchor: Arg[Anchor.X] = Arg.Undefined,
+  xshift: Arg[Number] = Arg.Undefined,
+  yref: Arg[Annotations.CoordinateReference.Y] = Arg.Undefined,
+  y: Arg[AxisPosition] = Arg.Undefined,
+  yanchor: Arg[Anchor.Y] = Arg.Undefined,
+  yshift: Arg[Number] = Arg.Undefined,
+  clicktoshow: Arg[FalseOr[Annotations.ClickToShow]] = Arg.Undefined,
+  xclick: Arg[AxisPosition] = Arg.Undefined,
+  yclick: Arg[AxisPosition] = Arg.Undefined,
+  hovertext: Arg[String] = Arg.Undefined,
+  hoverlabel: Arg[HoverLabel] = Arg.Undefined,
+  captureevents: Arg[Boolean] = Arg.Undefined,
 ) extends Label
 
 object Annotations {
@@ -252,26 +252,26 @@ object Annotations {
 }
 
 final case class RangeSelector(
-  bgcolor: Option[Color] = None,
-  bordercolor: Option[Color] = None,
-  font: Option[Font] = None,
-  buttons: Option[Seq[RangeSelector.Button]] = None,
-  visible: Option[Boolean] = None,
-  x: Option[Number] = None,
-  xanchor: Option[Anchor.X] = None,
-  y: Option[Number] = None,
-  yanchor: Option[Anchor.Y] = None,
-  activecolor: Option[Color] = None,
-  borderwidth: Option[Number] = None,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  bordercolor: Arg[Color] = Arg.Undefined,
+  font: Arg[Font] = Arg.Undefined,
+  buttons: Arg[Seq[RangeSelector.Button]] = Arg.Undefined,
+  visible: Arg[Boolean] = Arg.Undefined,
+  x: Arg[Number] = Arg.Undefined,
+  xanchor: Arg[Anchor.X] = Arg.Undefined,
+  y: Arg[Number] = Arg.Undefined,
+  yanchor: Arg[Anchor.Y] = Arg.Undefined,
+  activecolor: Arg[Color] = Arg.Undefined,
+  borderwidth: Arg[Number] = Arg.Undefined,
 ) extends Label
 
 object RangeSelector {
 
   final case class Button(
-    step: Option[Button.Step] = None,
-    stepmode: Option[Button.StepMode] = None,
-    count: Option[Number] = None,
-    label: Option[String] = None,
+    step: Arg[Button.Step] = Arg.Undefined,
+    stepmode: Arg[Button.StepMode] = Arg.Undefined,
+    count: Arg[Number] = Arg.Undefined,
+    label: Arg[String] = Arg.Undefined,
   )
 
   object Button {

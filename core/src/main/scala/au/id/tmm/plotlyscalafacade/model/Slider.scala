@@ -1,40 +1,40 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.{Encoder, Json}
 
 final case class Slider(
-  visible: Option[Boolean] = None,
-  active: Option[Number] = None,
-  steps: Option[Array[Slider.Step]] = None,
-  lenmode: Option[Slider.LengthMode] = None,
-  len: Option[Number] = None,
-  x: Option[Number] = None,
-  y: Option[Number] = None,
-  pad: Option[Padding] = None,
-  xanchor: Option[Anchor.X] = None,
-  yanchor: Option[Anchor.Y] = None,
-  transition: Option[Transition] = None,
-  currentvalue: Option[Slider.CurrentValue] = None,
-  font: Option[Font] = None,
-  activebgcolor: Option[Color] = None,
-  bgcolor: Option[Color] = None,
-  bordercolor: Option[Color] = None,
-  borderwidth: Option[Number] = None,
-  ticklen: Option[Number] = None,
-  tickcolor: Option[Color] = None,
-  tickwidth: Option[Number] = None,
-  minorticklen: Option[Number] = None,
+  visible: Arg[Boolean] = Arg.Undefined,
+  active: Arg[Number] = Arg.Undefined,
+  steps: Arg[Array[Slider.Step]] = Arg.Undefined,
+  lenmode: Arg[Slider.LengthMode] = Arg.Undefined,
+  len: Arg[Number] = Arg.Undefined,
+  x: Arg[Number] = Arg.Undefined,
+  y: Arg[Number] = Arg.Undefined,
+  pad: Arg[Padding] = Arg.Undefined,
+  xanchor: Arg[Anchor.X] = Arg.Undefined,
+  yanchor: Arg[Anchor.Y] = Arg.Undefined,
+  transition: Arg[Transition] = Arg.Undefined,
+  currentvalue: Arg[Slider.CurrentValue] = Arg.Undefined,
+  font: Arg[Font] = Arg.Undefined,
+  activebgcolor: Arg[Color] = Arg.Undefined,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  bordercolor: Arg[Color] = Arg.Undefined,
+  borderwidth: Arg[Number] = Arg.Undefined,
+  ticklen: Arg[Number] = Arg.Undefined,
+  tickcolor: Arg[Color] = Arg.Undefined,
+  tickwidth: Arg[Number] = Arg.Undefined,
+  minorticklen: Arg[Number] = Arg.Undefined,
 )
 
 object Slider {
   final case class Step(
-    visible: Option[Boolean] = None,
-    method: Option[Step.Method] = None,
-    args: Option[Seq[Json]] = None,
-    label: Option[String] = None,
-    value: Option[String] = None,
-    execute: Option[Boolean] = None,
+    visible: Arg[Boolean] = Arg.Undefined,
+    method: Arg[Step.Method] = Arg.Undefined,
+    args: Arg[Seq[Json]] = Arg.Undefined,
+    label: Arg[String] = Arg.Undefined,
+    value: Arg[String] = Arg.Undefined,
+    execute: Arg[Boolean] = Arg.Undefined,
   )
 
   object Step {
@@ -75,12 +75,12 @@ object Slider {
   }
 
   final case class CurrentValue(
-    visible: Option[Boolean] = None,
-    xanchor: Option[Anchor.X] = None,
-    offset: Option[Number] = None,
-    prefix: Option[String] = None,
-    suffix: Option[String] = None,
-    font: Option[Font] = None,
+    visible: Arg[Boolean] = Arg.Undefined,
+    xanchor: Arg[Anchor.X] = Arg.Undefined,
+    offset: Arg[Number] = Arg.Undefined,
+    prefix: Arg[String] = Arg.Undefined,
+    suffix: Arg[String] = Arg.Undefined,
+    font: Arg[Font] = Arg.Undefined,
   )
 
   object CurrentValue {

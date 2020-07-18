@@ -1,15 +1,16 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.Arg
 import io.circe.Encoder
 
 final case class ModeBarButton(
-  name: Option[String] = None,
-  title: Option[String] = None,
-  icon: Option[ModeBarButton.Icon] = None,
-  gravity: Option[String] = None,
-  attr: Option[String] = None,
-  `val`: Option[String] = None,
-  toggle: Option[Boolean] = None,
+  name: Arg[String] = Arg.Undefined,
+  title: Arg[String] = Arg.Undefined,
+  icon: Arg[ModeBarButton.Icon] = Arg.Undefined,
+  gravity: Arg[String] = Arg.Undefined,
+  attr: Arg[String] = Arg.Undefined,
+  `val`: Arg[String] = Arg.Undefined,
+  toggle: Arg[Boolean] = Arg.Undefined,
 )
 
 object ModeBarButton {
@@ -27,14 +28,14 @@ object ModeBarButton {
   }
 
   final case class IconDetails(
-    height: Option[Number] = None,
-    width: Option[Number] = None,
-    ascent: Option[Number] = None,
-    descent: Option[Number] = None,
-    name: Option[String] = None,
-    path: Option[String] = None,
-    svg: Option[String] = None,
-    transform: Option[String] = None,
+    height: Arg[Number] = Arg.Undefined,
+    width: Arg[Number] = Arg.Undefined,
+    ascent: Arg[Number] = Arg.Undefined,
+    descent: Arg[Number] = Arg.Undefined,
+    name: Arg[String] = Arg.Undefined,
+    path: Arg[String] = Arg.Undefined,
+    svg: Arg[String] = Arg.Undefined,
+    transform: Arg[String] = Arg.Undefined,
   )
 
   object IconDetails {

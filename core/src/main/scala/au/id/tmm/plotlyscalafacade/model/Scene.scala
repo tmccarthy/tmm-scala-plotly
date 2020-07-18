@@ -1,21 +1,21 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, FalseOr, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class Scene(
-  bgcolor: Option[Color] = None,
-  camera: Option[Scene.Camera] = None,
-  domain: Option[Domain] = None,
-  aspectmode: Option[Scene.AspectMode] = None,
-  aspectratio: Option[Scene.Point] = None,
-  xaxis: Option[SceneAxis] = None,
-  yaxis: Option[SceneAxis] = None,
-  zaxis: Option[SceneAxis] = None,
-  dragmode: Option[FalseOr[Scene.DragMode]] = None,
-  hovermode: Option[FalseOr[Scene.HoverMode]] = None,
-  annotations: Option[OneOrArrayOf[Annotations]] = None,
-  captureevents: Option[Boolean] = None,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  camera: Arg[Scene.Camera] = Arg.Undefined,
+  domain: Arg[Domain] = Arg.Undefined,
+  aspectmode: Arg[Scene.AspectMode] = Arg.Undefined,
+  aspectratio: Arg[Scene.Point] = Arg.Undefined,
+  xaxis: Arg[SceneAxis] = Arg.Undefined,
+  yaxis: Arg[SceneAxis] = Arg.Undefined,
+  zaxis: Arg[SceneAxis] = Arg.Undefined,
+  dragmode: Arg[FalseOr[Scene.DragMode]] = Arg.Undefined,
+  hovermode: Arg[FalseOr[Scene.HoverMode]] = Arg.Undefined,
+  annotations: Arg[OneOrArrayOf[Annotations]] = Arg.Undefined,
+  captureevents: Arg[Boolean] = Arg.Undefined,
 )
 
 object Scene {

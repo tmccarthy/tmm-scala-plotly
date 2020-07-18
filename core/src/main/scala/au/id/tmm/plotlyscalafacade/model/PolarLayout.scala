@@ -1,16 +1,16 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.Encoder
 
 final case class PolarLayout(
-  domain: Option[Domain] = None,
-  sector: Option[NumberArray] = None,
-  hole: Option[Number] = None,
-  bgcolor: Option[Color] = None,
-  radialaxis: Option[LayoutAxis] = None,
-  angularaxis: Option[LayoutAxis] = None,
-  gridshape: Option[PolarLayout.GridShape] = None,
+  domain: Arg[Domain] = Arg.Undefined,
+  sector: Arg[NumberArray] = Arg.Undefined,
+  hole: Arg[Number] = Arg.Undefined,
+  bgcolor: Arg[Color] = Arg.Undefined,
+  radialaxis: Arg[LayoutAxis] = Arg.Undefined,
+  angularaxis: Arg[LayoutAxis] = Arg.Undefined,
+  gridshape: Arg[PolarLayout.GridShape] = Arg.Undefined,
 )
 
 object PolarLayout {

@@ -2,20 +2,20 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.net.URI
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 final case class Mapbox(
-  domain: Option[Domain] = None,
-  accesstoken: Option[String] = None,
-  style: Option[Mapbox.Style] = None,
-  center: Option[Mapbox.Center] = None,
-  zoom: Option[Number] = None,
-  bearing: Option[Number] = None,
-  pitch: Option[Number] = None,
-  layers: Option[Seq[MapboxLayers]] = None,
-  uirevision: Option[Mapbox.UiRevision] = None,
+  domain: Arg[Domain] = Arg.Undefined,
+  accesstoken: Arg[String] = Arg.Undefined,
+  style: Arg[Mapbox.Style] = Arg.Undefined,
+  center: Arg[Mapbox.Center] = Arg.Undefined,
+  zoom: Arg[Number] = Arg.Undefined,
+  bearing: Arg[Number] = Arg.Undefined,
+  pitch: Arg[Number] = Arg.Undefined,
+  layers: Arg[Seq[MapboxLayers]] = Arg.Undefined,
+  uirevision: Arg[Mapbox.UiRevision] = Arg.Undefined,
 )
 
 object Mapbox {
@@ -53,14 +53,14 @@ object Mapbox {
     implicit val encoder: Encoder[Style] = {
       case p: PlotlyBuiltIn => p.asJson
       case m: MapboxBuiltIn => m.asJson
-      case MapboxUri(uri) => uri.asJson
+      case MapboxUri(uri)   => uri.asJson
     }
 
   }
 
   final case class Center(
-    lon: Option[Number] = None,
-    lat: Option[Number] = None,
+    lon: Arg[Number] = Arg.Undefined,
+    lat: Arg[Number] = Arg.Undefined,
   )
 
   object Center {

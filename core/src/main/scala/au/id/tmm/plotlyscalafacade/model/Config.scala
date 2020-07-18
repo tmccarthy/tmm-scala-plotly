@@ -3,56 +3,56 @@ package au.id.tmm.plotlyscalafacade.model
 import java.net.URI
 import java.util.Locale
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FalseOr, FlagList, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, BooleanOr, FalseOr, FlagList, JSEnum}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
 import io.circe.syntax._
 import io.circe.{Encoder, Json}
 
 final case class Config(
-  toImageButtonOptions: Option[Config.ToImageButtonOptions] = None,
-  staticPlot: Option[Boolean] = None,
-  plotlyServerURL: Option[URI] = None,
-  editable: Option[Boolean] = None,
-  edits: Option[Config.Edits] = None,
-  autosizable: Option[Boolean] = None,
-  queueLength: Option[Int] = None,
-  fillFrame: Option[Boolean] = None,
-  frameMargins: Option[Number] = None,
-  scrollZoom: Option[Boolean] = None,
-  doubleClick: Option[FalseOr[FlagList[Config.DoubleClickFlag]]] = None,
-  showTips: Option[Boolean] = None,
-  showAxisDragHandles: Option[Boolean] = None,
-  showAxisRangeEntryBoxes: Option[Boolean] = None,
-  showLink: Option[Boolean] = None,
-  sendData: Option[Boolean] = None,
-  linkText: Option[String] = None,
-  showSources: Option[Boolean] = None,
-  displayModeBar: Option[BooleanOr[Config.DisplayModeBar]] = None,
-  showSendToCloud: Option[Boolean] = None,
-  showEditInChartStudio: Option[Boolean] = None,
-  modeBarButtonsToRemove: Option[Seq[Config.ModeBarDefaultButtons]] = None,
-  modeBarButtonsToAdd: Option[Config.ModeBarButtons] = None,
-  modeBarButtons: Option[FalseOr[Config.ModeBarButtonGroups]] = None,
-  displaylogo: Option[Boolean] = None,
-  plotGlPixelRatio: Option[Number] = None,
-  setBackground: Option[Config.SetBackground] = None,
-  topojsonURL: Option[URI] = None,
-  mapboxAccessToken: Option[String] = None,
-  logging: Option[Boolean] = None,
-  globalTransforms: Option[Seq[Transform]] = None,
-  locale: Option[Locale] = None,
-  responsive: Option[Boolean] = None,
+  toImageButtonOptions: Arg[Config.ToImageButtonOptions] = Arg.Undefined,
+  staticPlot: Arg[Boolean] = Arg.Undefined,
+  plotlyServerURL: Arg[URI] = Arg.Undefined,
+  editable: Arg[Boolean] = Arg.Undefined,
+  edits: Arg[Config.Edits] = Arg.Undefined,
+  autosizable: Arg[Boolean] = Arg.Undefined,
+  queueLength: Arg[Int] = Arg.Undefined,
+  fillFrame: Arg[Boolean] = Arg.Undefined,
+  frameMargins: Arg[Number] = Arg.Undefined,
+  scrollZoom: Arg[Boolean] = Arg.Undefined,
+  doubleClick: Arg[FalseOr[FlagList[Config.DoubleClickFlag]]] = Arg.Undefined,
+  showTips: Arg[Boolean] = Arg.Undefined,
+  showAxisDragHandles: Arg[Boolean] = Arg.Undefined,
+  showAxisRangeEntryBoxes: Arg[Boolean] = Arg.Undefined,
+  showLink: Arg[Boolean] = Arg.Undefined,
+  sendData: Arg[Boolean] = Arg.Undefined,
+  linkText: Arg[String] = Arg.Undefined,
+  showSources: Arg[Boolean] = Arg.Undefined,
+  displayModeBar: Arg[BooleanOr[Config.DisplayModeBar]] = Arg.Undefined,
+  showSendToCloud: Arg[Boolean] = Arg.Undefined,
+  showEditInChartStudio: Arg[Boolean] = Arg.Undefined,
+  modeBarButtonsToRemove: Arg[Seq[Config.ModeBarDefaultButtons]] = Arg.Undefined,
+  modeBarButtonsToAdd: Arg[Config.ModeBarButtons] = Arg.Undefined,
+  modeBarButtons: Arg[FalseOr[Config.ModeBarButtonGroups]] = Arg.Undefined,
+  displaylogo: Arg[Boolean] = Arg.Undefined,
+  plotGlPixelRatio: Arg[Number] = Arg.Undefined,
+  setBackground: Arg[Config.SetBackground] = Arg.Undefined,
+  topojsonURL: Arg[URI] = Arg.Undefined,
+  mapboxAccessToken: Arg[String] = Arg.Undefined,
+  logging: Arg[Boolean] = Arg.Undefined,
+  globalTransforms: Arg[Seq[Transform]] = Arg.Undefined,
+  locale: Arg[Locale] = Arg.Undefined,
+  responsive: Arg[Boolean] = Arg.Undefined,
 )
 
 object Config {
 
   final case class ToImageButtonOptions(
-    filename: Option[String] = None,
-    scale: Option[Number] = None,
-    format: Option[ToImageButtonOptions.Format] = None,
-    height: Option[Number] = None,
-    width: Option[Number] = None,
+    filename: Arg[String] = Arg.Undefined,
+    scale: Arg[Number] = Arg.Undefined,
+    format: Arg[ToImageButtonOptions.Format] = Arg.Undefined,
+    height: Arg[Number] = Arg.Undefined,
+    width: Arg[Number] = Arg.Undefined,
   )
 
   object ToImageButtonOptions {
@@ -83,16 +83,16 @@ object Config {
   }
 
   final case class Edits(
-    annotationPosition: Option[Boolean] = None,
-    annotationTail: Option[Boolean] = None,
-    annotationText: Option[Boolean] = None,
-    axisTitleText: Option[Boolean] = None,
-    colorbarPosition: Option[Boolean] = None,
-    colorbarTitleText: Option[Boolean] = None,
-    legendPosition: Option[Boolean] = None,
-    legendText: Option[Boolean] = None,
-    shapePosition: Option[Boolean] = None,
-    titleText: Option[Boolean] = None,
+    annotationPosition: Arg[Boolean] = Arg.Undefined,
+    annotationTail: Arg[Boolean] = Arg.Undefined,
+    annotationText: Arg[Boolean] = Arg.Undefined,
+    axisTitleText: Arg[Boolean] = Arg.Undefined,
+    colorbarPosition: Arg[Boolean] = Arg.Undefined,
+    colorbarTitleText: Arg[Boolean] = Arg.Undefined,
+    legendPosition: Arg[Boolean] = Arg.Undefined,
+    legendText: Arg[Boolean] = Arg.Undefined,
+    shapePosition: Arg[Boolean] = Arg.Undefined,
+    titleText: Arg[Boolean] = Arg.Undefined,
   )
 
   object Edits {

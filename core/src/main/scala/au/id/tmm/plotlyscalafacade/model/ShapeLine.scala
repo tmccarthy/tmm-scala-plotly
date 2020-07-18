@@ -1,11 +1,12 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.Arg
 import io.circe.Encoder
 
 final case class ShapeLine(
-  color: Option[Color] = None,
-  width: Option[Number] = None,
-  dash: Option[Dash] = None,
+  color: Arg[Color] = Arg.Undefined,
+  width: Arg[Number] = Arg.Undefined,
+  dash: Arg[Dash] = Arg.Undefined,
 )
 
 object ShapeLine {

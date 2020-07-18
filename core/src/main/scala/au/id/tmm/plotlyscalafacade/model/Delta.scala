@@ -1,15 +1,15 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.Encoder
 
 final case class Delta(
-  reference: Option[Number] = None,
-  position: Option[Delta.Position] = None,
-  relative: Option[Boolean] = None,
-  valueformat: Option[String] = None,
-  increasing: Option[Delta.Symbol] = None,
-  decreasing: Option[Delta.Symbol] = None,
+  reference: Arg[Number] = Arg.Undefined,
+  position: Arg[Delta.Position] = Arg.Undefined,
+  relative: Arg[Boolean] = Arg.Undefined,
+  valueformat: Arg[String] = Arg.Undefined,
+  increasing: Arg[Delta.Symbol] = Arg.Undefined,
+  decreasing: Arg[Delta.Symbol] = Arg.Undefined,
 )
 
 object Delta {

@@ -1,12 +1,13 @@
 package au.id.tmm.plotlyscalafacade.model
 
+import au.id.tmm.plotlyscalafacade.model.utilities.Arg
 import io.circe.Encoder
 
 final case class PlotNumber(
-  valueformat: Option[String] = None,
-  font: Option[Font] = None,
-  prefix: Option[String] = None,
-  suffix: Option[String] = None,
+  valueformat: Arg[String] = Arg.Undefined,
+  font: Arg[Font] = Arg.Undefined,
+  prefix: Arg[String] = Arg.Undefined,
+  suffix: Arg[String] = Arg.Undefined,
 )
 
 object PlotNumber {

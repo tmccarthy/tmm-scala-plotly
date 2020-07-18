@@ -1,28 +1,28 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
 import io.circe.Encoder
 
 final case class Shape(
-  visible: Option[Boolean] = None,
-  layer: Option[Shape.Layer] = None,
-  `type`: Option[Shape.Type] = None,
-  path: Option[String] = None,
-  xref: Option[Shape.CoordinateReference.X] = None,
-  xsizemode: Option[Shape.SizeMode] = None,
-  xanchor: Option[Anchor.X] = None,
-  yref: Option[Shape.CoordinateReference.Y] = None,
-  ysizemode: Option[Shape.SizeMode] = None,
-  yanchor: Option[Anchor.Y] = None,
-  x0: Option[Datum] = None,
-  y0: Option[Datum] = None,
-  x1: Option[Datum] = None,
-  y1: Option[Datum] = None,
-  fillcolor: Option[Color] = None,
-  name: Option[String] = None,
-  templateitemname: Option[String] = None,
-  opacity: Option[Number] = None,
-  line: Option[ShapeLine] = None,
+  visible: Arg[Boolean] = Arg.Undefined,
+  layer: Arg[Shape.Layer] = Arg.Undefined,
+  `type`: Arg[Shape.Type] = Arg.Undefined,
+  path: Arg[String] = Arg.Undefined,
+  xref: Arg[Shape.CoordinateReference.X] = Arg.Undefined,
+  xsizemode: Arg[Shape.SizeMode] = Arg.Undefined,
+  xanchor: Arg[Anchor.X] = Arg.Undefined,
+  yref: Arg[Shape.CoordinateReference.Y] = Arg.Undefined,
+  ysizemode: Arg[Shape.SizeMode] = Arg.Undefined,
+  yanchor: Arg[Anchor.Y] = Arg.Undefined,
+  x0: Arg[Datum] = Arg.Undefined,
+  y0: Arg[Datum] = Arg.Undefined,
+  x1: Arg[Datum] = Arg.Undefined,
+  y1: Arg[Datum] = Arg.Undefined,
+  fillcolor: Arg[Color] = Arg.Undefined,
+  name: Arg[String] = Arg.Undefined,
+  templateitemname: Arg[String] = Arg.Undefined,
+  opacity: Arg[Number] = Arg.Undefined,
+  line: Arg[ShapeLine] = Arg.Undefined,
 )
 
 object Shape {

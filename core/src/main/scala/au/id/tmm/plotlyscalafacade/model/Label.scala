@@ -53,6 +53,24 @@ final case class HoverLabel(
   namelength: Number,
 ) extends Label
 
+object HoverLabel {
+  implicit val encoder: Encoder[HoverLabel] = Encoder.forProduct5(
+    "bgcolor",
+    "bordercolor",
+    "font",
+    "align",
+    "namelength",
+  )(l =>
+    (
+      l.bgcolor,
+      l.bordercolor,
+      l.font,
+      l.align,
+      l.namelength,
+    ),
+  )
+}
+
 final case class Legend(
   bgcolor: Color,
   bordercolor: Color,
@@ -82,6 +100,34 @@ object Legend {
     case object Vertical   extends Orientation("v")
     case object Horizontal extends Orientation("h")
   }
+
+  implicit val encoder: Encoder[Legend] = Encoder.forProduct11(
+    "bgcolor",
+    "bordercolor",
+    "font",
+    "traceorder",
+    "x",
+    "y",
+    "borderwidth",
+    "orientation",
+    "tracegroupgap",
+    "xanchor",
+    "yanchor",
+  )(l =>
+    (
+      l.bgcolor,
+      l.bordercolor,
+      l.font,
+      l.traceorder,
+      l.x,
+      l.y,
+      l.borderwidth,
+      l.orientation,
+      l.tracegroupgap,
+      l.xanchor,
+      l.yanchor,
+    ),
+  )
 }
 
 final case class Annotations(

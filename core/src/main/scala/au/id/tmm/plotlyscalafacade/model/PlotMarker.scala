@@ -43,7 +43,9 @@ object PlotMarker {
 
   final case class ScatterMarkerLine(
     width: OneOrArrayOf[Number],
-    color: OneOrArrayOf[Color], // TODO this is either a colour, an array of colours or an array of numbers that is combined with the colorscale
+    color: OneOrArrayOf[
+      Color,
+    ], // TODO this is either a colour, an array of colours or an array of numbers that is combined with the colorscale
     colorscale: ColorScale,
     cauto: Boolean,
     cmax: Number,
@@ -52,7 +54,31 @@ object PlotMarker {
     reversescale: Boolean,
   )
 
-  sealed abstract class SizeMode(val asString: String)
+  object ScatterMarkerLine {
+    implicit val encoder: Encoder[ScatterMarkerLine] = Encoder.forProduct8(
+      "width",
+      "color",
+      "colorscale",
+      "cauto",
+      "cmax",
+      "cmin",
+      "autocolorscale",
+      "reversescale",
+    )(s =>
+      (
+        s.width,
+        s.color,
+        s.colorscale,
+        s.cauto,
+        s.cmax,
+        s.cmin,
+        s.autocolorscale,
+        s.reversescale,
+      ),
+    )
+  }
+
+  sealed abstract class SizeMode(val asString: String) extends JSEnum
 
   object SizeMode {
     case object Diameter extends SizeMode("diameter")
@@ -96,6 +122,50 @@ object PlotMarker {
       case object Top    extends TitleSide("top")
       case object Bottom extends TitleSide("bottom")
     }
+
+    implicit val encoder: Encoder[ColorBar] = Encoder.forProduct19(
+      "thicknessmode",
+      "thickness",
+      "lenmode",
+      "len",
+      "x",
+      "xanchor",
+      "xpad",
+      "y",
+      "yanchor",
+      "ypad",
+      "outlinecolor",
+      "outlinewidth",
+      "bordercolor",
+      "borderwidth",
+      "bgcolor",
+      "tickProperties",
+      "title",
+      "titlefont",
+      "titleside",
+    )(c =>
+      (
+        c.thicknessmode,
+        c.thickness,
+        c.lenmode,
+        c.len,
+        c.x,
+        c.xanchor,
+        c.xpad,
+        c.y,
+        c.yanchor,
+        c.ypad,
+        c.outlinecolor,
+        c.outlinewidth,
+        c.bordercolor,
+        c.borderwidth,
+        c.bgcolor,
+        c.tickProperties,
+        c.title,
+        c.titlefont,
+        c.titleside,
+      ),
+    )
   }
 
   final case class Gradient(
@@ -112,6 +182,56 @@ object PlotMarker {
       case object Vertical   extends Type("vertical")
       case object None       extends Type("none")
     }
+
+    implicit val encoder: Encoder[Gradient] = Encoder.forProduct2("type", "color")(g => (g.`type`, g.color))
   }
+
+  implicit val encoder: Encoder[PlotMarker] = Encoder.forProduct21(
+    "symbol",
+    "color",
+    "colorscale",
+    "cauto",
+    "cmax",
+    "cmin",
+    "autocolorscale",
+    "reversescale",
+    "opacity",
+    "size",
+    "maxdisplayed",
+    "sizeref",
+    "sizemax",
+    "sizemin",
+    "sizemode",
+    "showscale",
+    "line",
+    "pad",
+    "width",
+    "colorbar",
+    "gradient",
+  )(p =>
+    (
+      p.symbol,
+      p.color,
+      p.colorscale,
+      p.cauto,
+      p.cmax,
+      p.cmin,
+      p.autocolorscale,
+      p.reversescale,
+      p.opacity,
+      p.size,
+      p.maxdisplayed,
+      p.sizeref,
+      p.sizemax,
+      p.sizemin,
+      p.sizemode,
+      p.showscale,
+      p.line,
+      p.pad,
+      p.width,
+      p.colorbar,
+      p.gradient,
+    ),
+  )
 
 }

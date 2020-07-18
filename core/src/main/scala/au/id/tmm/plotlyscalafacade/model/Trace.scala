@@ -5,7 +5,7 @@ import cats.instances.int.catsKernelStdOrderForInt
 import cats.instances.string.catsKernelStdOrderForString
 import cats.instances.tuple.catsKernelStdOrderForTuple2
 import cats.kernel.Order
-import io.circe.syntax._
+import io.circe.syntax.{EncoderOps, KeyOps}
 import io.circe.{Encoder, Json}
 
 // TODO it would probably be a good idea to break this up into the valid fields for each plot type. This information is
@@ -109,10 +109,10 @@ object Trace {
   sealed trait ScatterMode
 
   object ScatterMode {
-    case object None extends ScatterMode
-    final case class Of(flags: FlagList[ScatterMode.Flag])
+    case object None                                       extends ScatterMode
+    final case class Of(flags: FlagList[ScatterMode.Flag]) extends ScatterMode
 
-    sealed abstract class Flag(val asString: String)
+    sealed abstract class Flag(val asString: String) extends JSEnum
 
     object Flag {
       case object Line                    extends Flag("lines")
@@ -124,6 +124,11 @@ object Trace {
         case Markers    => (1, "")
         case Text(text) => (2, text)
       }
+    }
+
+    implicit val encoder: Encoder[ScatterMode] = {
+      case None      => "none".asJson
+      case Of(flags) => flags.asJson
     }
   }
 
@@ -172,10 +177,10 @@ object Trace {
     }
 
     implicit val encoder: Encoder[HoverInfo] = {
-      case All       => Encoder[String].apply("all")
-      case None      => Encoder[String].apply("none")
-      case Skip      => Encoder[String].apply("skip")
-      case Of(flags) => Encoder[FlagList[HoverInfo.Flag]].apply(flags)
+      case All       => "all".asJson
+      case None      => "none".asJson
+      case Skip      => "skip".asJson
+      case Of(flags) => flags.asJson
     }
 
   }
@@ -206,8 +211,8 @@ object Trace {
     }
 
     implicit val encoder: Encoder[TextInfo] = {
-      case None      => Encoder[String].apply("none")
-      case Of(flags) => Encoder[FlagList[Flag]].apply(flags)
+      case None      => "none".asJson
+      case Of(flags) => flags.asJson
     }
   }
 
@@ -260,9 +265,9 @@ object Trace {
     case object False                 extends BoxMean
 
     implicit val encoder: Encoder[BoxMean] = {
-      case True                  => Encoder[Boolean].apply(true)
-      case WithStandardDeviation => Encoder[String].apply("sd")
-      case False                 => Encoder[Boolean].apply(false)
+      case True                  => true.asJson
+      case WithStandardDeviation => "sd".asJson
+      case False                 => false.asJson
     }
   }
 
@@ -293,12 +298,42 @@ object Trace {
     size: AxisPosition,
   )
 
+  object XBins {
+    implicit val encoder: Encoder[XBins] = Encoder.forProduct3(
+      "start",
+      "end",
+      "size",
+    )(b =>
+      (
+        b.start,
+        b.end,
+        b.size,
+      ),
+    )
+  }
+
   final case class Domain(
     rows: Number,
     columns: Number,
     x: Seq[Number],
     y: Seq[Number],
   )
+
+  object Domain {
+    implicit val encoder: Encoder[Domain] = Encoder.forProduct4(
+      "rows",
+      "columns",
+      "x",
+      "y",
+    )(d =>
+      (
+        d.rows,
+        d.columns,
+        d.x,
+        d.y,
+      ),
+    )
+  }
 
   implicit val encoder: Encoder[Trace] = Encoder[Trace] { trace =>
     Json.obj(

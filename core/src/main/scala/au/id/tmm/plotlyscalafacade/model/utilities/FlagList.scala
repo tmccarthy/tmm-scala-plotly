@@ -14,7 +14,7 @@ object FlagList {
 
   implicit def encoder[A : Show]: Encoder[FlagList[A]] =
     flagList => {
-      val asString = flagList.flags.reduceLeftTo(Show[A].show)((acc, s) => acc + "+" + s)
+      val asString = flagList.flags.reduceLeftTo(Show[A].show)((acc, a) => acc + "+" + Show[A].show(a))
 
       Encoder[String].apply(asString)
     }

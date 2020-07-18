@@ -1,6 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import io.circe.Encoder
 
 final case class Transition(
   duration: Option[Number] = None,
@@ -56,4 +57,16 @@ object Transition {
     case object LayoutFirst extends Ordering("layout first")
     case object TracesFirst extends Ordering("traces first")
   }
+
+  implicit val encoder: Encoder[Transition] = Encoder.forProduct3(
+    "duration",
+    "easing",
+    "ordering",
+  )(t =>
+    (
+      t.duration,
+      t.easing,
+      t.ordering,
+    ),
+  )
 }

@@ -1,6 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import io.circe.Encoder
 
 final case class Image(
   visible: Option[Boolean] = None,
@@ -43,12 +44,44 @@ object Image {
       case object XAxis extends X("x")
     }
 
-    sealed abstract class Y(val asString: String)
+    sealed abstract class Y(val asString: String) extends JSEnum
 
     object Y {
       case object Paper extends Y("paper")
       case object YAxis extends Y("y")
     }
   }
+
+  implicit val encoder: Encoder[Image] = Encoder.forProduct13(
+    "visible",
+    "source",
+    "layer",
+    "sizex",
+    "sizey",
+    "sizing",
+    "opacity",
+    "x",
+    "y",
+    "xanchor",
+    "yanchor",
+    "xref",
+    "yref",
+  )(i =>
+    (
+      i.visible,
+      i.source,
+      i.layer,
+      i.sizex,
+      i.sizey,
+      i.sizing,
+      i.opacity,
+      i.x,
+      i.y,
+      i.xanchor,
+      i.yanchor,
+      i.xref,
+      i.yref,
+    ),
+  )
 
 }

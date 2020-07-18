@@ -1,6 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import io.circe.Encoder
 
 final case class Shape(
   visible: Option[Boolean] = None,
@@ -63,4 +64,48 @@ object Shape {
     case object Scaled extends SizeMode("scaled")
     case object Pixel  extends SizeMode("pixel")
   }
+
+  implicit val encoder: Encoder[Shape] = Encoder.forProduct19(
+    "visible",
+    "layer",
+    "type",
+    "path",
+    "xref",
+    "xsizemode",
+    "xanchor",
+    "yref",
+    "ysizemode",
+    "yanchor",
+    "x0",
+    "y0",
+    "x1",
+    "y1",
+    "fillcolor",
+    "name",
+    "templateitemname",
+    "opacity",
+    "line",
+  )(s =>
+    (
+      s.visible,
+      s.layer,
+      s.`type`,
+      s.path,
+      s.xref,
+      s.xsizemode,
+      s.xanchor,
+      s.yref,
+      s.ysizemode,
+      s.yanchor,
+      s.x0,
+      s.y0,
+      s.x1,
+      s.y1,
+      s.fillcolor,
+      s.name,
+      s.templateitemname,
+      s.opacity,
+      s.line,
+    ),
+  )
 }

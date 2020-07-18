@@ -2,12 +2,13 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.net.URI
 
-import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import au.id.tmm.plotlyscalafacade.model.utilities.{JSEnum, OneOrArrayOf}
+import io.circe.Encoder
 
 final case class MapboxLayers(
   visible: Option[Boolean] = None,
   sourcetype: Option[MapboxLayers.SourceType] = None,
-  source: Option[MapboxLayers.Source] = None,
+  source: Option[OneOrArrayOf[URI]] = None,
   sourcelayer: Option[String] = None,
   sourceattribution: Option[String] = None,
   `type`: Option[MapboxLayers.Type] = None,
@@ -36,13 +37,6 @@ object MapboxLayers {
     case object Image   extends SourceType("image")
   }
 
-  sealed trait Source
-
-  object Source {
-    final case class OfUrl(uri: URI)        extends Source
-    final case class OfUrls(uris: Seq[URI]) extends Source
-  }
-
   sealed abstract class Type(val asString: String) extends JSEnum
 
   object Type {
@@ -62,11 +56,38 @@ object MapboxLayers {
 
   object Coordinates {
     final case class Point(longitude: Number, latitude: Number)
+
+    object Point {
+      implicit val encoder: Encoder[Point] =
+        Encoder.forProduct2("longitude", "latitude")(p => (p.longitude, p.latitude))
+    }
+
+    implicit val encoder: Encoder[Coordinates] = Encoder.forProduct4(
+      "topLeft",
+      "topRight",
+      "bottomRight",
+      "bottomLeft",
+    )(c =>
+      (
+        c.topLeft,
+        c.topRight,
+        c.bottomRight,
+        c.bottomLeft,
+      ),
+    )
   }
 
   final case class Circle(radius: Number)
 
-  final case class Fill(outlineColor: Color)
+  object Circle {
+    implicit val encoder: Encoder[Circle] = Encoder.forProduct1("radius")(_.radius)
+  }
+
+  final case class Fill(outlinecolor: Color)
+
+  object Fill {
+    implicit val encoder: Encoder[Fill] = Encoder.forProduct1("outlinecolor")(_.outlinecolor)
+  }
 
   final case class MapboxSymbol(
     icon: Option[String] = None,
@@ -87,6 +108,66 @@ object MapboxLayers {
       case object LineCenter extends Placement("line-center")
     }
 
+    implicit val encoder: Encoder[MapboxSymbol] = Encoder.forProduct6(
+      "icon",
+      "iconsize",
+      "text",
+      "placement",
+      "textfont",
+      "textposition",
+    )(m =>
+      (
+        m.icon,
+        m.iconsize,
+        m.text,
+        m.placement,
+        m.textfont,
+        m.textposition,
+      ),
+    )
+
   }
+
+  implicit val encoder: Encoder[MapboxLayers] = Encoder.forProduct18(
+    "visible",
+    "sourcetype",
+    "source",
+    "sourcelayer",
+    "sourceattribution",
+    "type",
+    "coordinates",
+    "below",
+    "color",
+    "opacity",
+    "minzoom",
+    "maxzoom",
+    "circle",
+    "line",
+    "fill",
+    "symbol",
+    "name",
+    "templateitemname",
+  )(m =>
+    (
+      m.visible,
+      m.sourcetype,
+      m.source,
+      m.sourcelayer,
+      m.sourceattribution,
+      m.`type`,
+      m.coordinates,
+      m.below,
+      m.color,
+      m.opacity,
+      m.minzoom,
+      m.maxzoom,
+      m.circle,
+      m.line,
+      m.fill,
+      m.symbol,
+      m.name,
+      m.templateitemname,
+    ),
+  )
 
 }

@@ -3,6 +3,8 @@ package au.id.tmm.plotlyscalafacade.model
 import java.net.URI
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
+import io.circe.Encoder
+import io.circe.syntax.EncoderOps
 
 final case class Mapbox(
   domain: Option[Domain] = None,
@@ -48,12 +50,22 @@ object Mapbox {
 
     final case class MapboxUri(uri: URI) extends Style
 
+    implicit val encoder: Encoder[Style] = {
+      case p: PlotlyBuiltIn => p.asJson
+      case m: MapboxBuiltIn => m.asJson
+      case MapboxUri(uri) => uri.asJson
+    }
+
   }
 
   final case class Center(
     lon: Option[Number] = None,
     lat: Option[Number] = None,
   )
+
+  object Center {
+    implicit val encoder: Encoder[Center] = Encoder.forProduct2("lon", "lat")(c => (c.lon, c.lat))
+  }
 
   sealed abstract class UiRevision(val asString: String) extends JSEnum
 
@@ -64,5 +76,29 @@ object Mapbox {
     case object Pitch   extends UiRevision("pitch")
 
   }
+
+  implicit val encoder: Encoder[Mapbox] = Encoder.forProduct9(
+    "domain",
+    "accesstoken",
+    "style",
+    "center",
+    "zoom",
+    "bearing",
+    "pitch",
+    "layers",
+    "uirevision",
+  )(m =>
+    (
+      m.domain,
+      m.accesstoken,
+      m.style,
+      m.center,
+      m.zoom,
+      m.bearing,
+      m.pitch,
+      m.layers,
+      m.uirevision,
+    ),
+  )
 
 }

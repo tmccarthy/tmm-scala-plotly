@@ -1,7 +1,8 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum}
-import io.circe.Encoder
+import io.circe.syntax._
+import io.circe.{Encoder, Json}
 
 sealed trait Label extends Product {
   def bgcolor: Option[Color]
@@ -203,6 +204,49 @@ object Annotations {
   object ClickToShow {
     case object OnOff extends ClickToShow("onoff")
     case object OnOut extends ClickToShow("onout")
+  }
+
+  implicit val encoder: Encoder[Annotations] = Encoder[Annotations] { annotations =>
+    Json.obj(
+      "bgcolor" := annotations.bgcolor,
+      "bordercolor" := annotations.bordercolor,
+      "font" := annotations.font,
+      "visible" := annotations.visible,
+      "text" := annotations.text,
+      "textangle" := annotations.textangle,
+      "width" := annotations.width,
+      "height" := annotations.height,
+      "opacity" := annotations.opacity,
+      "align" := annotations.align,
+      "valign" := annotations.valign,
+      "borderpad" := annotations.borderpad,
+      "borderwidth" := annotations.borderwidth,
+      "showarrow" := annotations.showarrow,
+      "arrowcolor" := annotations.arrowcolor,
+      "arrowhead" := annotations.arrowhead,
+      "startarrowhead" := annotations.startarrowhead,
+      "arrowside" := annotations.arrowside,
+      "startarrowsize" := annotations.startarrowsize,
+      "arrowwidth" := annotations.arrowwidth,
+      "standoff" := annotations.standoff,
+      "startstandoff" := annotations.startstandoff,
+      "ax" := annotations.ax,
+      "ay" := annotations.ay,
+      "xref" := annotations.xref,
+      "x" := annotations.x,
+      "xanchor" := annotations.xanchor,
+      "xshift" := annotations.xshift,
+      "yref" := annotations.yref,
+      "y" := annotations.y,
+      "yanchor" := annotations.yanchor,
+      "yshift" := annotations.yshift,
+      "clicktoshow" := annotations.clicktoshow,
+      "xclick" := annotations.xclick,
+      "yclick" := annotations.yclick,
+      "hovertext" := annotations.hovertext,
+      "hoverlabel" := annotations.hoverlabel,
+      "captureevents" := annotations.captureevents,
+    )
   }
 
 }

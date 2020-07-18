@@ -1,7 +1,7 @@
 package au.id.tmm.plotlyscalafacade.model
 
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
-import io.circe.Json
+import io.circe.{Encoder, Json}
 
 final case class Slider(
   visible: Option[Boolean] = None,
@@ -47,6 +47,24 @@ object Slider {
       case object Skip     extends Method("skip")
       case object Update   extends Method("update")
     }
+
+    implicit val encoder: Encoder[Step] = Encoder.forProduct6(
+      "visible",
+      "method",
+      "args",
+      "label",
+      "value",
+      "execute",
+    )(s =>
+      (
+        s.visible,
+        s.method,
+        s.args,
+        s.label,
+        s.value,
+        s.execute,
+      ),
+    )
   }
 
   sealed abstract class LengthMode(val asString: String) extends JSEnum
@@ -63,5 +81,73 @@ object Slider {
     prefix: Option[String] = None,
     suffix: Option[String] = None,
     font: Option[Font] = None,
+  )
+
+  object CurrentValue {
+    implicit val encoder: Encoder[CurrentValue] = Encoder.forProduct6(
+      "visible",
+      "xanchor",
+      "offset",
+      "prefix",
+      "suffix",
+      "font",
+    )(c =>
+      (
+        c.visible,
+        c.xanchor,
+        c.offset,
+        c.prefix,
+        c.suffix,
+        c.font,
+      ),
+    )
+  }
+
+  implicit val encoder: Encoder[Slider] = Encoder.forProduct21(
+    "visible",
+    "active",
+    "steps",
+    "lenmode",
+    "len",
+    "x",
+    "y",
+    "pad",
+    "xanchor",
+    "yanchor",
+    "transition",
+    "currentvalue",
+    "font",
+    "activebgcolor",
+    "bgcolor",
+    "bordercolor",
+    "borderwidth",
+    "ticklen",
+    "tickcolor",
+    "tickwidth",
+    "minorticklen",
+  )(s =>
+    (
+      s.visible,
+      s.active,
+      s.steps,
+      s.lenmode,
+      s.len,
+      s.x,
+      s.y,
+      s.pad,
+      s.xanchor,
+      s.yanchor,
+      s.transition,
+      s.currentvalue,
+      s.font,
+      s.activebgcolor,
+      s.bgcolor,
+      s.bordercolor,
+      s.borderwidth,
+      s.ticklen,
+      s.tickcolor,
+      s.tickwidth,
+      s.minorticklen,
+    ),
   )
 }

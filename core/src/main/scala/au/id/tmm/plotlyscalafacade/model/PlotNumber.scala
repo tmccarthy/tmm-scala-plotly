@@ -4,7 +4,7 @@ import io.circe.Encoder
 
 final case class PlotNumber(
   valueformat: String,
-  font: Partial[Font],
+  font: Font,
   prefix: String,
   suffix: String,
 )

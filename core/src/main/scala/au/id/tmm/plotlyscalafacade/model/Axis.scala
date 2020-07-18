@@ -10,7 +10,7 @@ sealed trait Axis {
   def visible: Boolean
   def color: Color
   def title: Axis.Title
-  def titlefont: Partial[Font]
+  def titlefont: Font
   def `type`: Axis.Type
   def autorange: BooleanOr[Axis.AutoRange]
   def rangemode: Axis.RangeMode
@@ -153,7 +153,7 @@ final case class LayoutAxis(
   visible: Boolean,
   color: Color,
   title: Axis.Title,
-  titlefont: Partial[Font],
+  titlefont: Font,
   `type`: Axis.Type,
   autorange: BooleanOr[Axis.AutoRange],
   rangemode: Axis.RangeMode,
@@ -190,8 +190,8 @@ final case class LayoutAxis(
   layer: LayoutAxis.Layer,
   domain: Seq[Number],
   position: Number,
-  rangeslider: Partial[RangeSlider],
-  rangeselector: Partial[RangeSelector],
+  rangeslider: RangeSlider,
+  rangeselector: RangeSelector,
   automargin: Boolean,
   autotick: Boolean,
 ) extends Axis
@@ -318,7 +318,7 @@ final case class SceneAxis(
   visible: Boolean,
   color: Color,
   title: Axis.Title,
-  titlefont: Partial[Font],
+  titlefont: Font,
   `type`: Axis.Type,
   autorange: BooleanOr[Axis.AutoRange],
   rangemode: Axis.RangeMode,

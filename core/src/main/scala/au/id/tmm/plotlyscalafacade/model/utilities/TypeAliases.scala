@@ -12,6 +12,4 @@ private[model] trait TypeAliases {
 
   type CategoryIndex = Int
 
-  type Partial[A] = A // TODO find some way of handling this
-
 }

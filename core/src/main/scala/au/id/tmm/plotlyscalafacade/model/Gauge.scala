@@ -5,13 +5,13 @@ import io.circe.Encoder
 
 final case class Gauge(
   shape: Gauge.Shape,
-  bar: Partial[Gauge.Bar],
+  bar: Gauge.Bar,
   bgcolor: Color,
   bordercolor: Color,
   borderwidth: Number,
-  axis: Partial[Axis],
+  axis: Axis,
   steps: Seq[Gauge.Step],
-  threshold: Partial[Gauge.Threshold],
+  threshold: Gauge.Threshold,
 )
 
 object Gauge {
@@ -25,7 +25,7 @@ object Gauge {
 
   final case class Bar(
     color: Color,
-    line: Partial[Gauge.Line],
+    line: Gauge.Line,
     thickness: Number,
   )
 
@@ -53,7 +53,7 @@ object Gauge {
   }
 
   final case class Threshold(
-    line: Partial[Gauge.Line],
+    line: Gauge.Line,
     value: Number,
     thickness: Number,
   )

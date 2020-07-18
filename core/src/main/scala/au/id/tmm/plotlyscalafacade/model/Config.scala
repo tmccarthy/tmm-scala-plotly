@@ -10,11 +10,11 @@ import io.circe.syntax._
 import io.circe.{Encoder, Json}
 
 final case class Config(
-  toImageButtonOptions: Partial[Config.ToImageButtonOptions],
+  toImageButtonOptions: Config.ToImageButtonOptions,
   staticPlot: Boolean,
   plotlyServerURL: URI,
   editable: Boolean,
-  edits: Partial[Config.Edits],
+  edits: Config.Edits,
   autosizable: Boolean,
   queueLength: Int,
   fillFrame: Boolean,

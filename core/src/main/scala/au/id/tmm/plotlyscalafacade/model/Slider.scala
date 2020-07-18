@@ -6,12 +6,12 @@ import io.circe.Json
 final case class Slider(
   visible: Boolean,
   active: Number,
-  steps: Array[Partial[Slider.Step]],
+  steps: Array[Slider.Step],
   lenmode: Slider.LengthMode,
   len: Number,
   x: Number,
   y: Number,
-  pad: Partial[Padding],
+  pad: Padding,
   xanchor: Anchor.X,
   yanchor: Anchor.Y,
   transition: Transition,
@@ -62,6 +62,6 @@ object Slider {
     offset: Number,
     prefix: String,
     suffix: String,
-    font: Partial[Font],
+    font: Font,
   )
 }

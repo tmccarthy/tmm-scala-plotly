@@ -4,24 +4,24 @@ import au.id.tmm.plotlyscalafacade.model.utilities.{FalseOr, JSEnum, OneOrArrayO
 
 final case class Scene(
   bgcolor: Color,
-  camera: Partial[Scene.Camera],
-  domain: Partial[Domain],
+  camera: Scene.Camera,
+  domain: Domain,
   aspectmode: Scene.AspectMode,
-  aspectratio: Partial[Scene.Point],
-  xaxis: Partial[SceneAxis],
-  yaxis: Partial[SceneAxis],
-  zaxis: Partial[SceneAxis],
+  aspectratio: Scene.Point,
+  xaxis: SceneAxis,
+  yaxis: SceneAxis,
+  zaxis: SceneAxis,
   dragmode: FalseOr[Scene.DragMode],
   hovermode: FalseOr[Scene.HoverMode],
-  annotations: OneOrArrayOf[Partial[Annotations]],
+  annotations: OneOrArrayOf[Annotations],
   captureevents: Boolean,
 )
 
 object Scene {
   final case class Camera(
-    up: Partial[Point],
-    center: Partial[Point],
-    eye: Partial[Point],
+    up: Point,
+    center: Point,
+    eye: Point,
   )
 
   final case class Point(

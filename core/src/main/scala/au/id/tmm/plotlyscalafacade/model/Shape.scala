@@ -21,7 +21,7 @@ final case class Shape(
   name: String,
   templateitemname: String,
   opacity: Number,
-  line: Partial[ShapeLine],
+  line: ShapeLine,
 )
 
 object Shape {

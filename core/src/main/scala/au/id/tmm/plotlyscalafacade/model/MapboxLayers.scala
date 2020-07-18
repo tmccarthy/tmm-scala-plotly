@@ -18,9 +18,9 @@ final case class MapboxLayers(
   minzoom: Number,
   maxzoom: Number,
   circle: MapboxLayers.Circle,
-  line: Partial[ShapeLine],
+  line: ShapeLine,
   fill: MapboxLayers.Fill,
-  symbol: Partial[MapboxLayers.MapboxSymbol],
+  symbol: MapboxLayers.MapboxSymbol,
   name: String,
   templateitemname: String,
 )
@@ -73,7 +73,7 @@ object MapboxLayers {
     iconsize: Number,
     text: String,
     placement: MapboxSymbol.Placement,
-    textfont: Partial[Font],
+    textfont: Font,
     textposition: TextPosition,
   )
 

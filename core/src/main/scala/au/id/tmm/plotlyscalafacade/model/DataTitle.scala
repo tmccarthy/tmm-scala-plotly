@@ -4,7 +4,7 @@ import io.circe.Encoder
 
 final case class DataTitle(
   text: String,
-  font: Partial[Font],
+  font: Font,
   position: TextPosition,
 )
 

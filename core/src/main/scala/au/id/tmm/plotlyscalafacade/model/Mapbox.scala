@@ -5,14 +5,14 @@ import java.net.URI
 import au.id.tmm.plotlyscalafacade.model.utilities.JSEnum
 
 final case class Mapbox(
-  domain: Partial[Domain],
+  domain: Domain,
   accesstoken: String,
   style: Mapbox.Style,
-  center: Partial[Mapbox.Center],
+  center: Mapbox.Center,
   zoom: Number,
   bearing: Number,
   pitch: Number,
-  layers: Seq[Partial[MapboxLayers]],
+  layers: Seq[MapboxLayers],
   uirevision: Mapbox.UiRevision,
 )
 

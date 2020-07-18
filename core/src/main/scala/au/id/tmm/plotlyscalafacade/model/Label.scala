@@ -6,7 +6,7 @@ import io.circe.Encoder
 sealed trait Label extends Product {
   def bgcolor: Color
   def bordercolor: Color
-  def font: Partial[Font]
+  def font: Font
 }
 
 object Label {
@@ -14,13 +14,13 @@ object Label {
   def apply(
     bgcolor: Color,
     bordercolor: Color,
-    font: Partial[Font],
+    font: Font,
   ): PlainLabel = PlainLabel(bgcolor, bordercolor, font)
 
   final case class PlainLabel(
     bgcolor: Color,
     bordercolor: Color,
-    font: Partial[Font],
+    font: Font,
   ) extends Label
 
   object Alignment {
@@ -48,7 +48,7 @@ object Label {
 final case class HoverLabel(
   bgcolor: Color,
   bordercolor: Color,
-  font: Partial[Font],
+  font: Font,
   align: Label.Alignment.Horizontal,
   namelength: Number,
 ) extends Label
@@ -74,7 +74,7 @@ object HoverLabel {
 final case class Legend(
   bgcolor: Color,
   bordercolor: Color,
-  font: Partial[Font],
+  font: Font,
   traceorder: Legend.TraceOrder,
   x: Number,
   y: Number,
@@ -133,7 +133,7 @@ object Legend {
 final case class Annotations(
   bgcolor: Color,
   bordercolor: Color,
-  font: Partial[Font],
+  font: Font,
   visible: Boolean,
   text: String,
   textangle: String,
@@ -167,7 +167,7 @@ final case class Annotations(
   xclick: AxisPosition,
   yclick: AxisPosition,
   hovertext: String,
-  hoverlabel: Partial[HoverLabel],
+  hoverlabel: HoverLabel,
   captureevents: Boolean,
 ) extends Label
 
@@ -210,8 +210,8 @@ object Annotations {
 final case class RangeSelector(
   bgcolor: Color,
   bordercolor: Color,
-  font: Partial[Font],
-  buttons: Seq[Partial[RangeSelector.Button]],
+  font: Font,
+  buttons: Seq[RangeSelector.Button],
   visible: Boolean,
   x: Number,
   xanchor: Anchor.X,

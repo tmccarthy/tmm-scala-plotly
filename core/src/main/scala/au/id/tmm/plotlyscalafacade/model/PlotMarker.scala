@@ -20,10 +20,10 @@ final case class PlotMarker(
   sizemin: Number,
   sizemode: PlotMarker.SizeMode,
   showscale: Boolean,
-  line: Partial[PlotMarker.ScatterMarkerLine],
-  pad: Partial[Padding],
+  line: PlotMarker.ScatterMarkerLine,
+  pad: Padding,
   width: Number,
-  colorbar: Partial[PlotMarker.ColorBar],
+  colorbar: PlotMarker.ColorBar,
   gradient: PlotMarker.Gradient,
 )
 

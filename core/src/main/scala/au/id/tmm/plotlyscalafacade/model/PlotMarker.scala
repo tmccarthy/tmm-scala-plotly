@@ -1,30 +1,30 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class PlotMarker(
-  symbol: Arg[OneOrArrayOf[PlotMarker.Symbol]] = Arg.Undefined,
-  color: Arg[OneOrArrayOf[Color]] = Arg.Undefined,
-  colorscale: Arg[ColorScale] = Arg.Undefined,
-  cauto: Arg[Boolean] = Arg.Undefined,
-  cmax: Arg[Number] = Arg.Undefined,
-  cmin: Arg[Number] = Arg.Undefined,
-  autocolorscale: Arg[Boolean] = Arg.Undefined,
-  reversescale: Arg[Boolean] = Arg.Undefined,
-  opacity: Arg[OneOrArrayOf[Number]] = Arg.Undefined,
-  size: Arg[OneOrArrayOf[Number]] = Arg.Undefined,
-  maxdisplayed: Arg[Number] = Arg.Undefined,
-  sizeref: Arg[Number] = Arg.Undefined,
-  sizemax: Arg[Number] = Arg.Undefined,
-  sizemin: Arg[Number] = Arg.Undefined,
-  sizemode: Arg[PlotMarker.SizeMode] = Arg.Undefined,
-  showscale: Arg[Boolean] = Arg.Undefined,
-  line: Arg[PlotMarker.ScatterMarkerLine] = Arg.Undefined,
-  pad: Arg[Padding] = Arg.Undefined,
-  width: Arg[Number] = Arg.Undefined,
-  colorbar: Arg[PlotMarker.ColorBar] = Arg.Undefined,
-  gradient: Arg[PlotMarker.Gradient] = Arg.Undefined,
+  symbol: OptArg[OneOrArrayOf[PlotMarker.Symbol]] = OptArg.Undefined,
+  color: OptArg[OneOrArrayOf[Color]] = OptArg.Undefined,
+  colorscale: OptArg[ColorScale] = OptArg.Undefined,
+  cauto: OptArg[Boolean] = OptArg.Undefined,
+  cmax: OptArg[Number] = OptArg.Undefined,
+  cmin: OptArg[Number] = OptArg.Undefined,
+  autocolorscale: OptArg[Boolean] = OptArg.Undefined,
+  reversescale: OptArg[Boolean] = OptArg.Undefined,
+  opacity: OptArg[OneOrArrayOf[Number]] = OptArg.Undefined,
+  size: OptArg[OneOrArrayOf[Number]] = OptArg.Undefined,
+  maxdisplayed: OptArg[Number] = OptArg.Undefined,
+  sizeref: OptArg[Number] = OptArg.Undefined,
+  sizemax: OptArg[Number] = OptArg.Undefined,
+  sizemin: OptArg[Number] = OptArg.Undefined,
+  sizemode: OptArg[PlotMarker.SizeMode] = OptArg.Undefined,
+  showscale: OptArg[Boolean] = OptArg.Undefined,
+  line: OptArg[PlotMarker.ScatterMarkerLine] = OptArg.Undefined,
+  pad: OptArg[Padding] = OptArg.Undefined,
+  width: OptArg[Number] = OptArg.Undefined,
+  colorbar: OptArg[PlotMarker.ColorBar] = OptArg.Undefined,
+  gradient: OptArg[PlotMarker.Gradient] = OptArg.Undefined,
 )
 
 object PlotMarker {
@@ -42,15 +42,15 @@ object PlotMarker {
   }
 
   final case class ScatterMarkerLine(
-    width: Arg[OneOrArrayOf[Number]] = Arg.Undefined,
+    width: OptArg[OneOrArrayOf[Number]] = OptArg.Undefined,
     // TODO this is either a colour, an array of colours or an array of numbers that is combined with the colorscale
-    color: Arg[OneOrArrayOf[Color]] = Arg.Undefined,
-    colorscale: Arg[ColorScale] = Arg.Undefined,
-    cauto: Arg[Boolean] = Arg.Undefined,
-    cmax: Arg[Number] = Arg.Undefined,
-    cmin: Arg[Number] = Arg.Undefined,
-    autocolorscale: Arg[Boolean] = Arg.Undefined,
-    reversescale: Arg[Boolean] = Arg.Undefined,
+    color: OptArg[OneOrArrayOf[Color]] = OptArg.Undefined,
+    colorscale: OptArg[ColorScale] = OptArg.Undefined,
+    cauto: OptArg[Boolean] = OptArg.Undefined,
+    cmax: OptArg[Number] = OptArg.Undefined,
+    cmin: OptArg[Number] = OptArg.Undefined,
+    autocolorscale: OptArg[Boolean] = OptArg.Undefined,
+    reversescale: OptArg[Boolean] = OptArg.Undefined,
   )
 
   object ScatterMarkerLine {
@@ -85,25 +85,25 @@ object PlotMarker {
   }
 
   final case class ColorBar(
-    thicknessmode: Arg[ColorBar.LineSizeMode] = Arg.Undefined,
-    thickness: Arg[Number] = Arg.Undefined,
-    lenmode: Arg[ColorBar.LineSizeMode] = Arg.Undefined,
-    len: Arg[Number] = Arg.Undefined,
-    x: Arg[Number] = Arg.Undefined,
-    xanchor: Arg[Anchor.X] = Arg.Undefined,
-    xpad: Arg[Number] = Arg.Undefined,
-    y: Arg[Number] = Arg.Undefined,
-    yanchor: Arg[Anchor.Y] = Arg.Undefined,
-    ypad: Arg[Number] = Arg.Undefined,
-    outlinecolor: Arg[Color] = Arg.Undefined,
-    outlinewidth: Arg[Number] = Arg.Undefined,
-    bordercolor: Arg[Color] = Arg.Undefined,
-    borderwidth: Arg[Color] = Arg.Undefined,
-    bgcolor: Arg[Color] = Arg.Undefined,
-    tickProperties: Arg[TickProperties] = Arg.Undefined,
-    title: Arg[String] = Arg.Undefined,
-    titlefont: Arg[Font] = Arg.Undefined,
-    titleside: Arg[ColorBar.TitleSide] = Arg.Undefined,
+    thicknessmode: OptArg[ColorBar.LineSizeMode] = OptArg.Undefined,
+    thickness: OptArg[Number] = OptArg.Undefined,
+    lenmode: OptArg[ColorBar.LineSizeMode] = OptArg.Undefined,
+    len: OptArg[Number] = OptArg.Undefined,
+    x: OptArg[Number] = OptArg.Undefined,
+    xanchor: OptArg[Anchor.X] = OptArg.Undefined,
+    xpad: OptArg[Number] = OptArg.Undefined,
+    y: OptArg[Number] = OptArg.Undefined,
+    yanchor: OptArg[Anchor.Y] = OptArg.Undefined,
+    ypad: OptArg[Number] = OptArg.Undefined,
+    outlinecolor: OptArg[Color] = OptArg.Undefined,
+    outlinewidth: OptArg[Number] = OptArg.Undefined,
+    bordercolor: OptArg[Color] = OptArg.Undefined,
+    borderwidth: OptArg[Color] = OptArg.Undefined,
+    bgcolor: OptArg[Color] = OptArg.Undefined,
+    tickProperties: OptArg[TickProperties] = OptArg.Undefined,
+    title: OptArg[String] = OptArg.Undefined,
+    titlefont: OptArg[Font] = OptArg.Undefined,
+    titleside: OptArg[ColorBar.TitleSide] = OptArg.Undefined,
   )
 
   object ColorBar {
@@ -168,8 +168,8 @@ object PlotMarker {
   }
 
   final case class Gradient(
-    `type`: Arg[OneOrArrayOf[Gradient.Type]] = Arg.Undefined,
-    color: Arg[OneOrArrayOf[Color]] = Arg.Undefined,
+    `type`: OptArg[OneOrArrayOf[Gradient.Type]] = OptArg.Undefined,
+    color: OptArg[OneOrArrayOf[Color]] = OptArg.Undefined,
   )
 
   object Gradient {

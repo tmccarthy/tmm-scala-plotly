@@ -1,13 +1,13 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.Arg
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class Padding(
-  top: Arg[Number] = Arg.Undefined,
-  right: Arg[Number] = Arg.Undefined,
-  bottom: Arg[Number] = Arg.Undefined,
-  left: Arg[Number] = Arg.Undefined,
+  top: OptArg[Number] = OptArg.Undefined,
+  right: OptArg[Number] = OptArg.Undefined,
+  bottom: OptArg[Number] = OptArg.Undefined,
+  left: OptArg[Number] = OptArg.Undefined,
 )
 
 object Padding {

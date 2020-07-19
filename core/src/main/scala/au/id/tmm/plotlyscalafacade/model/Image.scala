@@ -1,22 +1,22 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Image(
-  visible: Arg[Boolean] = Arg.Undefined,
-  source: Arg[String] = Arg.Undefined,
-  layer: Arg[Image.Layer] = Arg.Undefined,
-  sizex: Arg[Number] = Arg.Undefined,
-  sizey: Arg[Number] = Arg.Undefined,
-  sizing: Arg[Image.Sizing] = Arg.Undefined,
-  opacity: Arg[Number] = Arg.Undefined,
-  x: Arg[AxisPosition] = Arg.Undefined,
-  y: Arg[AxisPosition] = Arg.Undefined,
-  xanchor: Arg[Anchor.X] = Arg.Undefined,
-  yanchor: Arg[Anchor.Y] = Arg.Undefined,
-  xref: Arg[Image.CoordinateReference.X] = Arg.Undefined,
-  yref: Arg[Image.CoordinateReference.Y] = Arg.Undefined,
+  visible: OptArg[Boolean] = OptArg.Undefined,
+  source: OptArg[String] = OptArg.Undefined,
+  layer: OptArg[Image.Layer] = OptArg.Undefined,
+  sizex: OptArg[Number] = OptArg.Undefined,
+  sizey: OptArg[Number] = OptArg.Undefined,
+  sizing: OptArg[Image.Sizing] = OptArg.Undefined,
+  opacity: OptArg[Number] = OptArg.Undefined,
+  x: OptArg[AxisPosition] = OptArg.Undefined,
+  y: OptArg[AxisPosition] = OptArg.Undefined,
+  xanchor: OptArg[Anchor.X] = OptArg.Undefined,
+  yanchor: OptArg[Anchor.Y] = OptArg.Undefined,
+  xref: OptArg[Image.CoordinateReference.X] = OptArg.Undefined,
+  yref: OptArg[Image.CoordinateReference.Y] = OptArg.Undefined,
 )
 
 object Image {

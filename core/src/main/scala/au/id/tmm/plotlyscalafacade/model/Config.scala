@@ -3,56 +3,56 @@ package au.id.tmm.plotlyscalafacade.model
 import java.net.URI
 import java.util.Locale
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, BooleanOr, FalseOr, FlagList, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, BooleanOr, FalseOr, FlagList, JSEnum}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
 import io.circe.syntax._
 import io.circe.{Encoder, Json}
 
 final case class Config(
-  toImageButtonOptions: Arg[Config.ToImageButtonOptions] = Arg.Undefined,
-  staticPlot: Arg[Boolean] = Arg.Undefined,
-  plotlyServerURL: Arg[URI] = Arg.Undefined,
-  editable: Arg[Boolean] = Arg.Undefined,
-  edits: Arg[Config.Edits] = Arg.Undefined,
-  autosizable: Arg[Boolean] = Arg.Undefined,
-  queueLength: Arg[Int] = Arg.Undefined,
-  fillFrame: Arg[Boolean] = Arg.Undefined,
-  frameMargins: Arg[Number] = Arg.Undefined,
-  scrollZoom: Arg[Boolean] = Arg.Undefined,
-  doubleClick: Arg[FalseOr[FlagList[Config.DoubleClickFlag]]] = Arg.Undefined,
-  showTips: Arg[Boolean] = Arg.Undefined,
-  showAxisDragHandles: Arg[Boolean] = Arg.Undefined,
-  showAxisRangeEntryBoxes: Arg[Boolean] = Arg.Undefined,
-  showLink: Arg[Boolean] = Arg.Undefined,
-  sendData: Arg[Boolean] = Arg.Undefined,
-  linkText: Arg[String] = Arg.Undefined,
-  showSources: Arg[Boolean] = Arg.Undefined,
-  displayModeBar: Arg[BooleanOr[Config.DisplayModeBar]] = Arg.Undefined,
-  showSendToCloud: Arg[Boolean] = Arg.Undefined,
-  showEditInChartStudio: Arg[Boolean] = Arg.Undefined,
-  modeBarButtonsToRemove: Arg[Seq[Config.ModeBarDefaultButtons]] = Arg.Undefined,
-  modeBarButtonsToAdd: Arg[Config.ModeBarButtons] = Arg.Undefined,
-  modeBarButtons: Arg[FalseOr[Config.ModeBarButtonGroups]] = Arg.Undefined,
-  displaylogo: Arg[Boolean] = Arg.Undefined,
-  plotGlPixelRatio: Arg[Number] = Arg.Undefined,
-  setBackground: Arg[Config.SetBackground] = Arg.Undefined,
-  topojsonURL: Arg[URI] = Arg.Undefined,
-  mapboxAccessToken: Arg[String] = Arg.Undefined,
-  logging: Arg[Boolean] = Arg.Undefined,
-  globalTransforms: Arg[Seq[Transform]] = Arg.Undefined,
-  locale: Arg[Locale] = Arg.Undefined,
-  responsive: Arg[Boolean] = Arg.Undefined,
+  toImageButtonOptions: OptArg[Config.ToImageButtonOptions] = OptArg.Undefined,
+  staticPlot: OptArg[Boolean] = OptArg.Undefined,
+  plotlyServerURL: OptArg[URI] = OptArg.Undefined,
+  editable: OptArg[Boolean] = OptArg.Undefined,
+  edits: OptArg[Config.Edits] = OptArg.Undefined,
+  autosizable: OptArg[Boolean] = OptArg.Undefined,
+  queueLength: OptArg[Int] = OptArg.Undefined,
+  fillFrame: OptArg[Boolean] = OptArg.Undefined,
+  frameMargins: OptArg[Number] = OptArg.Undefined,
+  scrollZoom: OptArg[Boolean] = OptArg.Undefined,
+  doubleClick: OptArg[FalseOr[FlagList[Config.DoubleClickFlag]]] = OptArg.Undefined,
+  showTips: OptArg[Boolean] = OptArg.Undefined,
+  showAxisDragHandles: OptArg[Boolean] = OptArg.Undefined,
+  showAxisRangeEntryBoxes: OptArg[Boolean] = OptArg.Undefined,
+  showLink: OptArg[Boolean] = OptArg.Undefined,
+  sendData: OptArg[Boolean] = OptArg.Undefined,
+  linkText: OptArg[String] = OptArg.Undefined,
+  showSources: OptArg[Boolean] = OptArg.Undefined,
+  displayModeBar: OptArg[BooleanOr[Config.DisplayModeBar]] = OptArg.Undefined,
+  showSendToCloud: OptArg[Boolean] = OptArg.Undefined,
+  showEditInChartStudio: OptArg[Boolean] = OptArg.Undefined,
+  modeBarButtonsToRemove: OptArg[Seq[Config.ModeBarDefaultButtons]] = OptArg.Undefined,
+  modeBarButtonsToAdd: OptArg[Config.ModeBarButtons] = OptArg.Undefined,
+  modeBarButtons: OptArg[FalseOr[Config.ModeBarButtonGroups]] = OptArg.Undefined,
+  displaylogo: OptArg[Boolean] = OptArg.Undefined,
+  plotGlPixelRatio: OptArg[Number] = OptArg.Undefined,
+  setBackground: OptArg[Config.SetBackground] = OptArg.Undefined,
+  topojsonURL: OptArg[URI] = OptArg.Undefined,
+  mapboxAccessToken: OptArg[String] = OptArg.Undefined,
+  logging: OptArg[Boolean] = OptArg.Undefined,
+  globalTransforms: OptArg[Seq[Transform]] = OptArg.Undefined,
+  locale: OptArg[Locale] = OptArg.Undefined,
+  responsive: OptArg[Boolean] = OptArg.Undefined,
 )
 
 object Config {
 
   final case class ToImageButtonOptions(
-    filename: Arg[String] = Arg.Undefined,
-    scale: Arg[Number] = Arg.Undefined,
-    format: Arg[ToImageButtonOptions.Format] = Arg.Undefined,
-    height: Arg[Number] = Arg.Undefined,
-    width: Arg[Number] = Arg.Undefined,
+    filename: OptArg[String] = OptArg.Undefined,
+    scale: OptArg[Number] = OptArg.Undefined,
+    format: OptArg[ToImageButtonOptions.Format] = OptArg.Undefined,
+    height: OptArg[Number] = OptArg.Undefined,
+    width: OptArg[Number] = OptArg.Undefined,
   )
 
   object ToImageButtonOptions {
@@ -83,16 +83,16 @@ object Config {
   }
 
   final case class Edits(
-    annotationPosition: Arg[Boolean] = Arg.Undefined,
-    annotationTail: Arg[Boolean] = Arg.Undefined,
-    annotationText: Arg[Boolean] = Arg.Undefined,
-    axisTitleText: Arg[Boolean] = Arg.Undefined,
-    colorbarPosition: Arg[Boolean] = Arg.Undefined,
-    colorbarTitleText: Arg[Boolean] = Arg.Undefined,
-    legendPosition: Arg[Boolean] = Arg.Undefined,
-    legendText: Arg[Boolean] = Arg.Undefined,
-    shapePosition: Arg[Boolean] = Arg.Undefined,
-    titleText: Arg[Boolean] = Arg.Undefined,
+    annotationPosition: OptArg[Boolean] = OptArg.Undefined,
+    annotationTail: OptArg[Boolean] = OptArg.Undefined,
+    annotationText: OptArg[Boolean] = OptArg.Undefined,
+    axisTitleText: OptArg[Boolean] = OptArg.Undefined,
+    colorbarPosition: OptArg[Boolean] = OptArg.Undefined,
+    colorbarTitleText: OptArg[Boolean] = OptArg.Undefined,
+    legendPosition: OptArg[Boolean] = OptArg.Undefined,
+    legendText: OptArg[Boolean] = OptArg.Undefined,
+    shapePosition: OptArg[Boolean] = OptArg.Undefined,
+    titleText: OptArg[Boolean] = OptArg.Undefined,
   )
 
   object Edits {

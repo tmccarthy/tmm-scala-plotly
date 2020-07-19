@@ -2,34 +2,34 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.time.Duration
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 // TODO encode this using FieldsFromEncoder
 final case class TickProperties(
-  tickmode: Arg[TickProperties.TickMode] = Arg.Undefined,
-  nticks: Arg[Int] = Arg.Undefined,
-  tick0: Arg[AxisPosition] = Arg.Undefined,
-  dtick: Arg[TickProperties.DTick] = Arg.Undefined,
-  tickvals: Arg[DataArray] = Arg.Undefined,
-  tickText: Arg[DataArray] = Arg.Undefined,
-  ticks: Arg[TickProperties.DrawMode] = Arg.Undefined,
-  ticklen: Arg[Number] = Arg.Undefined,
-  tickwidth: Arg[Number] = Arg.Undefined,
-  tickcolor: Arg[Color] = Arg.Undefined,
-  showticklabels: Arg[Boolean] = Arg.Undefined,
-  tickfont: Arg[Font] = Arg.Undefined,
-  tickangle: Arg[Number] = Arg.Undefined,
-  tickformat: Arg[String] = Arg.Undefined,
-  tickformatstops: Arg[OneOrArrayOf[TickProperties.FormatStop]] = Arg.Undefined,
-  tickprefix: Arg[String] = Arg.Undefined,
-  showtickprefix: Arg[TickProperties.ShowRule] = Arg.Undefined,
-  ticksuffix: Arg[String] = Arg.Undefined,
-  showticksuffix: Arg[TickProperties.ShowRule] = Arg.Undefined,
-  separatethousands: Arg[Boolean] = Arg.Undefined,
-  exponentformat: Arg[TickProperties.ExponentFormat] = Arg.Undefined,
-  showexponent: Arg[TickProperties.ShowRule] = Arg.Undefined,
+  tickmode: OptArg[TickProperties.TickMode] = OptArg.Undefined,
+  nticks: OptArg[Int] = OptArg.Undefined,
+  tick0: OptArg[AxisPosition] = OptArg.Undefined,
+  dtick: OptArg[TickProperties.DTick] = OptArg.Undefined,
+  tickvals: OptArg[DataArray] = OptArg.Undefined,
+  tickText: OptArg[DataArray] = OptArg.Undefined,
+  ticks: OptArg[TickProperties.DrawMode] = OptArg.Undefined,
+  ticklen: OptArg[Number] = OptArg.Undefined,
+  tickwidth: OptArg[Number] = OptArg.Undefined,
+  tickcolor: OptArg[Color] = OptArg.Undefined,
+  showticklabels: OptArg[Boolean] = OptArg.Undefined,
+  tickfont: OptArg[Font] = OptArg.Undefined,
+  tickangle: OptArg[Number] = OptArg.Undefined,
+  tickformat: OptArg[String] = OptArg.Undefined,
+  tickformatstops: OptArg[OneOrArrayOf[TickProperties.FormatStop]] = OptArg.Undefined,
+  tickprefix: OptArg[String] = OptArg.Undefined,
+  showtickprefix: OptArg[TickProperties.ShowRule] = OptArg.Undefined,
+  ticksuffix: OptArg[String] = OptArg.Undefined,
+  showticksuffix: OptArg[TickProperties.ShowRule] = OptArg.Undefined,
+  separatethousands: OptArg[Boolean] = OptArg.Undefined,
+  exponentformat: OptArg[TickProperties.ExponentFormat] = OptArg.Undefined,
+  showexponent: OptArg[TickProperties.ShowRule] = OptArg.Undefined,
 )
 
 object TickProperties {
@@ -115,11 +115,11 @@ object TickProperties {
   }
 
   final case class FormatStop(
-    enabled: Arg[Boolean] = Arg.Undefined,
-    dtickrange: Arg[Range[Datum]] = Arg.Undefined,
-    value: Arg[String] = Arg.Undefined,
-    name: Arg[String] = Arg.Undefined,
-    templateitemname: Arg[String] = Arg.Undefined,
+    enabled: OptArg[Boolean] = OptArg.Undefined,
+    dtickrange: OptArg[Range[Datum]] = OptArg.Undefined,
+    value: OptArg[String] = OptArg.Undefined,
+    name: OptArg[String] = OptArg.Undefined,
+    templateitemname: OptArg[String] = OptArg.Undefined,
   )
 
   object FormatStop {

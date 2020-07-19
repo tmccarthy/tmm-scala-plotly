@@ -1,15 +1,15 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.Arg
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class RangeSlider(
-  visible: Arg[Boolean] = Arg.Undefined,
-  thickness: Arg[Number] = Arg.Undefined,
-  range: Arg[Range[Datum]] = Arg.Undefined,
-  borderwidth: Arg[Number] = Arg.Undefined,
-  bordercolor: Arg[Color] = Arg.Undefined,
-  bgcolor: Arg[Color] = Arg.Undefined,
+  visible: OptArg[Boolean] = OptArg.Undefined,
+  thickness: OptArg[Number] = OptArg.Undefined,
+  range: OptArg[Range[Datum]] = OptArg.Undefined,
+  borderwidth: OptArg[Number] = OptArg.Undefined,
+  bordercolor: OptArg[Color] = OptArg.Undefined,
+  bgcolor: OptArg[Color] = OptArg.Undefined,
 )
 
 object RangeSlider {

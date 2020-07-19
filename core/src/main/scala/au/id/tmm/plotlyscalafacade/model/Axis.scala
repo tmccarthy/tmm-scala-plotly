@@ -1,38 +1,38 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, BooleanOr, FlagList, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, BooleanOr, FlagList, JSEnum}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
 import io.circe.syntax.{EncoderOps, KeyOps}
 import io.circe.{Encoder, Json}
 
 sealed trait Axis {
-  def visible: Arg[Boolean]
-  def color: Arg[Color]
-  def title: Arg[Axis.Title]
-  def titlefont: Arg[Font]
-  def `type`: Arg[Axis.Type]
-  def autorange: Arg[BooleanOr[Axis.AutoRange]]
-  def rangemode: Arg[Axis.RangeMode]
-  def range: Arg[Axis.Range]
-  def mirror: Arg[BooleanOr[Axis.Mirror]]
-  def showspikes: Arg[Boolean]
-  def spikecolor: Arg[Color]
-  def spikethickness: Arg[Number]
-  def categoryorder: Arg[Axis.CategoryOrder]
-  def categoryarray: Arg[Seq[CategoryIndex]]
-  def tickProperties: Arg[TickProperties]
-  def hoverformat: Arg[String]
-  def showline: Arg[Boolean]
-  def linecolor: Arg[Color]
-  def linewidth: Arg[Number]
-  def showgrid: Arg[Boolean]
-  def gridcolor: Arg[Color]
-  def gridwidth: Arg[Number]
-  def zeroline: Arg[Boolean]
-  def zerolinecolor: Arg[Color]
-  def zerolinewidth: Arg[Number]
-  def calendar: Arg[Calendar]
+  def visible: OptArg[Boolean]
+  def color: OptArg[Color]
+  def title: OptArg[Axis.Title]
+  def titlefont: OptArg[Font]
+  def `type`: OptArg[Axis.Type]
+  def autorange: OptArg[BooleanOr[Axis.AutoRange]]
+  def rangemode: OptArg[Axis.RangeMode]
+  def range: OptArg[Axis.Range]
+  def mirror: OptArg[BooleanOr[Axis.Mirror]]
+  def showspikes: OptArg[Boolean]
+  def spikecolor: OptArg[Color]
+  def spikethickness: OptArg[Number]
+  def categoryorder: OptArg[Axis.CategoryOrder]
+  def categoryarray: OptArg[Seq[CategoryIndex]]
+  def tickProperties: OptArg[TickProperties]
+  def hoverformat: OptArg[String]
+  def showline: OptArg[Boolean]
+  def linecolor: OptArg[Color]
+  def linewidth: OptArg[Number]
+  def showgrid: OptArg[Boolean]
+  def gridcolor: OptArg[Color]
+  def gridwidth: OptArg[Number]
+  def zeroline: OptArg[Boolean]
+  def zerolinecolor: OptArg[Color]
+  def zerolinewidth: OptArg[Number]
+  def calendar: OptArg[Calendar]
 }
 
 object Axis {
@@ -150,50 +150,50 @@ object Axis {
 }
 
 final case class LayoutAxis(
-  visible: Arg[Boolean] = Arg.Undefined,
-  color: Arg[Color] = Arg.Undefined,
-  title: Arg[Axis.Title] = Arg.Undefined,
-  titlefont: Arg[Font] = Arg.Undefined,
-  `type`: Arg[Axis.Type] = Arg.Undefined,
-  autorange: Arg[BooleanOr[Axis.AutoRange]] = Arg.Undefined,
-  rangemode: Arg[Axis.RangeMode] = Arg.Undefined,
-  range: Arg[Axis.Range] = Arg.Undefined,
-  tickProperties: Arg[TickProperties] = Arg.Undefined,
-  mirror: Arg[BooleanOr[Axis.Mirror]] = Arg.Undefined,
-  showspikes: Arg[Boolean] = Arg.Undefined,
-  spikecolor: Arg[Color] = Arg.Undefined,
-  spikethickness: Arg[Number] = Arg.Undefined,
-  categoryorder: Arg[Axis.CategoryOrder] = Arg.Undefined,
-  categoryarray: Arg[Seq[CategoryIndex]] = Arg.Undefined,
-  separatethousands: Arg[Boolean] = Arg.Undefined,
-  hoverformat: Arg[String] = Arg.Undefined,
-  showline: Arg[Boolean] = Arg.Undefined,
-  linecolor: Arg[Color] = Arg.Undefined,
-  linewidth: Arg[Number] = Arg.Undefined,
-  showgrid: Arg[Boolean] = Arg.Undefined,
-  gridcolor: Arg[Color] = Arg.Undefined,
-  gridwidth: Arg[Number] = Arg.Undefined,
-  zeroline: Arg[Boolean] = Arg.Undefined,
-  zerolinecolor: Arg[Color] = Arg.Undefined,
-  zerolinewidth: Arg[Number] = Arg.Undefined,
-  calendar: Arg[Calendar] = Arg.Undefined,
-  fixedrange: Arg[Boolean] = Arg.Undefined,
-  scaleanchor: Arg[Axis.Name] = Arg.Undefined,
-  scaleratio: Arg[Number] = Arg.Undefined,
-  constrain: Arg[LayoutAxis.Constrain] = Arg.Undefined,
-  constraintoward: Arg[LayoutAxis.ConstrainToward] = Arg.Undefined,
-  spikedash: Arg[String] = Arg.Undefined,
-  spikemode: Arg[FlagList[LayoutAxis.SpikeMode]] = Arg.Undefined,
-  anchor: Arg[LayoutAxis.Anchor] = Arg.Undefined,
-  side: Arg[LayoutAxis.Side] = Arg.Undefined,
-  overlaying: Arg[LayoutAxis.Overlaying] = Arg.Undefined,
-  layer: Arg[LayoutAxis.Layer] = Arg.Undefined,
-  domain: Arg[Seq[Number]] = Arg.Undefined,
-  position: Arg[Number] = Arg.Undefined,
-  rangeslider: Arg[RangeSlider] = Arg.Undefined,
-  rangeselector: Arg[RangeSelector] = Arg.Undefined,
-  automargin: Arg[Boolean] = Arg.Undefined,
-  autotick: Arg[Boolean] = Arg.Undefined,
+  visible: OptArg[Boolean] = OptArg.Undefined,
+  color: OptArg[Color] = OptArg.Undefined,
+  title: OptArg[Axis.Title] = OptArg.Undefined,
+  titlefont: OptArg[Font] = OptArg.Undefined,
+  `type`: OptArg[Axis.Type] = OptArg.Undefined,
+  autorange: OptArg[BooleanOr[Axis.AutoRange]] = OptArg.Undefined,
+  rangemode: OptArg[Axis.RangeMode] = OptArg.Undefined,
+  range: OptArg[Axis.Range] = OptArg.Undefined,
+  tickProperties: OptArg[TickProperties] = OptArg.Undefined,
+  mirror: OptArg[BooleanOr[Axis.Mirror]] = OptArg.Undefined,
+  showspikes: OptArg[Boolean] = OptArg.Undefined,
+  spikecolor: OptArg[Color] = OptArg.Undefined,
+  spikethickness: OptArg[Number] = OptArg.Undefined,
+  categoryorder: OptArg[Axis.CategoryOrder] = OptArg.Undefined,
+  categoryarray: OptArg[Seq[CategoryIndex]] = OptArg.Undefined,
+  separatethousands: OptArg[Boolean] = OptArg.Undefined,
+  hoverformat: OptArg[String] = OptArg.Undefined,
+  showline: OptArg[Boolean] = OptArg.Undefined,
+  linecolor: OptArg[Color] = OptArg.Undefined,
+  linewidth: OptArg[Number] = OptArg.Undefined,
+  showgrid: OptArg[Boolean] = OptArg.Undefined,
+  gridcolor: OptArg[Color] = OptArg.Undefined,
+  gridwidth: OptArg[Number] = OptArg.Undefined,
+  zeroline: OptArg[Boolean] = OptArg.Undefined,
+  zerolinecolor: OptArg[Color] = OptArg.Undefined,
+  zerolinewidth: OptArg[Number] = OptArg.Undefined,
+  calendar: OptArg[Calendar] = OptArg.Undefined,
+  fixedrange: OptArg[Boolean] = OptArg.Undefined,
+  scaleanchor: OptArg[Axis.Name] = OptArg.Undefined,
+  scaleratio: OptArg[Number] = OptArg.Undefined,
+  constrain: OptArg[LayoutAxis.Constrain] = OptArg.Undefined,
+  constraintoward: OptArg[LayoutAxis.ConstrainToward] = OptArg.Undefined,
+  spikedash: OptArg[String] = OptArg.Undefined,
+  spikemode: OptArg[FlagList[LayoutAxis.SpikeMode]] = OptArg.Undefined,
+  anchor: OptArg[LayoutAxis.Anchor] = OptArg.Undefined,
+  side: OptArg[LayoutAxis.Side] = OptArg.Undefined,
+  overlaying: OptArg[LayoutAxis.Overlaying] = OptArg.Undefined,
+  layer: OptArg[LayoutAxis.Layer] = OptArg.Undefined,
+  domain: OptArg[Seq[Number]] = OptArg.Undefined,
+  position: OptArg[Number] = OptArg.Undefined,
+  rangeslider: OptArg[RangeSlider] = OptArg.Undefined,
+  rangeselector: OptArg[RangeSelector] = OptArg.Undefined,
+  automargin: OptArg[Boolean] = OptArg.Undefined,
+  autotick: OptArg[Boolean] = OptArg.Undefined,
 ) extends Axis
 
 object LayoutAxis {
@@ -315,37 +315,37 @@ object LayoutAxis {
 }
 
 final case class SceneAxis(
-  visible: Arg[Boolean] = Arg.Undefined,
-  color: Arg[Color] = Arg.Undefined,
-  title: Arg[Axis.Title] = Arg.Undefined,
-  titlefont: Arg[Font] = Arg.Undefined,
-  `type`: Arg[Axis.Type] = Arg.Undefined,
-  autorange: Arg[BooleanOr[Axis.AutoRange]] = Arg.Undefined,
-  rangemode: Arg[Axis.RangeMode] = Arg.Undefined,
-  range: Arg[Axis.Range] = Arg.Undefined,
-  tickProperties: Arg[TickProperties] = Arg.Undefined,
-  mirror: Arg[BooleanOr[Axis.Mirror]] = Arg.Undefined,
-  showspikes: Arg[Boolean] = Arg.Undefined,
-  spikecolor: Arg[Color] = Arg.Undefined,
-  spikethickness: Arg[Number] = Arg.Undefined,
-  categoryorder: Arg[Axis.CategoryOrder] = Arg.Undefined,
-  categoryarray: Arg[Seq[CategoryIndex]] = Arg.Undefined,
-  separatethousands: Arg[Boolean] = Arg.Undefined,
-  hoverformat: Arg[String] = Arg.Undefined,
-  showline: Arg[Boolean] = Arg.Undefined,
-  linecolor: Arg[Color] = Arg.Undefined,
-  linewidth: Arg[Number] = Arg.Undefined,
-  showgrid: Arg[Boolean] = Arg.Undefined,
-  gridcolor: Arg[Color] = Arg.Undefined,
-  gridwidth: Arg[Number] = Arg.Undefined,
-  zeroline: Arg[Boolean] = Arg.Undefined,
-  zerolinecolor: Arg[Color] = Arg.Undefined,
-  zerolinewidth: Arg[Number] = Arg.Undefined,
-  calendar: Arg[Calendar] = Arg.Undefined,
-  spikesides: Arg[Boolean] = Arg.Undefined,
-  showbackground: Arg[Boolean] = Arg.Undefined,
-  backgroundcolor: Arg[Color] = Arg.Undefined,
-  showaxeslabels: Arg[Boolean] = Arg.Undefined,
+  visible: OptArg[Boolean] = OptArg.Undefined,
+  color: OptArg[Color] = OptArg.Undefined,
+  title: OptArg[Axis.Title] = OptArg.Undefined,
+  titlefont: OptArg[Font] = OptArg.Undefined,
+  `type`: OptArg[Axis.Type] = OptArg.Undefined,
+  autorange: OptArg[BooleanOr[Axis.AutoRange]] = OptArg.Undefined,
+  rangemode: OptArg[Axis.RangeMode] = OptArg.Undefined,
+  range: OptArg[Axis.Range] = OptArg.Undefined,
+  tickProperties: OptArg[TickProperties] = OptArg.Undefined,
+  mirror: OptArg[BooleanOr[Axis.Mirror]] = OptArg.Undefined,
+  showspikes: OptArg[Boolean] = OptArg.Undefined,
+  spikecolor: OptArg[Color] = OptArg.Undefined,
+  spikethickness: OptArg[Number] = OptArg.Undefined,
+  categoryorder: OptArg[Axis.CategoryOrder] = OptArg.Undefined,
+  categoryarray: OptArg[Seq[CategoryIndex]] = OptArg.Undefined,
+  separatethousands: OptArg[Boolean] = OptArg.Undefined,
+  hoverformat: OptArg[String] = OptArg.Undefined,
+  showline: OptArg[Boolean] = OptArg.Undefined,
+  linecolor: OptArg[Color] = OptArg.Undefined,
+  linewidth: OptArg[Number] = OptArg.Undefined,
+  showgrid: OptArg[Boolean] = OptArg.Undefined,
+  gridcolor: OptArg[Color] = OptArg.Undefined,
+  gridwidth: OptArg[Number] = OptArg.Undefined,
+  zeroline: OptArg[Boolean] = OptArg.Undefined,
+  zerolinecolor: OptArg[Color] = OptArg.Undefined,
+  zerolinewidth: OptArg[Number] = OptArg.Undefined,
+  calendar: OptArg[Calendar] = OptArg.Undefined,
+  spikesides: OptArg[Boolean] = OptArg.Undefined,
+  showbackground: OptArg[Boolean] = OptArg.Undefined,
+  backgroundcolor: OptArg[Color] = OptArg.Undefined,
+  showaxeslabels: OptArg[Boolean] = OptArg.Undefined,
 ) extends Axis
 
 object SceneAxis {

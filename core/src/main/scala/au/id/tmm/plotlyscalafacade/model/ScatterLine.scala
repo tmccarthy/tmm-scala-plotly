@@ -1,15 +1,15 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class ScatterLine(
-  color: Arg[Color] = Arg.Undefined,
-  width: Arg[Number] = Arg.Undefined,
-  dash: Arg[Dash] = Arg.Undefined,
-  shape: Arg[ScatterLine.Shape] = Arg.Undefined,
-  smoothing: Arg[Number] = Arg.Undefined,
-  simplify: Arg[Boolean] = Arg.Undefined,
+  color: OptArg[Color] = OptArg.Undefined,
+  width: OptArg[Number] = OptArg.Undefined,
+  dash: OptArg[Dash] = OptArg.Undefined,
+  shape: OptArg[ScatterLine.Shape] = OptArg.Undefined,
+  smoothing: OptArg[Number] = OptArg.Undefined,
+  simplify: OptArg[Boolean] = OptArg.Undefined,
 )
 
 object ScatterLine {

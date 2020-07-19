@@ -8,7 +8,7 @@ private[model] class EncoderOps[A] private (encoder: Encoder[A]) {
     Encoder { a =>
       val baseAsJson: Json = encoder.apply(a)
 
-      val jsonWithExtraFields: Arg[Json] = for {
+      val jsonWithExtraFields: OptArg[Json] = for {
         baseJsonObject    <- baseAsJson.asObject
         jsonObjectToMerge <- Encoder[B].apply(f(a)).asObject
       } yield Json.fromJsonObject(baseJsonObject deepMerge jsonObjectToMerge)

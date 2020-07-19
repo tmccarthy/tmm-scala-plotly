@@ -2,20 +2,20 @@ package au.id.tmm.plotlyscalafacade.model
 
 import java.net.URI
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 final case class Mapbox(
-  domain: Arg[Domain] = Arg.Undefined,
-  accesstoken: Arg[String] = Arg.Undefined,
-  style: Arg[Mapbox.Style] = Arg.Undefined,
-  center: Arg[Mapbox.Center] = Arg.Undefined,
-  zoom: Arg[Number] = Arg.Undefined,
-  bearing: Arg[Number] = Arg.Undefined,
-  pitch: Arg[Number] = Arg.Undefined,
-  layers: Arg[Seq[MapboxLayers]] = Arg.Undefined,
-  uirevision: Arg[Mapbox.UiRevision] = Arg.Undefined,
+  domain: OptArg[Domain] = OptArg.Undefined,
+  accesstoken: OptArg[String] = OptArg.Undefined,
+  style: OptArg[Mapbox.Style] = OptArg.Undefined,
+  center: OptArg[Mapbox.Center] = OptArg.Undefined,
+  zoom: OptArg[Number] = OptArg.Undefined,
+  bearing: OptArg[Number] = OptArg.Undefined,
+  pitch: OptArg[Number] = OptArg.Undefined,
+  layers: OptArg[Seq[MapboxLayers]] = OptArg.Undefined,
+  uirevision: OptArg[Mapbox.UiRevision] = OptArg.Undefined,
 )
 
 object Mapbox {
@@ -59,8 +59,8 @@ object Mapbox {
   }
 
   final case class Center(
-    lon: Arg[Number] = Arg.Undefined,
-    lat: Arg[Number] = Arg.Undefined,
+    lon: OptArg[Number] = OptArg.Undefined,
+    lat: OptArg[Number] = OptArg.Undefined,
   )
 
   object Center {

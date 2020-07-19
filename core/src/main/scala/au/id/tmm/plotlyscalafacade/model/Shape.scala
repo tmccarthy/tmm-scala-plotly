@@ -1,28 +1,28 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Shape(
-  visible: Arg[Boolean] = Arg.Undefined,
-  layer: Arg[Shape.Layer] = Arg.Undefined,
-  `type`: Arg[Shape.Type] = Arg.Undefined,
-  path: Arg[String] = Arg.Undefined,
-  xref: Arg[Shape.CoordinateReference.X] = Arg.Undefined,
-  xsizemode: Arg[Shape.SizeMode] = Arg.Undefined,
-  xanchor: Arg[Anchor.X] = Arg.Undefined,
-  yref: Arg[Shape.CoordinateReference.Y] = Arg.Undefined,
-  ysizemode: Arg[Shape.SizeMode] = Arg.Undefined,
-  yanchor: Arg[Anchor.Y] = Arg.Undefined,
-  x0: Arg[Datum] = Arg.Undefined,
-  y0: Arg[Datum] = Arg.Undefined,
-  x1: Arg[Datum] = Arg.Undefined,
-  y1: Arg[Datum] = Arg.Undefined,
-  fillcolor: Arg[Color] = Arg.Undefined,
-  name: Arg[String] = Arg.Undefined,
-  templateitemname: Arg[String] = Arg.Undefined,
-  opacity: Arg[Number] = Arg.Undefined,
-  line: Arg[ShapeLine] = Arg.Undefined,
+  visible: OptArg[Boolean] = OptArg.Undefined,
+  layer: OptArg[Shape.Layer] = OptArg.Undefined,
+  `type`: OptArg[Shape.Type] = OptArg.Undefined,
+  path: OptArg[String] = OptArg.Undefined,
+  xref: OptArg[Shape.CoordinateReference.X] = OptArg.Undefined,
+  xsizemode: OptArg[Shape.SizeMode] = OptArg.Undefined,
+  xanchor: OptArg[Anchor.X] = OptArg.Undefined,
+  yref: OptArg[Shape.CoordinateReference.Y] = OptArg.Undefined,
+  ysizemode: OptArg[Shape.SizeMode] = OptArg.Undefined,
+  yanchor: OptArg[Anchor.Y] = OptArg.Undefined,
+  x0: OptArg[Datum] = OptArg.Undefined,
+  y0: OptArg[Datum] = OptArg.Undefined,
+  x1: OptArg[Datum] = OptArg.Undefined,
+  y1: OptArg[Datum] = OptArg.Undefined,
+  fillcolor: OptArg[Color] = OptArg.Undefined,
+  name: OptArg[String] = OptArg.Undefined,
+  templateitemname: OptArg[String] = OptArg.Undefined,
+  opacity: OptArg[Number] = OptArg.Undefined,
+  line: OptArg[ShapeLine] = OptArg.Undefined,
 )
 
 object Shape {

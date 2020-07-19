@@ -1,13 +1,13 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.Arg
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class Domain(
-  x: Arg[NumberArray] = Arg.Undefined,
-  y: Arg[NumberArray] = Arg.Undefined,
-  row: Arg[Number] = Arg.Undefined,
-  column: Arg[Number] = Arg.Undefined,
+  x: OptArg[NumberArray] = OptArg.Undefined,
+  y: OptArg[NumberArray] = OptArg.Undefined,
+  row: OptArg[Number] = OptArg.Undefined,
+  column: OptArg[Number] = OptArg.Undefined,
 )
 
 object Domain {

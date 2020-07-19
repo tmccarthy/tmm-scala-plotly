@@ -1,16 +1,16 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.Arg
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class ModeBarButton(
-  name: Arg[String] = Arg.Undefined,
-  title: Arg[String] = Arg.Undefined,
-  icon: Arg[ModeBarButton.Icon] = Arg.Undefined,
-  gravity: Arg[String] = Arg.Undefined,
-  attr: Arg[String] = Arg.Undefined,
-  `val`: Arg[String] = Arg.Undefined,
-  toggle: Arg[Boolean] = Arg.Undefined,
+  name: OptArg[String] = OptArg.Undefined,
+  title: OptArg[String] = OptArg.Undefined,
+  icon: OptArg[ModeBarButton.Icon] = OptArg.Undefined,
+  gravity: OptArg[String] = OptArg.Undefined,
+  attr: OptArg[String] = OptArg.Undefined,
+  `val`: OptArg[String] = OptArg.Undefined,
+  toggle: OptArg[Boolean] = OptArg.Undefined,
 )
 
 object ModeBarButton {
@@ -28,14 +28,14 @@ object ModeBarButton {
   }
 
   final case class IconDetails(
-    height: Arg[Number] = Arg.Undefined,
-    width: Arg[Number] = Arg.Undefined,
-    ascent: Arg[Number] = Arg.Undefined,
-    descent: Arg[Number] = Arg.Undefined,
-    name: Arg[String] = Arg.Undefined,
-    path: Arg[String] = Arg.Undefined,
-    svg: Arg[String] = Arg.Undefined,
-    transform: Arg[String] = Arg.Undefined,
+    height: OptArg[Number] = OptArg.Undefined,
+    width: OptArg[Number] = OptArg.Undefined,
+    ascent: OptArg[Number] = OptArg.Undefined,
+    descent: OptArg[Number] = OptArg.Undefined,
+    name: OptArg[String] = OptArg.Undefined,
+    path: OptArg[String] = OptArg.Undefined,
+    svg: OptArg[String] = OptArg.Undefined,
+    transform: OptArg[String] = OptArg.Undefined,
   )
 
   object IconDetails {

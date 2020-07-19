@@ -1,16 +1,16 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.syntax.KeyOps
 import io.circe.{Encoder, Json}
 
 sealed trait ErrorBar {
-  def visible: Arg[Boolean]
-  def symmetric: Arg[Boolean]
-  def color: Arg[Color]
-  def thickness: Arg[Number]
-  def width: Arg[Number]
-  def opacity: Arg[Number]
+  def visible: OptArg[Boolean]
+  def symmetric: OptArg[Boolean]
+  def color: OptArg[Color]
+  def thickness: OptArg[Number]
+  def width: OptArg[Number]
+  def opacity: OptArg[Number]
 
   def `type`: ErrorBar.Type
 }
@@ -26,40 +26,40 @@ object ErrorBar {
   }
 
   final case class Constant(
-    visible: Arg[Boolean] = Arg.Undefined,
-    symmetric: Arg[Boolean] = Arg.Undefined,
-    color: Arg[Color] = Arg.Undefined,
-    thickness: Arg[Number] = Arg.Undefined,
-    width: Arg[Number] = Arg.Undefined,
-    opacity: Arg[Number] = Arg.Undefined,
-    value: Arg[Number] = Arg.Undefined,
-    valueminus: Arg[Number] = Arg.Undefined,
+    visible: OptArg[Boolean] = OptArg.Undefined,
+    symmetric: OptArg[Boolean] = OptArg.Undefined,
+    color: OptArg[Color] = OptArg.Undefined,
+    thickness: OptArg[Number] = OptArg.Undefined,
+    width: OptArg[Number] = OptArg.Undefined,
+    opacity: OptArg[Number] = OptArg.Undefined,
+    value: OptArg[Number] = OptArg.Undefined,
+    valueminus: OptArg[Number] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Constant.type = ErrorBar.Type.Constant
   }
 
   final case class Percent(
-    visible: Arg[Boolean] = Arg.Undefined,
-    symmetric: Arg[Boolean] = Arg.Undefined,
-    color: Arg[Color] = Arg.Undefined,
-    thickness: Arg[Number] = Arg.Undefined,
-    width: Arg[Number] = Arg.Undefined,
-    opacity: Arg[Number] = Arg.Undefined,
-    value: Arg[Number] = Arg.Undefined,
-    valueminus: Arg[Number] = Arg.Undefined,
+    visible: OptArg[Boolean] = OptArg.Undefined,
+    symmetric: OptArg[Boolean] = OptArg.Undefined,
+    color: OptArg[Color] = OptArg.Undefined,
+    thickness: OptArg[Number] = OptArg.Undefined,
+    width: OptArg[Number] = OptArg.Undefined,
+    opacity: OptArg[Number] = OptArg.Undefined,
+    value: OptArg[Number] = OptArg.Undefined,
+    valueminus: OptArg[Number] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Percent.type = ErrorBar.Type.Percent
   }
 
   final case class Data(
-    visible: Arg[Boolean] = Arg.Undefined,
-    symmetric: Arg[Boolean] = Arg.Undefined,
-    color: Arg[Color] = Arg.Undefined,
-    thickness: Arg[Number] = Arg.Undefined,
-    width: Arg[Number] = Arg.Undefined,
-    opacity: Arg[Number] = Arg.Undefined,
-    array: Arg[Seq[Datum]] = Arg.Undefined,
-    arrayminus: Arg[Seq[Datum]] = Arg.Undefined,
+    visible: OptArg[Boolean] = OptArg.Undefined,
+    symmetric: OptArg[Boolean] = OptArg.Undefined,
+    color: OptArg[Color] = OptArg.Undefined,
+    thickness: OptArg[Number] = OptArg.Undefined,
+    width: OptArg[Number] = OptArg.Undefined,
+    opacity: OptArg[Number] = OptArg.Undefined,
+    array: OptArg[Seq[Datum]] = OptArg.Undefined,
+    arrayminus: OptArg[Seq[Datum]] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Data.type = ErrorBar.Type.Data
   }

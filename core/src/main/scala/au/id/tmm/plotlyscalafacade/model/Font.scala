@@ -1,12 +1,12 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.Arg
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class Font(
-  family: Arg[String] = Arg.Undefined,
-  size: Arg[Number] = Arg.Undefined,
-  color: Arg[Color] = Arg.Undefined,
+  family: OptArg[String] = OptArg.Undefined,
+  size: OptArg[Number] = OptArg.Undefined,
+  color: OptArg[Color] = OptArg.Undefined,
 )
 
 object Font {

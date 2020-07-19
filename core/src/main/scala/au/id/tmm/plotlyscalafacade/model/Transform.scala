@@ -1,20 +1,20 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class Transform(
-  `type`: Arg[Transform.Type] = Arg.Undefined,
-  enabled: Arg[Boolean] = Arg.Undefined,
-  target: Arg[OneOrArrayOf[AxisPosition]] = Arg.Undefined,
-  operation: Arg[String] = Arg.Undefined,
-  aggregations: Arg[Seq[Transform.Aggregation]] = Arg.Undefined,
-  preservegaps: Arg[Boolean] = Arg.Undefined,
-  groups: Arg[OneOrArrayOf[AxisPosition]] = Arg.Undefined,
-  nameformat: Arg[String] = Arg.Undefined,
-  styles: Arg[Seq[Transform.Style]] = Arg.Undefined,
-  value: Arg[Datum] = Arg.Undefined,
-  order: Arg[Transform.Order] = Arg.Undefined,
+  `type`: OptArg[Transform.Type] = OptArg.Undefined,
+  enabled: OptArg[Boolean] = OptArg.Undefined,
+  target: OptArg[OneOrArrayOf[AxisPosition]] = OptArg.Undefined,
+  operation: OptArg[String] = OptArg.Undefined,
+  aggregations: OptArg[Seq[Transform.Aggregation]] = OptArg.Undefined,
+  preservegaps: OptArg[Boolean] = OptArg.Undefined,
+  groups: OptArg[OneOrArrayOf[AxisPosition]] = OptArg.Undefined,
+  nameformat: OptArg[String] = OptArg.Undefined,
+  styles: OptArg[Seq[Transform.Style]] = OptArg.Undefined,
+  value: OptArg[Datum] = OptArg.Undefined,
+  order: OptArg[Transform.Order] = OptArg.Undefined,
 )
 
 object Transform {
@@ -30,9 +30,9 @@ object Transform {
 
   final case class Aggregation(
     target: String,
-    func: Arg[Aggregation.Function] = Arg.Undefined,
-    funcmode: Arg[Aggregation.FunctionMode] = Arg.Undefined,
-    enabled: Arg[Boolean] = Arg.Undefined,
+    func: OptArg[Aggregation.Function] = OptArg.Undefined,
+    funcmode: OptArg[Aggregation.FunctionMode] = OptArg.Undefined,
+    enabled: OptArg[Boolean] = OptArg.Undefined,
   )
 
   object Aggregation {

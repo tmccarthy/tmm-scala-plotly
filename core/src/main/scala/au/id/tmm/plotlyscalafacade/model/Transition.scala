@@ -1,12 +1,12 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Transition(
-  duration: Arg[Number] = Arg.Undefined,
-  easing: Arg[Transition.Easing] = Arg.Undefined,
-  ordering: Arg[Transition.Ordering] = Arg.Undefined,
+  duration: OptArg[Number] = OptArg.Undefined,
+  easing: OptArg[Transition.Easing] = OptArg.Undefined,
+  ordering: OptArg[Transition.Ordering] = OptArg.Undefined,
 )
 
 object Transition {

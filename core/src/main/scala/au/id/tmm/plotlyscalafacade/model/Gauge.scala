@@ -1,17 +1,17 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{Arg, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Gauge(
-  shape: Arg[Gauge.Shape] = Arg.Undefined,
-  bar: Arg[Gauge.Bar] = Arg.Undefined,
-  bgcolor: Arg[Color] = Arg.Undefined,
-  bordercolor: Arg[Color] = Arg.Undefined,
-  borderwidth: Arg[Number] = Arg.Undefined,
-  axis: Arg[Axis] = Arg.Undefined,
-  steps: Arg[Seq[Gauge.Step]] = Arg.Undefined,
-  threshold: Arg[Gauge.Threshold] = Arg.Undefined,
+  shape: OptArg[Gauge.Shape] = OptArg.Undefined,
+  bar: OptArg[Gauge.Bar] = OptArg.Undefined,
+  bgcolor: OptArg[Color] = OptArg.Undefined,
+  bordercolor: OptArg[Color] = OptArg.Undefined,
+  borderwidth: OptArg[Number] = OptArg.Undefined,
+  axis: OptArg[Axis] = OptArg.Undefined,
+  steps: OptArg[Seq[Gauge.Step]] = OptArg.Undefined,
+  threshold: OptArg[Gauge.Threshold] = OptArg.Undefined,
 )
 
 object Gauge {
@@ -24,9 +24,9 @@ object Gauge {
   }
 
   final case class Bar(
-    color: Arg[Color] = Arg.Undefined,
-    line: Arg[Gauge.Line] = Arg.Undefined,
-    thickness: Arg[Number] = Arg.Undefined,
+    color: OptArg[Color] = OptArg.Undefined,
+    line: OptArg[Gauge.Line] = OptArg.Undefined,
+    thickness: OptArg[Number] = OptArg.Undefined,
   )
 
   object Bar {
@@ -44,8 +44,8 @@ object Gauge {
   }
 
   final case class Line(
-    color: Arg[Color] = Arg.Undefined,
-    width: Arg[Number] = Arg.Undefined,
+    color: OptArg[Color] = OptArg.Undefined,
+    width: OptArg[Number] = OptArg.Undefined,
   )
 
   object Line {
@@ -53,9 +53,9 @@ object Gauge {
   }
 
   final case class Threshold(
-    line: Arg[Gauge.Line] = Arg.Undefined,
-    value: Arg[Number] = Arg.Undefined,
-    thickness: Arg[Number] = Arg.Undefined,
+    line: OptArg[Gauge.Line] = OptArg.Undefined,
+    value: OptArg[Number] = OptArg.Undefined,
+    thickness: OptArg[Number] = OptArg.Undefined,
   )
 
   object Threshold {
@@ -73,8 +73,8 @@ object Gauge {
   }
 
   final case class Step(
-    range: Arg[NumberArray] = Arg.Undefined,
-    color: Arg[Color] = Arg.Undefined,
+    range: OptArg[NumberArray] = OptArg.Undefined,
+    color: OptArg[Color] = OptArg.Undefined,
   )
 
   object Step {

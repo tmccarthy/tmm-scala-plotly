@@ -1,6 +1,5 @@
 package au.id.tmm.plotlyscalafacade.examples
 
-import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import au.id.tmm.plotlyscalafacade.model.{Layout, Trace}
 import au.id.tmm.plotlyscalafacade.syntax.all._
 import au.id.tmm.plotlyscalafacade.{Plot, Plotting}
@@ -23,7 +22,7 @@ object Histogram {
       data = ArraySeq(
         Trace(
           `type` = Trace.Type.Histogram,
-          x = OptArg.Of(data), // TODO why doesn't this conversion work?
+          x = data, // TODO why doesn't this conversion work?
         ),
       ),
       layout = Layout(

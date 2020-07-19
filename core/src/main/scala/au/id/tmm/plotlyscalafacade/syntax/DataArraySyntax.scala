@@ -3,6 +3,7 @@ package au.id.tmm.plotlyscalafacade.syntax
 import java.time.{Instant, LocalDate, OffsetDateTime, ZonedDateTime}
 
 import au.id.tmm.plotlyscalafacade.model.DataArray
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 
 trait DataArraySyntax {
 
@@ -17,5 +18,17 @@ trait DataArraySyntax {
   implicit def floatsToDataArray(floats: Seq[Float]): DataArray.OfFloats     = DataArray.OfFloats(floats)
   implicit def longsToDataArray(longs: Seq[Long]): DataArray.OfLongs         = DataArray.OfLongs(longs)
   implicit def intsToDataArray(ints: Seq[Int]): DataArray.OfInts             = DataArray.OfInts(ints)
+
+  implicit def stringsToOptArgDataArray(strings: Seq[String]): OptArg.Of[DataArray.OfStrings] = OptArg.Of(DataArray.OfStrings(strings))
+
+  implicit def instantsToOptArgDataArray(instants: Seq[Instant]): OptArg.Of[DataArray.OfInstants] = OptArg.Of(DataArray.OfInstants(instants))
+  implicit def zonedDateOptArgTimesToDataArray(zonedDateTimes: Seq[ZonedDateTime]): OptArg.Of[DataArray.OfInstants] = OptArg.Of(DataArray.OfZonedDateTimes(zonedDateTimes))
+  implicit def offsetDateOptArgTimesToDataArray(offsetDateTimes: Seq[OffsetDateTime]): OptArg.Of[DataArray.OfInstants] = OptArg.Of(DataArray.OfOffsetDateTimes(offsetDateTimes))
+  implicit def localDatesOptArgToDataArray(localDates: Seq[LocalDate]): OptArg.Of[DataArray.OfLocalDates] = OptArg.Of(DataArray.OfLocalDates(localDates))
+
+  implicit def doublesToOptArgDataArray(doubles: Seq[Double]): OptArg.Of[DataArray.OfDoubles] = OptArg.Of(DataArray.OfDoubles(doubles))
+  implicit def floatsToOptArgDataArray(floats: Seq[Float]): OptArg.Of[DataArray.OfFloats]     = OptArg.Of(DataArray.OfFloats(floats))
+  implicit def longsToOptArgDataArray(longs: Seq[Long]): OptArg.Of[DataArray.OfLongs]         = OptArg.Of(DataArray.OfLongs(longs))
+  implicit def intsToOptArgDataArray(ints: Seq[Int]): OptArg.Of[DataArray.OfInts]             = OptArg.Of(DataArray.OfInts(ints))
 
 }

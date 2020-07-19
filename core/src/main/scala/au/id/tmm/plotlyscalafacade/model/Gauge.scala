@@ -73,7 +73,7 @@ object Gauge {
   }
 
   final case class Step(
-    range: OptArg[NumberArray] = OptArg.Undefined,
+    range: OptArg[Seq[Number]] = OptArg.Undefined,
     color: OptArg[Color] = OptArg.Undefined,
   )
 

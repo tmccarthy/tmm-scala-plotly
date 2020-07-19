@@ -1,5 +1,6 @@
 package au.id.tmm.plotlyscalafacade.examples
 
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import au.id.tmm.plotlyscalafacade.{Plot, Plotting}
 import au.id.tmm.plotlyscalafacade.model.{DataArray, Layout, Trace}
 
@@ -20,15 +21,15 @@ object Histogram {
     val plot = Plot(
       data = ArraySeq(
         Trace(
-          `type` = Some(Trace.Type.Histogram),
-          x = Some(DataArray.OfInts(data)),
+          `type` = OptArg.Of(Trace.Type.Histogram),
+          x = OptArg.Of(DataArray.OfInts(data)),
         ),
       ),
-      layout = Some(
+      layout = OptArg.Of(
         Layout(
-          title = Some(
+          title = OptArg.Of(
             Layout.Title(
-              text = Some("Two dice roll"),
+              text = OptArg.Of("Two dice roll"),
             ),
           ),
         ),

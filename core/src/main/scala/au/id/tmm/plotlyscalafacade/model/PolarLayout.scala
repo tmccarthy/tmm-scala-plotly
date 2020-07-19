@@ -5,7 +5,7 @@ import io.circe.Encoder
 
 final case class PolarLayout(
   domain: OptArg[Domain] = OptArg.Undefined,
-  sector: OptArg[NumberArray] = OptArg.Undefined,
+  sector: OptArg[Seq[Number]] = OptArg.Undefined,
   hole: OptArg[Number] = OptArg.Undefined,
   bgcolor: OptArg[Color] = OptArg.Undefined,
   radialaxis: OptArg[LayoutAxis] = OptArg.Undefined,

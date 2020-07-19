@@ -76,8 +76,8 @@ object Axis {
   sealed trait Range
 
   object Range {
-    final case class Numeric(range: NumberArray)           extends Range
-    final case class Logarithmic(range: NumberArray)       extends Range
+    final case class Numeric(range: Seq[Number])           extends Range
+    final case class Logarithmic(range: Seq[Number])       extends Range
     final case class Dates(range: Seq[Date])               extends Range
     final case class Category(indices: Seq[CategoryIndex]) extends Range
 

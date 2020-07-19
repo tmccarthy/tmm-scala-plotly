@@ -151,8 +151,8 @@ object Layout {
     }
 
     final case class Domain(
-      x: OptArg[NumberArray] = OptArg.Undefined,
-      y: OptArg[NumberArray] = OptArg.Undefined,
+      x: OptArg[Seq[Number]] = OptArg.Undefined,
+      y: OptArg[Seq[Number]] = OptArg.Undefined,
     )
 
     object Domain {

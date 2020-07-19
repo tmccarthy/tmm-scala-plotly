@@ -27,7 +27,7 @@ object Plotting {
   private def inferTitleFor(plot: Plot): Option[String] = {
     def fromLayoutTitle =
       for {
-        layout    <- plot.layout
+        layout    <- plot.layout.toOption
         title     <- layout.title.toOption
         titleText <- title.text.toOption
       } yield titleText

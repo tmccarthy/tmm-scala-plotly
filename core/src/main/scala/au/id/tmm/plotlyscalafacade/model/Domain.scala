@@ -4,8 +4,8 @@ import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class Domain(
-  x: OptArg[NumberArray] = OptArg.Undefined,
-  y: OptArg[NumberArray] = OptArg.Undefined,
+  x: OptArg[Seq[Number]] = OptArg.Undefined,
+  y: OptArg[Seq[Number]] = OptArg.Undefined,
   row: OptArg[Number] = OptArg.Undefined,
   column: OptArg[Number] = OptArg.Undefined,
 )

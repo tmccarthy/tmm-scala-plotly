@@ -1,12 +1,13 @@
 package au.id.tmm.plotlyscalafacade
 
+import au.id.tmm.plotlyscalafacade.model.utilities.OptArg
 import io.circe.Encoder
 
 // TODO should this sit in the model package?
 final case class Plot(
   data: Seq[model.Trace] = Seq.empty,
-  layout: Option[model.Layout] = None,
-  config: Option[model.Config] = None,
+  layout: OptArg[model.Layout] = OptArg.Undefined,
+  config: OptArg[model.Config] = OptArg.Undefined,
 )
 
 object Plot {

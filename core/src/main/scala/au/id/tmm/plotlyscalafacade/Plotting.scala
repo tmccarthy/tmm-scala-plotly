@@ -28,8 +28,8 @@ object Plotting {
     def fromLayoutTitle =
       for {
         layout    <- plot.layout
-        title     <- layout.title
-        titleText <- title.text
+        title     <- layout.title.toOption
+        titleText <- title.text.toOption
       } yield titleText
 
     fromLayoutTitle

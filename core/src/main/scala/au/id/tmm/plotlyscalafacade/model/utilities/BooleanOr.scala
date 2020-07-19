@@ -5,6 +5,12 @@ import io.circe.{Encoder, Json}
 sealed trait BooleanOr[+A]
 
 object BooleanOr {
+
+  def apply[A](a: A): BooleanOr[A] = a match {
+    case b: Boolean => BooleanValue(b)
+    case v => Value(v)
+  }
+
   final case class Value[A](a: A)                 extends BooleanOr[A]
   final case class BooleanValue(boolean: Boolean) extends BooleanOr[Nothing]
 

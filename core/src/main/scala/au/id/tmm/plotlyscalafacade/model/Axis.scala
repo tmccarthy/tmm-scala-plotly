@@ -1,6 +1,6 @@
 package au.id.tmm.plotlyscalafacade.model
 
-import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, BooleanOr, FlagList, JSEnum}
+import au.id.tmm.plotlyscalafacade.model.utilities.{BooleanOr, FlagList, JSEnum, OptArg}
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.kernel.Order
 import io.circe.syntax.{EncoderOps, KeyOps}
@@ -76,15 +76,15 @@ object Axis {
   sealed trait Range
 
   object Range {
-    final case class Numeric(range: Seq[Number])           extends Range
-    final case class Logarithmic(range: Seq[Number])       extends Range
-    final case class Dates(range: Seq[Date])               extends Range
-    final case class Category(indices: Seq[CategoryIndex]) extends Range
+    final case class Numeric(range: DataArray.OfNumbers)     extends Range
+    final case class Logarithmic(range: DataArray.OfNumbers) extends Range
+    final case class DateTimes(range: DataArray.OfDateTimes) extends Range
+    final case class Category(indices: Seq[CategoryIndex])   extends Range
 
     implicit val encoder: Encoder[Range] = {
       case Numeric(range)     => range.asJson
       case Logarithmic(range) => range.asJson
-      case Dates(range)       => range.asJson
+      case DateTimes(range)   => range.asJson
       case Category(indices)  => indices.asJson
     }
   }

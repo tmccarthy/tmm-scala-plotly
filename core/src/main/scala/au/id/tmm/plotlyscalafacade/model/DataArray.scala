@@ -12,14 +12,35 @@ object DataArray {
 
   final case class OfStrings(strings: Seq[String]) extends DataArray
 
+  object OfStrings {
+    implicit val encoder: Encoder[OfStrings] = Encoder[Seq[String]].contramap(_.strings)
+  }
+
   sealed trait OfDateTimes extends DataArray
 
-  final case class OfInstants(instants: Seq[Instant])                      extends OfDateTimes
-  final case class OfZonedDateTimes(zonedDateTimes: Seq[ZonedDateTime])    extends OfDateTimes
-  final case class OfOffsetDateTimes(offsetDateTimes: Seq[OffsetDateTime]) extends OfDateTimes
+  final case class OfInstants(instants: Seq[Instant])       extends OfDateTimes
+  final case class OfLocalDates(localDates: Seq[LocalDate]) extends OfDateTimes
 
-  final case class OfLocalDateTimes(localDateTimes: Seq[LocalDateTime], timezone: ZoneId) extends OfDateTimes
-  final case class OfLocalDates(localDates: Seq[LocalDate])                               extends OfDateTimes
+  def OfZonedDateTimes(zonedDateTimes: Seq[ZonedDateTime]): OfInstants    = OfInstants(zonedDateTimes.map(_.toInstant))
+  def OfOffsetDateTimes(offsetDateTimes: Seq[OffsetDateTime]): OfInstants = OfInstants(offsetDateTimes.map(_.toInstant))
+  def OfLocalDateTimes(localDateTimes: Seq[LocalDateTime], timezone: ZoneId): OfInstants =
+    OfInstants(localDateTimes.map(_.atZone(timezone).toInstant))
+
+  /**
+    * Constructs a `DataArray` containing the given `LocalDateTime` values taken as being in UTC. It is generally safer
+    * to supply a timezone using `OfLocalDateTimes(localDateTimes, timezone)`.
+    */
+  def OfLocalDateTimesUnsafe(localDateTimes: Seq[LocalDateTime]): OfInstants =
+    OfLocalDateTimes(localDateTimes, ZoneOffset.UTC)
+  def OfEpochMillis(epochMillis: Seq[Long]): OfInstants   = OfInstants(epochMillis.map(Instant.ofEpochMilli))
+  def OfEpochSeconds(epochSeconds: Seq[Long]): OfInstants = OfInstants(epochSeconds.map(Instant.ofEpochSecond))
+
+  object OfDateTimes {
+    implicit val encoder: Encoder[OfDateTimes] = {
+      case OfInstants(instants)     => instants.asJson
+      case OfLocalDates(localDates) => localDates.asJson
+    }
+  }
 
   sealed trait OfNumbers extends DataArray
 
@@ -28,34 +49,33 @@ object DataArray {
   final case class OfLongs(longs: Seq[Long])       extends OfNumbers
   final case class OfInts(ints: Seq[Int])          extends OfNumbers
 
-  final case class TwoDimensional(dataArrays: Seq[DataArray.OfNumbers])        extends DataArray
-  final case class ThreeDimensional(dataArrays: Seq[DataArray.TwoDimensional]) extends DataArray
-
-  implicit val encoder: Encoder[DataArray] = {
-    val encodeDataArrayOfNumbers: Encoder[OfNumbers] = {
+  object OfNumbers {
+    implicit val encoder: Encoder[OfNumbers] = {
       case OfDoubles(doubles) => doubles.asJson
       case OfFloats(floats)   => floats.asJson
       case OfLongs(longs)     => longs.asJson
       case OfInts(ints)       => ints.asJson
     }
+  }
 
-    val encodeTwoDimensional: Encoder[TwoDimensional] =
-      Encoder.encodeSeq(encodeDataArrayOfNumbers).contramap(_.dataArrays)
+  final case class TwoDimensional(dataArrays: Seq[DataArray.OfNumbers]) extends DataArray
 
-    val encodeThreeDimensional: Encoder[ThreeDimensional] =
-      Encoder.encodeSeq(encodeTwoDimensional).contramap(_.dataArrays)
+  object TwoDimensional {
+    implicit val encoder: Encoder[TwoDimensional] = Encoder.encodeSeq(OfNumbers.encoder).contramap(_.dataArrays)
+  }
 
-    Encoder {
-      case OfStrings(strings)                         => strings.asJson
-      case OfInstants(instants)                       => instants.asJson
-      case OfZonedDateTimes(zonedDateTimes)           => zonedDateTimes.map(_.toInstant).asJson
-      case OfOffsetDateTimes(offsetDateTimes)         => offsetDateTimes.map(_.toInstant).asJson
-      case OfLocalDateTimes(localDateTimes, timezone) => localDateTimes.map(_.atZone(timezone).toInstant).asJson
-      case OfLocalDates(localDates)                   => localDates.asJson
-      case dataArrayOfNumbers: OfNumbers              => encodeDataArrayOfNumbers.apply(dataArrayOfNumbers)
-      case twoD: TwoDimensional                       => encodeTwoDimensional.apply(twoD)
-      case threeD: ThreeDimensional                   => encodeThreeDimensional.apply(threeD)
-    }
+  final case class ThreeDimensional(dataArrays: Seq[DataArray.TwoDimensional]) extends DataArray
+
+  object ThreeDimensional {
+    implicit val encoder: Encoder[ThreeDimensional] = Encoder.encodeSeq(TwoDimensional.encoder).contramap(_.dataArrays)
+  }
+
+  implicit val encoder: Encoder[DataArray] = {
+    case s: OfStrings        => s.asJson
+    case d: OfDateTimes      => d.asJson
+    case n: OfNumbers        => n.asJson
+    case t: TwoDimensional   => t.asJson
+    case t: ThreeDimensional => t.asJson
   }
 
 }

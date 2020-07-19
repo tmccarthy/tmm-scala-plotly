@@ -7,6 +7,8 @@ package object syntax {
   object falseOr      extends FalseOrSyntax
   object oneOrArrayOf extends OneOrArrayOfSyntax
   object optArg       extends OptArgSyntax
+  object datum        extends DatumSyntax
+  object dataArray    extends DataArraySyntax
 
   object all
       extends AnyRef
@@ -15,5 +17,7 @@ package object syntax {
       with FalseOrSyntax
       with OneOrArrayOfSyntax
       with OptArgSyntax
+      with DatumSyntax
+      with DataArraySyntax
 
 }

@@ -7,9 +7,9 @@ sealed trait AxisPosition
 
 object AxisPosition {
 
-  final case class AsNumber(number: Number)                 extends AxisPosition
-  final case class AsLog(logArgument: Number)               extends AxisPosition
-  final case class AsDate(date: Date)                       extends AxisPosition
+  final case class AsNumber(number: Datum.OfNumber)                 extends AxisPosition
+  final case class AsLog(logArgument: Datum.OfNumber)               extends AxisPosition
+  final case class AsDate(date: Datum.OfDateTime)                       extends AxisPosition
   final case class AsCategory(categoryIndex: CategoryIndex) extends AxisPosition
 
   implicit val encoder: Encoder[AxisPosition] = {

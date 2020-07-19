@@ -6,7 +6,6 @@ import au.id.tmm.plotlyscalafacade.model.utilities.{OptArg, JSEnum, OneOrArrayOf
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
-// TODO encode this using FieldsFromEncoder
 final case class TickProperties(
   tickmode: OptArg[TickProperties.TickMode] = OptArg.Undefined,
   nticks: OptArg[Int] = OptArg.Undefined,

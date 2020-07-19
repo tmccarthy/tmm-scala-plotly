@@ -14,7 +14,6 @@ final case class Trace(
   `type`: OptArg[Trace.Type] = OptArg.Undefined,
   x: OptArg[DataArray] = OptArg.Undefined,
   y: OptArg[DataArray] = OptArg.Undefined,
-  // TODO this can be 3 dimensional
   z: OptArg[DataArray] = OptArg.Undefined,
   error_x: OptArg[ErrorBar] = OptArg.Undefined,
   error_y: OptArg[ErrorBar] = OptArg.Undefined,

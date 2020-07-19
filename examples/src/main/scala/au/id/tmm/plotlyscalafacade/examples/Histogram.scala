@@ -22,7 +22,7 @@ object Histogram {
       data = ArraySeq(
         Trace(
           `type` = Trace.Type.Histogram,
-          x = data, // TODO why doesn't this conversion work?
+          x = data,
         ),
       ),
       layout = Layout(

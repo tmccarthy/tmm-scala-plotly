@@ -58,8 +58,8 @@ object ErrorBar {
     thickness: OptArg[Number] = OptArg.Undefined,
     width: OptArg[Number] = OptArg.Undefined,
     opacity: OptArg[Number] = OptArg.Undefined,
-    array: OptArg[Seq[Datum]] = OptArg.Undefined,
-    arrayminus: OptArg[Seq[Datum]] = OptArg.Undefined,
+    array: OptArg[DataArray] = OptArg.Undefined,
+    arrayminus: OptArg[DataArray] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Data.type = ErrorBar.Type.Data
   }

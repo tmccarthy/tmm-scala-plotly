@@ -1,11 +1,12 @@
 package au.id.tmm.plotly.model
 
-import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotly.model.utilities.{JSEnum, OneOrArrayOf, OptArg}
 import io.circe.Encoder
 
 final case class PlotMarker(
   symbol: OptArg[OneOrArrayOf[PlotMarker.Symbol]] = OptArg.Undefined,
   color: OptArg[OneOrArrayOf[Color]] = OptArg.Undefined,
+  colors: OptArg[Seq[Color]] = OptArg.Undefined,
   colorscale: OptArg[ColorScale] = OptArg.Undefined,
   cauto: OptArg[Boolean] = OptArg.Undefined,
   cmax: OptArg[Number] = OptArg.Undefined,
@@ -185,9 +186,10 @@ object PlotMarker {
     implicit val encoder: Encoder[Gradient] = Encoder.forProduct2("type", "color")(g => (g.`type`, g.color))
   }
 
-  implicit val encoder: Encoder[PlotMarker] = Encoder.forProduct21(
+  implicit val encoder: Encoder[PlotMarker] = Encoder.forProduct22(
     "symbol",
     "color",
+    "colors",
     "colorscale",
     "cauto",
     "cmax",
@@ -211,6 +213,7 @@ object PlotMarker {
     (
       p.symbol,
       p.color,
+      p.colors,
       p.colorscale,
       p.cauto,
       p.cmax,

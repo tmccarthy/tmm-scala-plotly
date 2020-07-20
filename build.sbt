@@ -1,5 +1,5 @@
-val settingsHelper = ProjectSettingsHelper("au.id.tmm", "plotly-scala-facade")(
-  githubProjectName = "plotly-scala-facade",
+val settingsHelper = ProjectSettingsHelper("au.id.tmm", "tmm-scala-plotly")(
+  githubProjectName = "tmm-scala-plotly",
 )
 
 settingsHelper.settingsForBuild

@@ -19,7 +19,7 @@ object Plotting {
       ".html",
     )
 
-    Files.writeString(path, newPlotHtmlPage(plot, plotlyVersion))
+    Files.write(path, newPlotHtmlPage(plot, plotlyVersion).getBytes("UTF-8"))
 
     java.awt.Desktop.getDesktop.browse(path.toUri)
   }

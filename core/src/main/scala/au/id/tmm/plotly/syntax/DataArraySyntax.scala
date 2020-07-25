@@ -22,6 +22,24 @@ trait DataArraySyntax {
   implicit def longsToDataArray(longs: Seq[Long]): DataArray.OfLongs         = DataArray.OfLongs(longs)
   implicit def intsToDataArray(ints: Seq[Int]): DataArray.OfInts             = DataArray.OfInts(ints)
 
+  implicit def onceNestedDoublesToDataArray(onceNestedDoubles: Seq[Seq[Double]]): DataArray.TwoDimensional =
+    DataArray.TwoDimensional(onceNestedDoubles.map(doublesToDataArray))
+  implicit def onceNestedFloatsToDataArray(onceNestedFloats: Seq[Seq[Float]]): DataArray.TwoDimensional =
+    DataArray.TwoDimensional(onceNestedFloats.map(floatsToDataArray))
+  implicit def onceNestedLongsToDataArray(onceNestedLongs: Seq[Seq[Long]]): DataArray.TwoDimensional =
+    DataArray.TwoDimensional(onceNestedLongs.map(longsToDataArray))
+  implicit def onceNestedIntsToDataArray(onceNestedInts: Seq[Seq[Int]]): DataArray.TwoDimensional =
+    DataArray.TwoDimensional(onceNestedInts.map(intsToDataArray))
+
+  implicit def twiceNestedDoublesToDataArray(twiceNestedDoubles: Seq[Seq[Seq[Double]]]): DataArray.ThreeDimensional =
+    DataArray.ThreeDimensional(twiceNestedDoubles.map(onceNestedDoublesToDataArray))
+  implicit def twiceNestedFloatsToDataArray(twiceNestedFloats: Seq[Seq[Seq[Float]]]): DataArray.ThreeDimensional =
+    DataArray.ThreeDimensional(twiceNestedFloats.map(onceNestedFloatsToDataArray))
+  implicit def twiceNestedLongsToDataArray(twiceNestedLongs: Seq[Seq[Seq[Long]]]): DataArray.ThreeDimensional =
+    DataArray.ThreeDimensional(twiceNestedLongs.map(onceNestedLongsToDataArray))
+  implicit def twiceNestedIntsToDataArray(twiceNestedInts: Seq[Seq[Seq[Int]]]): DataArray.ThreeDimensional =
+    DataArray.ThreeDimensional(twiceNestedInts.map(onceNestedIntsToDataArray))
+
   implicit def stringsToOptArgDataArray(strings: Seq[String]): OptArg.Of[DataArray.OfStrings] =
     OptArg.Of(DataArray.OfStrings(strings))
 
@@ -41,5 +59,35 @@ trait DataArraySyntax {
   implicit def longsToOptArgDataArray(longs: Seq[Long]): OptArg.Of[DataArray.OfLongs] =
     OptArg.Of(DataArray.OfLongs(longs))
   implicit def intsToOptArgDataArray(ints: Seq[Int]): OptArg.Of[DataArray.OfInts] = OptArg.Of(DataArray.OfInts(ints))
+
+  implicit def onceNestedDoublesToOptArgDataArray(
+    onceNestedDoubles: Seq[Seq[Double]],
+  ): OptArg.Of[DataArray.TwoDimensional] =
+    OptArg.Of(DataArray.TwoDimensional(onceNestedDoubles.map(doublesToDataArray)))
+  implicit def onceNestedFloatsToOptArgDataArray(
+    onceNestedFloats: Seq[Seq[Float]],
+  ): OptArg.Of[DataArray.TwoDimensional] =
+    OptArg.Of(DataArray.TwoDimensional(onceNestedFloats.map(floatsToDataArray)))
+  implicit def onceNestedLongsToOptArgDataArray(onceNestedLongs: Seq[Seq[Long]]): OptArg.Of[DataArray.TwoDimensional] =
+    OptArg.Of(DataArray.TwoDimensional(onceNestedLongs.map(longsToDataArray)))
+  implicit def onceNestedIntsToOptArgDataArray(onceNestedInts: Seq[Seq[Int]]): OptArg.Of[DataArray.TwoDimensional] =
+    OptArg.Of(DataArray.TwoDimensional(onceNestedInts.map(intsToDataArray)))
+
+  implicit def twiceNestedDoublesToOptArgDataArray(
+    twiceNestedDoubles: Seq[Seq[Seq[Double]]],
+  ): OptArg.Of[DataArray.ThreeDimensional] =
+    OptArg.Of(DataArray.ThreeDimensional(twiceNestedDoubles.map(onceNestedDoublesToDataArray)))
+  implicit def twiceNestedFloatsToOptArgDataArray(
+    twiceNestedFloats: Seq[Seq[Seq[Float]]],
+  ): OptArg.Of[DataArray.ThreeDimensional] =
+    OptArg.Of(DataArray.ThreeDimensional(twiceNestedFloats.map(onceNestedFloatsToDataArray)))
+  implicit def twiceNestedLongsToOptArgDataArray(
+    twiceNestedLongs: Seq[Seq[Seq[Long]]],
+  ): OptArg.Of[DataArray.ThreeDimensional] =
+    OptArg.Of(DataArray.ThreeDimensional(twiceNestedLongs.map(onceNestedLongsToDataArray)))
+  implicit def twiceNestedIntsToOptArgDataArray(
+    twiceNestedInts: Seq[Seq[Seq[Int]]],
+  ): OptArg.Of[DataArray.ThreeDimensional] =
+    OptArg.Of(DataArray.ThreeDimensional(twiceNestedInts.map(onceNestedIntsToDataArray)))
 
 }

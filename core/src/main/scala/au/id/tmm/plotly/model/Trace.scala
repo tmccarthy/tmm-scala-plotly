@@ -362,6 +362,7 @@ object Trace {
       "marker" := trace.marker,
       "mode" := trace.mode,
       "histfunc" := trace.histfunc,
+      "histnorm" := trace.histnorm,
       "hoveron" := trace.hoveron,
       "hoverinfo" := trace.hoverinfo,
       "hoverlabel" := trace.hoverlabel,

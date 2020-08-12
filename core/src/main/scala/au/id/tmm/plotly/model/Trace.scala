@@ -26,6 +26,7 @@ final case class Trace(
   marker: OptArg[PlotMarker] = OptArg.Undefined,
   mode: OptArg[Trace.ScatterMode] = OptArg.Undefined,
   histfunc: OptArg[Trace.HistogramFunction] = OptArg.Undefined,
+  histnorm: OptArg[Trace.HistogramNormalisation] = OptArg.Undefined,
   hoveron: OptArg[Trace.HoverOn] = OptArg.Undefined,
   hoverinfo: OptArg[Trace.HoverInfo] = OptArg.Undefined,
   hoverlabel: OptArg[HoverLabel] = OptArg.Undefined,
@@ -140,6 +141,15 @@ object Trace {
     case object Avg   extends HistogramFunction("avg")
     case object Min   extends HistogramFunction("min")
     case object Max   extends HistogramFunction("max")
+  }
+
+  sealed abstract class HistogramNormalisation(val asString: String) extends JSEnum
+
+  object HistogramNormalisation {
+    case object Percent            extends HistogramNormalisation("percent")
+    case object Probability        extends HistogramNormalisation("probability")
+    case object Density            extends HistogramNormalisation("density")
+    case object ProbabilityDensity extends HistogramNormalisation("probability density")
   }
 
   sealed abstract class HoverOn(val asString: String) extends JSEnum

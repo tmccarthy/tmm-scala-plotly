@@ -1,11 +1,12 @@
 package au.id.tmm.plotly.model
 
+import au.id.tmm.plotly.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class DataTitle(
-  text: String,
-  font: Font,
-  position: TextPosition,
+  text: OptArg[String],
+  font: OptArg[Font],
+  position: OptArg[TextPosition],
 )
 
 object DataTitle {

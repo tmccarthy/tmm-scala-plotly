@@ -293,9 +293,9 @@ object Trace {
   }
 
   final case class XBins(
-    start: AxisPosition,
-    end: AxisPosition,
-    size: AxisPosition,
+    start: OptArg[Datum] = OptArg.Undefined,
+    end: OptArg[Datum] = OptArg.Undefined,
+    size: OptArg[Datum] = OptArg.Undefined,
   )
 
   object XBins {

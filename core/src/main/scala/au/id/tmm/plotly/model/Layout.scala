@@ -120,15 +120,15 @@ object Layout {
   }
 
   final case class Grid(
-    rows: OptArg[Number] = OptArg.Undefined,
+    rows: OptArg[Int] = OptArg.Undefined,
     roworder: OptArg[Grid.RowOrder] = OptArg.Undefined,
-    columns: OptArg[Number] = OptArg.Undefined,
+    columns: OptArg[Int] = OptArg.Undefined,
     subplots: OptArg[Seq[String]] = OptArg.Undefined,
     xaxes: OptArg[Seq[String]] = OptArg.Undefined,
     yaxes: OptArg[Seq[String]] = OptArg.Undefined,
     pattern: OptArg[Grid.Pattern] = OptArg.Undefined,
-    xgap: OptArg[Number] = OptArg.Undefined,
-    ygap: OptArg[Number] = OptArg.Undefined,
+    xgap: OptArg[Datum.OfNumber] = OptArg.Undefined,
+    ygap: OptArg[Datum.OfNumber] = OptArg.Undefined,
     domain: OptArg[Grid.Domain] = OptArg.Undefined,
     xside: OptArg[Grid.Side.X] = OptArg.Undefined,
     yside: OptArg[Grid.Side.Y] = OptArg.Undefined,

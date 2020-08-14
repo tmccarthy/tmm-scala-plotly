@@ -11,7 +11,7 @@ import io.circe.{Encoder, Json}
 // TODO it would probably be a good idea to break this up into the valid fields for each plot type. This information is
 //      available in the JS docs.
 final case class Trace(
-  `type`: OptArg[Trace.Type] = OptArg.Undefined,
+  `type`: OptArg[Trace.Type] = OptArg.Undefined, // TODO rename to traceType
   x: OptArg[DataArray] = OptArg.Undefined,
   y: OptArg[DataArray] = OptArg.Undefined,
   z: OptArg[DataArray] = OptArg.Undefined,
@@ -98,7 +98,7 @@ object Trace {
     case object ScatterGl      extends Type("scattergl")
     case object ScatterPolar   extends Type("scatterpolar")
     case object ScatterTernary extends Type("scatterternary")
-    case object Sunburst       extends Type("sunburst")
+    case object Sunburst       extends Type("sunburst") // TODO would be nice to have a dedicated way to construct this
     case object Surface        extends Type("surface")
     case object Treemap        extends Type("treemap")
     case object Waterfall      extends Type("waterfall")
@@ -171,18 +171,30 @@ object Trace {
     sealed abstract class Flag(val asString: String) extends JSEnum
 
     object Flag {
-      case object X    extends Flag("x")
-      case object Y    extends Flag("y")
-      case object Z    extends Flag("z")
-      case object Text extends Flag("text")
-      case object Name extends Flag("name")
+      case object X             extends Flag("x")
+      case object Y             extends Flag("y")
+      case object Z             extends Flag("z")
+      case object Text          extends Flag("text")
+      case object Name          extends Flag("name")
+      case object Label         extends Flag("label")
+      case object Value         extends Flag("value")
+      case object CurrentPath   extends Flag("current path")
+      case object PercentRoot   extends Flag("percent root")
+      case object PercentEntry  extends Flag("percent entry")
+      case object PercentParent extends Flag("percent parent")
 
       implicit val order: Order[Flag] = Order.by[Flag, Int] {
-        case X    => 0
-        case Y    => 1
-        case Z    => 2
-        case Text => 3
-        case Name => 4
+        case X             => 0
+        case Y             => 1
+        case Z             => 2
+        case Text          => 3
+        case Name          => 4
+        case Label         => 5
+        case Value         => 6
+        case CurrentPath   => 7
+        case PercentRoot   => 8
+        case PercentEntry  => 9
+        case PercentParent => 10
       }
     }
 

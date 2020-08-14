@@ -3,6 +3,7 @@ package au.id.tmm.plotly.model
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
+// TODO replace this with Datum
 sealed trait AxisPosition
 
 object AxisPosition {

@@ -6,6 +6,7 @@ import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 // TODO the two-dimensional and three-dimensional versions of this only work in some contexts. May want some way to constrain this
+// TODO need a way to represent null
 sealed trait DataArray
 
 object DataArray {

@@ -5,6 +5,7 @@ import java.time._
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
+// TODO need a way to represent null
 /**
   * Represents an individual datum within Plotly. Sequences of `Datum` can be more efficiently represented with
   * `DataArray`.

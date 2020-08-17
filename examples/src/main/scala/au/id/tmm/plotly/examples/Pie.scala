@@ -22,7 +22,7 @@ object Pie {
     val plot = Plot(
       data = List(
         Trace(
-          `type` = OptArg.Of(Trace.Type.Pie),
+          traceType = OptArg.Of(Trace.Type.Pie),
           labels = OptArg.Of(DataArray.OfStrings(labels)),
           values = OptArg.Of(DataArray.OfInts(values)),
           marker = OptArg.Of(
@@ -63,7 +63,7 @@ object Pie {
     val plot = Plot(
       data = List(
         Trace(
-          `type` = Trace.Type.Pie,
+          traceType = Trace.Type.Pie,
           labels = labels,
           values = values,
           marker = PlotMarker(colors = colours),

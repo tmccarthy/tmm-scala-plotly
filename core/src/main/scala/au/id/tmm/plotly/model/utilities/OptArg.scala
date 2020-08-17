@@ -4,6 +4,7 @@ import io.circe.{Encoder, Json}
 
 /**
   * An optional argument for one of the classes in the `au.id.tmm.plotlyscalafacade.model` package.
+  * // TODO needs an explanation of how to dodge this with the syntax.
   */
 sealed trait OptArg[+A] {
   def toOption: Option[A] =

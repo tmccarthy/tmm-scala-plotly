@@ -21,7 +21,7 @@ object Histogram {
     val plot = Plot(
       data = ArraySeq(
         Trace(
-          `type` = Trace.Type.Histogram,
+          traceType = Trace.Type.Histogram,
           x = data,
         ),
       ),

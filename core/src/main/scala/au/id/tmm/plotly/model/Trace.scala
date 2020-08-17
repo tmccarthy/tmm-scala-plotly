@@ -11,7 +11,7 @@ import io.circe.{Encoder, Json}
 // TODO it would probably be a good idea to break this up into the valid fields for each plot type. This information is
 //      available in the JS docs.
 final case class Trace(
-  `type`: OptArg[Trace.Type] = OptArg.Undefined, // TODO rename to traceType
+  traceType: OptArg[Trace.Type] = OptArg.Undefined,
   x: OptArg[DataArray] = OptArg.Undefined,
   y: OptArg[DataArray] = OptArg.Undefined,
   z: OptArg[DataArray] = OptArg.Undefined,
@@ -359,7 +359,7 @@ object Trace {
 
   implicit val encoder: Encoder[Trace] = Encoder[Trace] { trace =>
     Json.obj(
-      "type" := trace.`type`,
+      "type" := trace.traceType,
       "x" := trace.x,
       "y" := trace.y,
       "z" := trace.z,

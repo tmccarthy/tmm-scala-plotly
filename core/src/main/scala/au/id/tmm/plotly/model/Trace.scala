@@ -17,8 +17,8 @@ final case class Trace(
   z: OptArg[DataArray] = OptArg.Undefined,
   error_x: OptArg[ErrorBar] = OptArg.Undefined,
   error_y: OptArg[ErrorBar] = OptArg.Undefined,
-  xaxis: OptArg[String] = OptArg.Undefined,
-  yaxis: OptArg[String] = OptArg.Undefined,
+  xaxis: OptArg[String] = OptArg.Undefined, // TODO should be modelled
+  yaxis: OptArg[String] = OptArg.Undefined, // TODO should be modelled
   text: OptArg[OneOrArrayOf[String]] = OptArg.Undefined,
   lat: OptArg[Seq[Number]] = OptArg.Undefined,
   lon: OptArg[Seq[Number]] = OptArg.Undefined,

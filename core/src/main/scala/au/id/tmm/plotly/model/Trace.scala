@@ -33,6 +33,7 @@ final case class Trace(
   hovertemplate: OptArg[OneOrArrayOf[String]] = OptArg.Undefined,
   hovertext: OptArg[OneOrArrayOf[String]] = OptArg.Undefined,
   textinfo: OptArg[Trace.TextInfo] = OptArg.Undefined,
+  texttemplate: OptArg[OneOrArrayOf[String]] = OptArg.Undefined,
   textposition: OptArg[Trace.TextPosition] = OptArg.Undefined,
   textfont: OptArg[Font] = OptArg.Undefined,
   fill: OptArg[Trace.Fill] = OptArg.Undefined,
@@ -72,6 +73,14 @@ final case class Trace(
   domain: OptArg[Trace.Domain] = OptArg.Undefined,
   title: OptArg[DataTitle] = OptArg.Undefined,
   branchvalues: OptArg[Trace.BranchValues] = OptArg.Undefined,
+  count: OptArg[FlagList[Trace.Count]] = OptArg.Undefined,
+  ids: OptArg[DataArray.OfStrings] = OptArg.Undefined,
+  insidetextfont: OptArg[Font] = OptArg.Undefined,
+  insidetextorientation: OptArg[Trace.InsideTextOrientation] = OptArg.Undefined,
+  outsidetextfont: OptArg[Font] = OptArg.Undefined,
+  leaf: OptArg[Trace.Leaf] = OptArg.Undefined,
+  level: OptArg[Datum] = OptArg.Undefined,
+  maxdepth: OptArg[Trace.MaxDepth] = OptArg.Undefined,
 )
 
 object Trace {
@@ -314,6 +323,40 @@ object Trace {
     case object Remainder extends BranchValues("remainder")
   }
 
+  sealed abstract class Count(val asString: String) extends JSEnum
+
+  object Count {
+    case object Leaves   extends Count("leaves")
+    case object Branches extends Count("branches")
+  }
+
+  sealed abstract class InsideTextOrientation(val asString: String) extends JSEnum
+
+  object InsideTextOrientation {
+    case object Horizontal extends InsideTextOrientation("horizontal")
+    case object Radial     extends InsideTextOrientation("radial")
+    case object Tangential extends InsideTextOrientation("tangential")
+    case object Auto       extends InsideTextOrientation("auto")
+  }
+
+  final case class Leaf(opacity: Opacity)
+
+  object Leaf {
+    implicit val encoder: Encoder[Leaf] = Encoder.forProduct1("opacity")(_.opacity)
+  }
+
+  sealed trait MaxDepth
+
+  object MaxDepth {
+    case object NoLimit             extends MaxDepth
+    final case class Of(depth: Int) extends MaxDepth
+
+    implicit val encoder: Encoder[MaxDepth] = Encoder[Int].contramap {
+      case NoLimit   => -1
+      case Of(depth) => depth
+    }
+  }
+
   final case class XBins(
     start: OptArg[Datum] = OptArg.Undefined,
     end: OptArg[Datum] = OptArg.Undefined,
@@ -381,6 +424,7 @@ object Trace {
       "hovertemplate" := trace.hovertemplate,
       "hovertext" := trace.hovertext,
       "textinfo" := trace.textinfo,
+      "texttemplate" := trace.texttemplate,
       "textposition" := trace.textposition,
       "textfont" := trace.textfont,
       "fill" := trace.fill,
@@ -420,6 +464,14 @@ object Trace {
       "domain" := trace.domain,
       "title" := trace.title,
       "branchvalues" := trace.branchvalues,
+      "count" := trace.count,
+      "ids" := trace.ids,
+      "insidetextfont" := trace.insidetextfont,
+      "insidetextorientation" := trace.insidetextorientation,
+      "outsidetextfont" := trace.outsidetextfont,
+      "leaf" := trace.leaf,
+      "level" := trace.level,
+      "maxdepth" := trace.maxdepth,
     )
   }
 

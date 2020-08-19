@@ -2,8 +2,8 @@ package au.id.tmm.plotly.model
 
 import java.time._
 
-import io.circe.Encoder
 import io.circe.syntax.EncoderOps
+import io.circe.{Encoder, Json}
 
 // TODO need a way to represent null
 /**
@@ -47,6 +47,8 @@ object Datum {
 
   final case class OfString(string: String) extends Datum
 
+  case object OfNull extends Datum
+
   object OfString {
     implicit val encoder: Encoder[OfString] = Encoder[String].contramap(_.string)
   }
@@ -55,6 +57,7 @@ object Datum {
     case n: OfNumber   => n.asJson
     case d: OfDateTime => d.asJson
     case s: OfString   => s.asJson
+    case OfNull        => Json.Null
   }
 
 }

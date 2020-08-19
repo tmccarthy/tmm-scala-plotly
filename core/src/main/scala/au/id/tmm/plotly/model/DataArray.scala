@@ -5,11 +5,12 @@ import java.time._
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
-// TODO the two-dimensional and three-dimensional versions of this only work in some contexts. May want some way to constrain this
 // TODO need a way to represent null
 sealed trait DataArray
 
 object DataArray {
+
+  final case class Wrapping(data: Seq[Datum]) extends DataArray
 
   final case class OfStrings(strings: Seq[String]) extends DataArray
 
@@ -72,6 +73,7 @@ object DataArray {
   }
 
   implicit val encoder: Encoder[DataArray] = {
+    case w: Wrapping         => w.data.asJson
     case s: OfStrings        => s.asJson
     case d: OfDateTimes      => d.asJson
     case n: OfNumbers        => n.asJson

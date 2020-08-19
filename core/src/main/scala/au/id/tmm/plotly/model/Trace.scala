@@ -1,5 +1,6 @@
 package au.id.tmm.plotly.model
 
+import au.id.tmm.plotly.model.traceinterfaces.SunburstFactory
 import au.id.tmm.plotly.model.utilities._
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.instances.string.catsKernelStdOrderForString
@@ -40,7 +41,7 @@ final case class Trace(
   fillcolor: OptArg[String] = OptArg.Undefined,
   showlegend: OptArg[Boolean] = OptArg.Undefined,
   legendgroup: OptArg[String] = OptArg.Undefined,
-  parents: OptArg[Seq[String]] = OptArg.Undefined,
+  parents: OptArg[DataArray] = OptArg.Undefined,
   name: OptArg[String] = OptArg.Undefined,
   stackgroup: OptArg[String] = OptArg.Undefined,
   connectgaps: OptArg[Boolean] = OptArg.Undefined,
@@ -74,7 +75,7 @@ final case class Trace(
   title: OptArg[DataTitle] = OptArg.Undefined,
   branchvalues: OptArg[Trace.BranchValues] = OptArg.Undefined,
   count: OptArg[FlagList[Trace.Count]] = OptArg.Undefined,
-  ids: OptArg[DataArray.OfStrings] = OptArg.Undefined,
+  ids: OptArg[Seq[String]] = OptArg.Undefined,
   insidetextfont: OptArg[Font] = OptArg.Undefined,
   insidetextorientation: OptArg[Trace.InsideTextOrientation] = OptArg.Undefined,
   outsidetextfont: OptArg[Font] = OptArg.Undefined,
@@ -83,7 +84,7 @@ final case class Trace(
   maxdepth: OptArg[Trace.MaxDepth] = OptArg.Undefined,
 )
 
-object Trace {
+object Trace extends SunburstFactory {
 
   sealed abstract class Type(val asString: String) extends JSEnum
 

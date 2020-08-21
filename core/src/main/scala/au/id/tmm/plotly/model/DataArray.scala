@@ -5,7 +5,6 @@ import java.time._
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
-// TODO need a way to represent null
 sealed trait DataArray
 
 object DataArray {

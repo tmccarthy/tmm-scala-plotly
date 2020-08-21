@@ -39,22 +39,22 @@ trait SunburstFactory { this: Trace.type =>
       val idPerSector: Map[Sector, String] = generateIdsFor(allSectors.map(_.sector))
 
       val labels: OptArg[DataArray] =
-        unsquash(allSectors.map(_.sector.label)).map(DataArray.Wrapping)
+        spread(allSectors.map(_.sector.label)).map(DataArray.Wrapping)
 
       val texts: OptArg[OneOrArrayOf[String]] =
-        unsquash(allSectors.map(_.sector.text), nullValue = "").map(OneOrArrayOf.Array.apply)
+        spread(allSectors.map(_.sector.text), nullValue = "").map(OneOrArrayOf.Array.apply)
 
       val textTemplates: OptArg[OneOrArrayOf[String]] =
-        unsquash(allSectors.map(_.sector.textTemplate), nullValue = "").map(OneOrArrayOf.Array.apply)
+        spread(allSectors.map(_.sector.textTemplate), nullValue = "").map(OneOrArrayOf.Array.apply)
 
       val hoverTexts: OptArg[OneOrArrayOf[String]] =
-        unsquash(allSectors.map(_.sector.hoverText), nullValue = "").map(OneOrArrayOf.Array.apply)
+        spread(allSectors.map(_.sector.hoverText), nullValue = "").map(OneOrArrayOf.Array.apply)
 
       val hoverTemplates: OptArg[OneOrArrayOf[String]] =
-        unsquash(allSectors.map(_.sector.hoverTemplate), nullValue = "").map(OneOrArrayOf.Array.apply)
+        spread(allSectors.map(_.sector.hoverTemplate), nullValue = "").map(OneOrArrayOf.Array.apply)
 
       val customData: OptArg[DataArray] =
-        unsquash(allSectors.map(_.sector.customData)).map(DataArray.Wrapping.apply)
+        spread(allSectors.map(_.sector.customData)).map(DataArray.Wrapping.apply)
 
       val markers: Vector[OptArg[Sector.Marker]] = allSectors.map(_.sector.marker)
 

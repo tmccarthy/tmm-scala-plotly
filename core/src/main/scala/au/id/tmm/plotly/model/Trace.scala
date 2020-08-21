@@ -108,7 +108,7 @@ object Trace extends SunburstFactory {
     case object ScatterGl      extends Type("scattergl")
     case object ScatterPolar   extends Type("scatterpolar")
     case object ScatterTernary extends Type("scatterternary")
-    case object Sunburst       extends Type("sunburst") // TODO would be nice to have a dedicated way to construct this
+    case object Sunburst       extends Type("sunburst")
     case object Surface        extends Type("surface")
     case object Treemap        extends Type("treemap")
     case object Waterfall      extends Type("waterfall")

@@ -18,6 +18,9 @@ object Sunburst {
             Trace.Sunburst.Sector(
               value = 100,
               label = "Fruit",
+              marker = Trace.Sunburst.Sector.Marker(
+                color = Color("tomato"),
+              ),
               children = List(
                 Trace.Sunburst.Sector(
                   value = 50,
@@ -36,6 +39,9 @@ object Sunburst {
             Trace.Sunburst.Sector(
               value = 75,
               label = "Sweets",
+              marker = Trace.Sunburst.Sector.Marker(
+                color = Color("pink"),
+              ),
               children = List(
                 Trace.Sunburst.Sector(
                   value = 50,
@@ -50,6 +56,9 @@ object Sunburst {
             Trace.Sunburst.Sector(
               value = 25,
               label = "Bread",
+              marker = Trace.Sunburst.Sector.Marker(
+                color = Color("khaki"),
+              ),
               children = List(
                 Trace.Sunburst.Sector(
                   value = 20,

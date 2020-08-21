@@ -59,25 +59,49 @@ trait SunburstFactory { this: Trace.type =>
 
       val markers: Vector[OptArg[Sector.Marker]] = allSectors.map(_.sector.marker)
 
-      val composedMarker: OptArg[PlotMarker] = marker // TODO this is not working
-        .map { existingMarker: PlotMarker =>
-          existingMarker.copy(
-            color = markers.map(_.flatMap(_.color)).sequence.map(OneOrArrayOf.Array.apply) orElse existingMarker.color,
-            line = existingMarker.line.map { existingLine: PlotMarker.ScatterMarkerLine =>
-              val linesPerSector: Vector[OptArg[Sector.Marker.Line]] = markers.map(_.flatMap(_.line))
-              existingLine.copy(
-                width = linesPerSector
-                  .map(_.flatMap(_.width))
-                  .sequence
-                  .map(OneOrArrayOf.Array.apply) orElse existingLine.width,
-                color = linesPerSector
-                  .map(_.flatMap(_.color))
-                  .sequence
-                  .map(OneOrArrayOf.Array.apply) orElse existingLine.color,
-              )
-            },
-          )
+
+      // TODO the use of an empty string for colors is a bit dodgy. Would be better to have a general way of representing null
+      val plotMarkerFromSectors: OptArg[PlotMarker] = {
+
+        val colors: OptArg[Vector[Color]] =
+          spread(markers.map(_.flatMap(_.color)), nullValue = Color(""))
+
+        val lineFromSectors = {
+
+          val linesPerSector: Vector[OptArg[Sector.Marker.Line]] = markers.map(_.flatMap(_.line))
+
+          // TODO the use of sequence here is dodgy. Only necessary because we can't put a null width in :-/
+          val width: OptArg[OneOrArrayOf[Number]] = linesPerSector
+            .map(_.flatMap(_.width))
+            .sequence
+            .map(OneOrArrayOf.Array.apply)
+
+          val color: OptArg[OneOrArrayOf[Color]] =
+            spread(linesPerSector.map(_.flatMap(_.color)), nullValue = Color("")).map(OneOrArrayOf.Array.apply)
+
+          if (width.isDefined || color.isDefined)
+            OptArg.Of(PlotMarker.ScatterMarkerLine(width = width, color = color))
+          else
+            OptArg.Undefined
         }
+
+        if (colors.isDefined || lineFromSectors.isDefined)
+          OptArg.Of(PlotMarker(colors = colors, line = lineFromSectors))
+        else
+          OptArg.Undefined
+      }
+
+      val composedMarker: OptArg[PlotMarker] = merge(marker, plotMarkerFromSectors) { (marker, plotMarkerFromSectors) =>
+        PlotMarker(
+          color = plotMarkerFromSectors.color orElse marker.color,
+          line = merge(marker.line, plotMarkerFromSectors.line) { (line, lineFromSectors) =>
+            PlotMarker.ScatterMarkerLine(
+              width = lineFromSectors.width orElse line.width,
+              color = lineFromSectors.color orElse line.color,
+            )
+          },
+        )
+      }
 
       val parents: DataArray =
         DataArray.OfStrings(allSectors.map(s => s.parent.map(idPerSector).getOrElse("")))
@@ -126,23 +150,27 @@ trait SunburstFactory { this: Trace.type =>
     }
 
     private def generateIdsFor(allSectors: Seq[Sector]): Map[Sector, String] = {
-      val valuesAsStrings = allSectors.map(_.value).map {
-        case Datum.OfNumber(number)       => number.toString
-        case Datum.OfInstant(instant)     => instant.toString
-        case Datum.OfLocalDate(localDate) => localDate.toString
-        case Datum.OfString(string)       => string
-        case Datum.OfNull                 => "<null>"
-      }
-
-      if (valuesAsStrings == valuesAsStrings.distinct && !valuesAsStrings.contains("")) {
-        (allSectors zip valuesAsStrings).toMap
-      } else {
-        val valuesAsUniqueStrings = valuesAsStrings.zipWithIndex.map {
-          case (value, index) => s"${value}_$index"
+      def datumToString(datum: Datum): String =
+        datum match {
+          case Datum.OfNumber(number)       => number.toString
+          case Datum.OfInstant(instant)     => instant.toString
+          case Datum.OfLocalDate(localDate) => localDate.toString
+          case Datum.OfString(string)       => string
+          case Datum.OfNull                 => "<null>"
         }
 
-        (allSectors zip valuesAsUniqueStrings).toMap
-      }
+      allSectors.zipWithIndex.map {
+        case (sector, index) => {
+          val description: String =
+            sector.label.map(datumToString) orElse
+              sector.text getOrElse
+              datumToString(sector.value)
+
+          val id = s"sector_${index}_$description"
+
+          sector -> id
+        }
+      }.toMap
     }
 
     @silent("outer reference")

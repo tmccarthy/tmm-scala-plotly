@@ -25,6 +25,7 @@ trait SunburstFactory { this: Trace.type =>
       branchvalues: OptArg[Trace.BranchValues] = OptArg.Undefined,
       count: OptArg[FlagList[Trace.Count]] = OptArg.Undefined,
       hoverlabel: OptArg[HoverLabel] = OptArg.Undefined,
+      hole: OptArg[Number] = OptArg.Undefined,
       insidetextfont: OptArg[Font] = OptArg.Undefined,
       insidetextorientation: OptArg[Trace.InsideTextOrientation] = OptArg.Undefined,
       outsidetextfont: OptArg[Font] = OptArg.Undefined,
@@ -58,7 +59,7 @@ trait SunburstFactory { this: Trace.type =>
 
       val markers: Vector[OptArg[Sector.Marker]] = allSectors.map(_.sector.marker)
 
-      val composedMarker: OptArg[PlotMarker] = marker
+      val composedMarker: OptArg[PlotMarker] = marker // TODO this is not working
         .map { existingMarker: PlotMarker =>
           existingMarker.copy(
             color = markers.map(_.flatMap(_.color)).sequence.map(OneOrArrayOf.Array.apply) orElse existingMarker.color,
@@ -160,15 +161,15 @@ trait SunburstFactory { this: Trace.type =>
     object Sector {
       @silent("outer reference")
       final case class Marker(
-        color: OptArg[Color],
-        line: OptArg[Marker.Line],
+        color: OptArg[Color] = OptArg.Undefined,
+        line: OptArg[Marker.Line] = OptArg.Undefined,
       )
 
       object Marker {
         @silent("outer reference")
         final case class Line(
-          color: OptArg[Color],
-          width: OptArg[Number],
+          color: OptArg[Color] = OptArg.Undefined,
+          width: OptArg[Number] = OptArg.Undefined,
         ) {
           private[Sunburst] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =
             PlotMarker.ScatterMarkerLine(

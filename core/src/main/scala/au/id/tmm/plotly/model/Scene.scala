@@ -4,18 +4,18 @@ import au.id.tmm.plotly.model.utilities.{OptArg, FalseOr, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class Scene(
-  bgcolor: OptArg[Color] = OptArg.Undefined,
-  camera: OptArg[Scene.Camera] = OptArg.Undefined,
-  domain: OptArg[Domain] = OptArg.Undefined,
-  aspectmode: OptArg[Scene.AspectMode] = OptArg.Undefined,
-  aspectratio: OptArg[Scene.Point] = OptArg.Undefined,
-  xaxis: OptArg[SceneAxis] = OptArg.Undefined,
-  yaxis: OptArg[SceneAxis] = OptArg.Undefined,
-  zaxis: OptArg[SceneAxis] = OptArg.Undefined,
-  dragmode: OptArg[FalseOr[Scene.DragMode]] = OptArg.Undefined,
-  hovermode: OptArg[FalseOr[Scene.HoverMode]] = OptArg.Undefined,
+  bgcolor: OptArg[Color]                         = OptArg.Undefined,
+  camera: OptArg[Scene.Camera]                   = OptArg.Undefined,
+  domain: OptArg[Domain]                         = OptArg.Undefined,
+  aspectmode: OptArg[Scene.AspectMode]           = OptArg.Undefined,
+  aspectratio: OptArg[Scene.Point]               = OptArg.Undefined,
+  xaxis: OptArg[SceneAxis]                       = OptArg.Undefined,
+  yaxis: OptArg[SceneAxis]                       = OptArg.Undefined,
+  zaxis: OptArg[SceneAxis]                       = OptArg.Undefined,
+  dragmode: OptArg[FalseOr[Scene.DragMode]]      = OptArg.Undefined,
+  hovermode: OptArg[FalseOr[Scene.HoverMode]]    = OptArg.Undefined,
   annotations: OptArg[OneOrArrayOf[Annotations]] = OptArg.Undefined,
-  captureevents: OptArg[Boolean] = OptArg.Undefined,
+  captureevents: OptArg[Boolean]                 = OptArg.Undefined,
 )
 
 object Scene {

@@ -4,17 +4,17 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Image(
-  visible: OptArg[Boolean] = OptArg.Undefined,
-  source: OptArg[String] = OptArg.Undefined,
-  layer: OptArg[Image.Layer] = OptArg.Undefined,
-  sizex: OptArg[Number] = OptArg.Undefined,
-  sizey: OptArg[Number] = OptArg.Undefined,
-  sizing: OptArg[Image.Sizing] = OptArg.Undefined,
-  opacity: OptArg[Number] = OptArg.Undefined,
-  x: OptArg[AxisPosition] = OptArg.Undefined,
-  y: OptArg[AxisPosition] = OptArg.Undefined,
-  xanchor: OptArg[Anchor.X] = OptArg.Undefined,
-  yanchor: OptArg[Anchor.Y] = OptArg.Undefined,
+  visible: OptArg[Boolean]                  = OptArg.Undefined,
+  source: OptArg[String]                    = OptArg.Undefined,
+  layer: OptArg[Image.Layer]                = OptArg.Undefined,
+  sizex: OptArg[Number]                     = OptArg.Undefined,
+  sizey: OptArg[Number]                     = OptArg.Undefined,
+  sizing: OptArg[Image.Sizing]              = OptArg.Undefined,
+  opacity: OptArg[Number]                   = OptArg.Undefined,
+  x: OptArg[AxisPosition]                   = OptArg.Undefined,
+  y: OptArg[AxisPosition]                   = OptArg.Undefined,
+  xanchor: OptArg[Anchor.X]                 = OptArg.Undefined,
+  yanchor: OptArg[Anchor.Y]                 = OptArg.Undefined,
   xref: OptArg[Image.CoordinateReference.X] = OptArg.Undefined,
   yref: OptArg[Image.CoordinateReference.Y] = OptArg.Undefined,
 )

@@ -4,7 +4,7 @@ import au.id.tmm.plotly.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class Plot(
-  data: Seq[model.Trace] = Seq.empty,
+  data: Seq[model.Trace]       = Seq.empty,
   layout: OptArg[model.Layout] = OptArg.Undefined,
   config: OptArg[model.Config] = OptArg.Undefined,
 )

@@ -26,39 +26,39 @@ object ErrorBar {
   }
 
   final case class Constant(
-    visible: OptArg[Boolean] = OptArg.Undefined,
+    visible: OptArg[Boolean]   = OptArg.Undefined,
     symmetric: OptArg[Boolean] = OptArg.Undefined,
-    color: OptArg[Color] = OptArg.Undefined,
-    thickness: OptArg[Number] = OptArg.Undefined,
-    width: OptArg[Number] = OptArg.Undefined,
-    opacity: OptArg[Number] = OptArg.Undefined,
-    value: OptArg[Number] = OptArg.Undefined,
+    color: OptArg[Color]       = OptArg.Undefined,
+    thickness: OptArg[Number]  = OptArg.Undefined,
+    width: OptArg[Number]      = OptArg.Undefined,
+    opacity: OptArg[Number]    = OptArg.Undefined,
+    value: OptArg[Number]      = OptArg.Undefined,
     valueminus: OptArg[Number] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Constant.type = ErrorBar.Type.Constant
   }
 
   final case class Percent(
-    visible: OptArg[Boolean] = OptArg.Undefined,
+    visible: OptArg[Boolean]   = OptArg.Undefined,
     symmetric: OptArg[Boolean] = OptArg.Undefined,
-    color: OptArg[Color] = OptArg.Undefined,
-    thickness: OptArg[Number] = OptArg.Undefined,
-    width: OptArg[Number] = OptArg.Undefined,
-    opacity: OptArg[Number] = OptArg.Undefined,
-    value: OptArg[Number] = OptArg.Undefined,
+    color: OptArg[Color]       = OptArg.Undefined,
+    thickness: OptArg[Number]  = OptArg.Undefined,
+    width: OptArg[Number]      = OptArg.Undefined,
+    opacity: OptArg[Number]    = OptArg.Undefined,
+    value: OptArg[Number]      = OptArg.Undefined,
     valueminus: OptArg[Number] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Percent.type = ErrorBar.Type.Percent
   }
 
   final case class Data(
-    visible: OptArg[Boolean] = OptArg.Undefined,
-    symmetric: OptArg[Boolean] = OptArg.Undefined,
-    color: OptArg[Color] = OptArg.Undefined,
-    thickness: OptArg[Number] = OptArg.Undefined,
-    width: OptArg[Number] = OptArg.Undefined,
-    opacity: OptArg[Number] = OptArg.Undefined,
-    array: OptArg[DataArray] = OptArg.Undefined,
+    visible: OptArg[Boolean]      = OptArg.Undefined,
+    symmetric: OptArg[Boolean]    = OptArg.Undefined,
+    color: OptArg[Color]          = OptArg.Undefined,
+    thickness: OptArg[Number]     = OptArg.Undefined,
+    width: OptArg[Number]         = OptArg.Undefined,
+    opacity: OptArg[Number]       = OptArg.Undefined,
+    array: OptArg[DataArray]      = OptArg.Undefined,
     arrayminus: OptArg[DataArray] = OptArg.Undefined,
   ) extends ErrorBar {
     def `type`: ErrorBar.Type.Data.type = ErrorBar.Type.Data

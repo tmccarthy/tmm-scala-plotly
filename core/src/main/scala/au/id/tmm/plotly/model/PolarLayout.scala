@@ -4,12 +4,12 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class PolarLayout(
-  domain: OptArg[Domain] = OptArg.Undefined,
-  sector: OptArg[Seq[Number]] = OptArg.Undefined,
-  hole: OptArg[Number] = OptArg.Undefined,
-  bgcolor: OptArg[Color] = OptArg.Undefined,
-  radialaxis: OptArg[LayoutAxis] = OptArg.Undefined,
-  angularaxis: OptArg[LayoutAxis] = OptArg.Undefined,
+  domain: OptArg[Domain]                   = OptArg.Undefined,
+  sector: OptArg[Seq[Number]]              = OptArg.Undefined,
+  hole: OptArg[Number]                     = OptArg.Undefined,
+  bgcolor: OptArg[Color]                   = OptArg.Undefined,
+  radialaxis: OptArg[LayoutAxis]           = OptArg.Undefined,
+  angularaxis: OptArg[LayoutAxis]          = OptArg.Undefined,
   gridshape: OptArg[PolarLayout.GridShape] = OptArg.Undefined,
 )
 

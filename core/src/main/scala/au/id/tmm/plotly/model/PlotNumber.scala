@@ -5,9 +5,9 @@ import io.circe.Encoder
 
 final case class PlotNumber(
   valueformat: OptArg[String] = OptArg.Undefined,
-  font: OptArg[Font] = OptArg.Undefined,
-  prefix: OptArg[String] = OptArg.Undefined,
-  suffix: OptArg[String] = OptArg.Undefined,
+  font: OptArg[Font]          = OptArg.Undefined,
+  prefix: OptArg[String]      = OptArg.Undefined,
+  suffix: OptArg[String]      = OptArg.Undefined,
 )
 
 object PlotNumber {

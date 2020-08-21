@@ -4,8 +4,8 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Transition(
-  duration: OptArg[Number] = OptArg.Undefined,
-  easing: OptArg[Transition.Easing] = OptArg.Undefined,
+  duration: OptArg[Number]              = OptArg.Undefined,
+  easing: OptArg[Transition.Easing]     = OptArg.Undefined,
   ordering: OptArg[Transition.Ordering] = OptArg.Undefined,
 )
 

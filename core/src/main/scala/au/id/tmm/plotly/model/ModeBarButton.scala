@@ -4,13 +4,13 @@ import au.id.tmm.plotly.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class ModeBarButton(
-  name: OptArg[String] = OptArg.Undefined,
-  title: OptArg[String] = OptArg.Undefined,
+  name: OptArg[String]             = OptArg.Undefined,
+  title: OptArg[String]            = OptArg.Undefined,
   icon: OptArg[ModeBarButton.Icon] = OptArg.Undefined,
-  gravity: OptArg[String] = OptArg.Undefined,
-  attr: OptArg[String] = OptArg.Undefined,
-  `val`: OptArg[String] = OptArg.Undefined,
-  toggle: OptArg[Boolean] = OptArg.Undefined,
+  gravity: OptArg[String]          = OptArg.Undefined,
+  attr: OptArg[String]             = OptArg.Undefined,
+  `val`: OptArg[String]            = OptArg.Undefined,
+  toggle: OptArg[Boolean]          = OptArg.Undefined,
 )
 
 object ModeBarButton {
@@ -28,13 +28,13 @@ object ModeBarButton {
   }
 
   final case class IconDetails(
-    height: OptArg[Number] = OptArg.Undefined,
-    width: OptArg[Number] = OptArg.Undefined,
-    ascent: OptArg[Number] = OptArg.Undefined,
-    descent: OptArg[Number] = OptArg.Undefined,
-    name: OptArg[String] = OptArg.Undefined,
-    path: OptArg[String] = OptArg.Undefined,
-    svg: OptArg[String] = OptArg.Undefined,
+    height: OptArg[Number]    = OptArg.Undefined,
+    width: OptArg[Number]     = OptArg.Undefined,
+    ascent: OptArg[Number]    = OptArg.Undefined,
+    descent: OptArg[Number]   = OptArg.Undefined,
+    name: OptArg[String]      = OptArg.Undefined,
+    path: OptArg[String]      = OptArg.Undefined,
+    svg: OptArg[String]       = OptArg.Undefined,
     transform: OptArg[String] = OptArg.Undefined,
   )
 

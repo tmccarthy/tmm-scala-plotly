@@ -6,24 +6,24 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class MapboxLayers(
-  visible: OptArg[Boolean] = OptArg.Undefined,
-  sourcetype: OptArg[MapboxLayers.SourceType] = OptArg.Undefined,
-  source: OptArg[OneOrArrayOf[URI]] = OptArg.Undefined,
-  sourcelayer: OptArg[String] = OptArg.Undefined,
-  sourceattribution: OptArg[String] = OptArg.Undefined,
-  `type`: OptArg[MapboxLayers.Type] = OptArg.Undefined,
+  visible: OptArg[Boolean]                      = OptArg.Undefined,
+  sourcetype: OptArg[MapboxLayers.SourceType]   = OptArg.Undefined,
+  source: OptArg[OneOrArrayOf[URI]]             = OptArg.Undefined,
+  sourcelayer: OptArg[String]                   = OptArg.Undefined,
+  sourceattribution: OptArg[String]             = OptArg.Undefined,
+  `type`: OptArg[MapboxLayers.Type]             = OptArg.Undefined,
   coordinates: OptArg[MapboxLayers.Coordinates] = OptArg.Undefined,
-  below: OptArg[String] = OptArg.Undefined,
-  color: OptArg[Color] = OptArg.Undefined,
-  opacity: OptArg[Number] = OptArg.Undefined,
-  minzoom: OptArg[Number] = OptArg.Undefined,
-  maxzoom: OptArg[Number] = OptArg.Undefined,
-  circle: OptArg[MapboxLayers.Circle] = OptArg.Undefined,
-  line: OptArg[ShapeLine] = OptArg.Undefined,
-  fill: OptArg[MapboxLayers.Fill] = OptArg.Undefined,
-  symbol: OptArg[MapboxLayers.MapboxSymbol] = OptArg.Undefined,
-  name: OptArg[String] = OptArg.Undefined,
-  templateitemname: OptArg[String] = OptArg.Undefined,
+  below: OptArg[String]                         = OptArg.Undefined,
+  color: OptArg[Color]                          = OptArg.Undefined,
+  opacity: OptArg[Number]                       = OptArg.Undefined,
+  minzoom: OptArg[Number]                       = OptArg.Undefined,
+  maxzoom: OptArg[Number]                       = OptArg.Undefined,
+  circle: OptArg[MapboxLayers.Circle]           = OptArg.Undefined,
+  line: OptArg[ShapeLine]                       = OptArg.Undefined,
+  fill: OptArg[MapboxLayers.Fill]               = OptArg.Undefined,
+  symbol: OptArg[MapboxLayers.MapboxSymbol]     = OptArg.Undefined,
+  name: OptArg[String]                          = OptArg.Undefined,
+  templateitemname: OptArg[String]              = OptArg.Undefined,
 )
 
 object MapboxLayers {
@@ -90,12 +90,12 @@ object MapboxLayers {
   }
 
   final case class MapboxSymbol(
-    icon: OptArg[String] = OptArg.Undefined,
-    iconsize: OptArg[Number] = OptArg.Undefined,
-    text: OptArg[String] = OptArg.Undefined,
+    icon: OptArg[String]                      = OptArg.Undefined,
+    iconsize: OptArg[Number]                  = OptArg.Undefined,
+    text: OptArg[String]                      = OptArg.Undefined,
     placement: OptArg[MapboxSymbol.Placement] = OptArg.Undefined,
-    textfont: OptArg[Font] = OptArg.Undefined,
-    textposition: OptArg[TextPosition] = OptArg.Undefined,
+    textfont: OptArg[Font]                    = OptArg.Undefined,
+    textposition: OptArg[TextPosition]        = OptArg.Undefined,
   )
 
   object MapboxSymbol {

@@ -4,12 +4,12 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class ScatterLine(
-  color: OptArg[Color] = OptArg.Undefined,
-  width: OptArg[Number] = OptArg.Undefined,
-  dash: OptArg[Dash] = OptArg.Undefined,
+  color: OptArg[Color]             = OptArg.Undefined,
+  width: OptArg[Number]            = OptArg.Undefined,
+  dash: OptArg[Dash]               = OptArg.Undefined,
   shape: OptArg[ScatterLine.Shape] = OptArg.Undefined,
-  smoothing: OptArg[Number] = OptArg.Undefined,
-  simplify: OptArg[Boolean] = OptArg.Undefined,
+  smoothing: OptArg[Number]        = OptArg.Undefined,
+  simplify: OptArg[Boolean]        = OptArg.Undefined,
 )
 
 object ScatterLine {

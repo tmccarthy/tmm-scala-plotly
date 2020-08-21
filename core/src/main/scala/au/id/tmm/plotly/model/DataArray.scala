@@ -22,7 +22,7 @@ object DataArray {
   final case class OfInstants(instants: Seq[Instant])       extends OfDateTimes
   final case class OfLocalDates(localDates: Seq[LocalDate]) extends OfDateTimes
 
-  def OfZonedDateTimes(zonedDateTimes: Seq[ZonedDateTime]): OfInstants    = OfInstants(zonedDateTimes.map(_.toInstant))
+  def OfZonedDateTimes(zonedDateTimes: Seq[ZonedDateTime]): OfInstants = OfInstants(zonedDateTimes.map(_.toInstant))
   def OfOffsetDateTimes(offsetDateTimes: Seq[OffsetDateTime]): OfInstants = OfInstants(offsetDateTimes.map(_.toInstant))
   def OfLocalDateTimes(localDateTimes: Seq[LocalDateTime], timezone: ZoneId): OfInstants =
     OfInstants(localDateTimes.map(_.atZone(timezone).toInstant))
@@ -33,7 +33,7 @@ object DataArray {
     */
   def OfLocalDateTimesUnsafe(localDateTimes: Seq[LocalDateTime]): OfInstants =
     OfLocalDateTimes(localDateTimes, ZoneOffset.UTC)
-  def OfEpochMillis(epochMillis: Seq[Long]): OfInstants   = OfInstants(epochMillis.map(Instant.ofEpochMilli))
+  def OfEpochMillis(epochMillis: Seq[Long]): OfInstants = OfInstants(epochMillis.map(Instant.ofEpochMilli))
   def OfEpochSeconds(epochSeconds: Seq[Long]): OfInstants = OfInstants(epochSeconds.map(Instant.ofEpochSecond))
 
   object OfDateTimes {

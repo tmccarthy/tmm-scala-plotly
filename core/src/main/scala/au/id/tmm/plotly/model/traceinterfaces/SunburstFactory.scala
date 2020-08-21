@@ -10,28 +10,28 @@ trait SunburstFactory { this: Trace.type =>
 
   object Sunburst {
     def apply(
-      rootSectors: OptArg[Seq[Sector]] = OptArg.Undefined,
-      name: OptArg[String] = OptArg.Undefined,
-      visible: OptArg[BooleanOr[Trace.Visibility]] = OptArg.Undefined,
-      opacity: OptArg[Number] = OptArg.Undefined,
-      globalTextTemplate: OptArg[String] = OptArg.Undefined,
-      globalHoverText: OptArg[String] = OptArg.Undefined,
-      hoverinfo: OptArg[Trace.HoverInfo] = OptArg.Undefined,
-      globalHoverTemplate: OptArg[String] = OptArg.Undefined,
-      domain: OptArg[Trace.Domain] = OptArg.Undefined,
-      marker: OptArg[PlotMarker] = OptArg.Undefined,
-      textfont: OptArg[Font] = OptArg.Undefined,
-      textinfo: OptArg[Trace.TextInfo] = OptArg.Undefined,
-      branchvalues: OptArg[Trace.BranchValues] = OptArg.Undefined,
-      count: OptArg[FlagList[Trace.Count]] = OptArg.Undefined,
-      hoverlabel: OptArg[HoverLabel] = OptArg.Undefined,
-      hole: OptArg[Number] = OptArg.Undefined,
-      insidetextfont: OptArg[Font] = OptArg.Undefined,
+      rootSectors: OptArg[Seq[Sector]]                           = OptArg.Undefined,
+      name: OptArg[String]                                       = OptArg.Undefined,
+      visible: OptArg[BooleanOr[Trace.Visibility]]               = OptArg.Undefined,
+      opacity: OptArg[Number]                                    = OptArg.Undefined,
+      globalTextTemplate: OptArg[String]                         = OptArg.Undefined,
+      globalHoverText: OptArg[String]                            = OptArg.Undefined,
+      hoverinfo: OptArg[Trace.HoverInfo]                         = OptArg.Undefined,
+      globalHoverTemplate: OptArg[String]                        = OptArg.Undefined,
+      domain: OptArg[Trace.Domain]                               = OptArg.Undefined,
+      marker: OptArg[PlotMarker]                                 = OptArg.Undefined,
+      textfont: OptArg[Font]                                     = OptArg.Undefined,
+      textinfo: OptArg[Trace.TextInfo]                           = OptArg.Undefined,
+      branchvalues: OptArg[Trace.BranchValues]                   = OptArg.Undefined,
+      count: OptArg[FlagList[Trace.Count]]                       = OptArg.Undefined,
+      hoverlabel: OptArg[HoverLabel]                             = OptArg.Undefined,
+      hole: OptArg[Number]                                       = OptArg.Undefined,
+      insidetextfont: OptArg[Font]                               = OptArg.Undefined,
       insidetextorientation: OptArg[Trace.InsideTextOrientation] = OptArg.Undefined,
-      outsidetextfont: OptArg[Font] = OptArg.Undefined,
-      leaf: OptArg[Trace.Leaf] = OptArg.Undefined,
-      level: OptArg[Datum] = OptArg.Undefined,
-      maxdepth: OptArg[Trace.MaxDepth] = OptArg.Undefined,
+      outsidetextfont: OptArg[Font]                              = OptArg.Undefined,
+      leaf: OptArg[Trace.Leaf]                                   = OptArg.Undefined,
+      level: OptArg[Datum]                                       = OptArg.Undefined,
+      maxdepth: OptArg[Trace.MaxDepth]                           = OptArg.Undefined,
     ): Trace = {
       val allSectors: Vector[Sector.WithParent] = enumerateAllSectors(rootSectors.getOrElse(List.empty)).toVector
 
@@ -58,7 +58,6 @@ trait SunburstFactory { this: Trace.type =>
         spread(allSectors.map(_.sector.customData)).map(DataArray.Wrapping.apply)
 
       val markers: Vector[OptArg[Sector.Marker]] = allSectors.map(_.sector.marker)
-
 
       // TODO the use of an empty string for colors is a bit dodgy. Would be better to have a general way of representing null
       val plotMarkerFromSectors: OptArg[PlotMarker] = {
@@ -176,27 +175,27 @@ trait SunburstFactory { this: Trace.type =>
     @silent("outer reference")
     final case class Sector(
       value: Datum,
-      label: OptArg[Datum] = OptArg.Undefined,
-      text: OptArg[String] = OptArg.Undefined,
-      textTemplate: OptArg[String] = OptArg.Undefined,
-      hoverText: OptArg[String] = OptArg.Undefined,
+      label: OptArg[Datum]          = OptArg.Undefined,
+      text: OptArg[String]          = OptArg.Undefined,
+      textTemplate: OptArg[String]  = OptArg.Undefined,
+      hoverText: OptArg[String]     = OptArg.Undefined,
       hoverTemplate: OptArg[String] = OptArg.Undefined,
-      customData: OptArg[Datum] = OptArg.Undefined,
+      customData: OptArg[Datum]     = OptArg.Undefined,
       marker: OptArg[Sector.Marker] = OptArg.Undefined, // TODO need documentation on how this is composed
-      children: Seq[Sector] = List.empty,
+      children: Seq[Sector]         = List.empty,
     )
 
     object Sector {
       @silent("outer reference")
       final case class Marker(
-        color: OptArg[Color] = OptArg.Undefined,
+        color: OptArg[Color]      = OptArg.Undefined,
         line: OptArg[Marker.Line] = OptArg.Undefined,
       )
 
       object Marker {
         @silent("outer reference")
         final case class Line(
-          color: OptArg[Color] = OptArg.Undefined,
+          color: OptArg[Color]  = OptArg.Undefined,
           width: OptArg[Number] = OptArg.Undefined,
         ) {
           private[Sunburst] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =

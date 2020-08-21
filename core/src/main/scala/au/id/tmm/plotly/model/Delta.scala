@@ -4,10 +4,10 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Delta(
-  reference: OptArg[Number] = OptArg.Undefined,
+  reference: OptArg[Number]        = OptArg.Undefined,
   position: OptArg[Delta.Position] = OptArg.Undefined,
-  relative: OptArg[Boolean] = OptArg.Undefined,
-  valueformat: OptArg[String] = OptArg.Undefined,
+  relative: OptArg[Boolean]        = OptArg.Undefined,
+  valueformat: OptArg[String]      = OptArg.Undefined,
   increasing: OptArg[Delta.Symbol] = OptArg.Undefined,
   decreasing: OptArg[Delta.Symbol] = OptArg.Undefined,
 )

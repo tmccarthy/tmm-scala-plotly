@@ -4,10 +4,10 @@ import au.id.tmm.plotly.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class Padding(
-  top: OptArg[Number] = OptArg.Undefined,
-  right: OptArg[Number] = OptArg.Undefined,
+  top: OptArg[Number]    = OptArg.Undefined,
+  right: OptArg[Number]  = OptArg.Undefined,
   bottom: OptArg[Number] = OptArg.Undefined,
-  left: OptArg[Number] = OptArg.Undefined,
+  left: OptArg[Number]   = OptArg.Undefined,
 )
 
 object Padding {

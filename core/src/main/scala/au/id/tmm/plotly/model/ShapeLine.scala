@@ -4,9 +4,9 @@ import au.id.tmm.plotly.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class ShapeLine(
-  color: OptArg[Color] = OptArg.Undefined,
+  color: OptArg[Color]  = OptArg.Undefined,
   width: OptArg[Number] = OptArg.Undefined,
-  dash: OptArg[Dash] = OptArg.Undefined,
+  dash: OptArg[Dash]    = OptArg.Undefined,
 )
 
 object ShapeLine {

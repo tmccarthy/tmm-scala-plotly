@@ -28,7 +28,7 @@ object FlagListSpec {
     case object C extends Flag("c")
 
     implicit val encoder: Encoder[Flag] = Encoder[String].contramap(_.asString)
-    implicit val order: Order[Flag]     = Order.by[Flag, String](_.asString)
-    implicit val show: Show[Flag]       = _.asString
+    implicit val order: Order[Flag] = Order.by[Flag, String](_.asString)
+    implicit val show: Show[Flag] = _.asString
   }
 }

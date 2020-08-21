@@ -75,7 +75,7 @@ class SyntaxSpec extends AnyFlatSpec {
   it should "work as expected for a sequence of sequences for a nested OneOrArrayOf" in {
     val l1 = List("hello", "world")
     val l2 = List("jane", "doe")
-    val l  = List(l1, l2)
+    val l = List(l1, l2)
     assert((l: OneOrArrayOf[List[String]]) === OneOrArrayOf.Array(l))
   }
 

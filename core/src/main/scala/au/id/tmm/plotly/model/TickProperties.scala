@@ -7,28 +7,28 @@ import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 final case class TickProperties(
-  tickmode: OptArg[TickProperties.TickMode] = OptArg.Undefined,
-  nticks: OptArg[Int] = OptArg.Undefined,
-  tick0: OptArg[AxisPosition] = OptArg.Undefined,
-  dtick: OptArg[TickProperties.DTick] = OptArg.Undefined,
-  tickvals: OptArg[DataArray] = OptArg.Undefined,
-  tickText: OptArg[DataArray] = OptArg.Undefined,
-  ticks: OptArg[TickProperties.DrawMode] = OptArg.Undefined,
-  ticklen: OptArg[Number] = OptArg.Undefined,
-  tickwidth: OptArg[Number] = OptArg.Undefined,
-  tickcolor: OptArg[Color] = OptArg.Undefined,
-  showticklabels: OptArg[Boolean] = OptArg.Undefined,
-  tickfont: OptArg[Font] = OptArg.Undefined,
-  tickangle: OptArg[Number] = OptArg.Undefined,
-  tickformat: OptArg[String] = OptArg.Undefined,
+  tickmode: OptArg[TickProperties.TickMode]                        = OptArg.Undefined,
+  nticks: OptArg[Int]                                              = OptArg.Undefined,
+  tick0: OptArg[AxisPosition]                                      = OptArg.Undefined,
+  dtick: OptArg[TickProperties.DTick]                              = OptArg.Undefined,
+  tickvals: OptArg[DataArray]                                      = OptArg.Undefined,
+  tickText: OptArg[DataArray]                                      = OptArg.Undefined,
+  ticks: OptArg[TickProperties.DrawMode]                           = OptArg.Undefined,
+  ticklen: OptArg[Number]                                          = OptArg.Undefined,
+  tickwidth: OptArg[Number]                                        = OptArg.Undefined,
+  tickcolor: OptArg[Color]                                         = OptArg.Undefined,
+  showticklabels: OptArg[Boolean]                                  = OptArg.Undefined,
+  tickfont: OptArg[Font]                                           = OptArg.Undefined,
+  tickangle: OptArg[Number]                                        = OptArg.Undefined,
+  tickformat: OptArg[String]                                       = OptArg.Undefined,
   tickformatstops: OptArg[OneOrArrayOf[TickProperties.FormatStop]] = OptArg.Undefined,
-  tickprefix: OptArg[String] = OptArg.Undefined,
-  showtickprefix: OptArg[TickProperties.ShowRule] = OptArg.Undefined,
-  ticksuffix: OptArg[String] = OptArg.Undefined,
-  showticksuffix: OptArg[TickProperties.ShowRule] = OptArg.Undefined,
-  separatethousands: OptArg[Boolean] = OptArg.Undefined,
-  exponentformat: OptArg[TickProperties.ExponentFormat] = OptArg.Undefined,
-  showexponent: OptArg[TickProperties.ShowRule] = OptArg.Undefined,
+  tickprefix: OptArg[String]                                       = OptArg.Undefined,
+  showtickprefix: OptArg[TickProperties.ShowRule]                  = OptArg.Undefined,
+  ticksuffix: OptArg[String]                                       = OptArg.Undefined,
+  showticksuffix: OptArg[TickProperties.ShowRule]                  = OptArg.Undefined,
+  separatethousands: OptArg[Boolean]                               = OptArg.Undefined,
+  exponentformat: OptArg[TickProperties.ExponentFormat]            = OptArg.Undefined,
+  showexponent: OptArg[TickProperties.ShowRule]                    = OptArg.Undefined,
 )
 
 object TickProperties {
@@ -114,10 +114,10 @@ object TickProperties {
   }
 
   final case class FormatStop(
-    enabled: OptArg[Boolean] = OptArg.Undefined,
+    enabled: OptArg[Boolean]         = OptArg.Undefined,
     dtickrange: OptArg[Range[Datum]] = OptArg.Undefined,
-    value: OptArg[String] = OptArg.Undefined,
-    name: OptArg[String] = OptArg.Undefined,
+    value: OptArg[String]            = OptArg.Undefined,
+    name: OptArg[String]             = OptArg.Undefined,
     templateitemname: OptArg[String] = OptArg.Undefined,
   )
 

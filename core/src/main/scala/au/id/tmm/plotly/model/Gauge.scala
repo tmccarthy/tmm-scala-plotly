@@ -4,13 +4,13 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.Encoder
 
 final case class Gauge(
-  shape: OptArg[Gauge.Shape] = OptArg.Undefined,
-  bar: OptArg[Gauge.Bar] = OptArg.Undefined,
-  bgcolor: OptArg[Color] = OptArg.Undefined,
-  bordercolor: OptArg[Color] = OptArg.Undefined,
-  borderwidth: OptArg[Number] = OptArg.Undefined,
-  axis: OptArg[Axis] = OptArg.Undefined,
-  steps: OptArg[Seq[Gauge.Step]] = OptArg.Undefined,
+  shape: OptArg[Gauge.Shape]         = OptArg.Undefined,
+  bar: OptArg[Gauge.Bar]             = OptArg.Undefined,
+  bgcolor: OptArg[Color]             = OptArg.Undefined,
+  bordercolor: OptArg[Color]         = OptArg.Undefined,
+  borderwidth: OptArg[Number]        = OptArg.Undefined,
+  axis: OptArg[Axis]                 = OptArg.Undefined,
+  steps: OptArg[Seq[Gauge.Step]]     = OptArg.Undefined,
   threshold: OptArg[Gauge.Threshold] = OptArg.Undefined,
 )
 
@@ -24,8 +24,8 @@ object Gauge {
   }
 
   final case class Bar(
-    color: OptArg[Color] = OptArg.Undefined,
-    line: OptArg[Gauge.Line] = OptArg.Undefined,
+    color: OptArg[Color]      = OptArg.Undefined,
+    line: OptArg[Gauge.Line]  = OptArg.Undefined,
     thickness: OptArg[Number] = OptArg.Undefined,
   )
 
@@ -44,7 +44,7 @@ object Gauge {
   }
 
   final case class Line(
-    color: OptArg[Color] = OptArg.Undefined,
+    color: OptArg[Color]  = OptArg.Undefined,
     width: OptArg[Number] = OptArg.Undefined,
   )
 
@@ -53,8 +53,8 @@ object Gauge {
   }
 
   final case class Threshold(
-    line: OptArg[Gauge.Line] = OptArg.Undefined,
-    value: OptArg[Number] = OptArg.Undefined,
+    line: OptArg[Gauge.Line]  = OptArg.Undefined,
+    value: OptArg[Number]     = OptArg.Undefined,
     thickness: OptArg[Number] = OptArg.Undefined,
   )
 
@@ -74,7 +74,7 @@ object Gauge {
 
   final case class Step(
     range: OptArg[Seq[Number]] = OptArg.Undefined,
-    color: OptArg[Color] = OptArg.Undefined,
+    color: OptArg[Color]       = OptArg.Undefined,
   )
 
   object Step {

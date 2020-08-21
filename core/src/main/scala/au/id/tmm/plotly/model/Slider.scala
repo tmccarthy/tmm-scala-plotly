@@ -4,37 +4,37 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
 import io.circe.{Encoder, Json}
 
 final case class Slider(
-  visible: OptArg[Boolean] = OptArg.Undefined,
-  active: OptArg[Number] = OptArg.Undefined,
-  steps: OptArg[Array[Slider.Step]] = OptArg.Undefined,
-  lenmode: OptArg[Slider.LengthMode] = OptArg.Undefined,
-  len: OptArg[Number] = OptArg.Undefined,
-  x: OptArg[Number] = OptArg.Undefined,
-  y: OptArg[Number] = OptArg.Undefined,
-  pad: OptArg[Padding] = OptArg.Undefined,
-  xanchor: OptArg[Anchor.X] = OptArg.Undefined,
-  yanchor: OptArg[Anchor.Y] = OptArg.Undefined,
-  transition: OptArg[Transition] = OptArg.Undefined,
+  visible: OptArg[Boolean]                  = OptArg.Undefined,
+  active: OptArg[Number]                    = OptArg.Undefined,
+  steps: OptArg[Array[Slider.Step]]         = OptArg.Undefined,
+  lenmode: OptArg[Slider.LengthMode]        = OptArg.Undefined,
+  len: OptArg[Number]                       = OptArg.Undefined,
+  x: OptArg[Number]                         = OptArg.Undefined,
+  y: OptArg[Number]                         = OptArg.Undefined,
+  pad: OptArg[Padding]                      = OptArg.Undefined,
+  xanchor: OptArg[Anchor.X]                 = OptArg.Undefined,
+  yanchor: OptArg[Anchor.Y]                 = OptArg.Undefined,
+  transition: OptArg[Transition]            = OptArg.Undefined,
   currentvalue: OptArg[Slider.CurrentValue] = OptArg.Undefined,
-  font: OptArg[Font] = OptArg.Undefined,
-  activebgcolor: OptArg[Color] = OptArg.Undefined,
-  bgcolor: OptArg[Color] = OptArg.Undefined,
-  bordercolor: OptArg[Color] = OptArg.Undefined,
-  borderwidth: OptArg[Number] = OptArg.Undefined,
-  ticklen: OptArg[Number] = OptArg.Undefined,
-  tickcolor: OptArg[Color] = OptArg.Undefined,
-  tickwidth: OptArg[Number] = OptArg.Undefined,
-  minorticklen: OptArg[Number] = OptArg.Undefined,
+  font: OptArg[Font]                        = OptArg.Undefined,
+  activebgcolor: OptArg[Color]              = OptArg.Undefined,
+  bgcolor: OptArg[Color]                    = OptArg.Undefined,
+  bordercolor: OptArg[Color]                = OptArg.Undefined,
+  borderwidth: OptArg[Number]               = OptArg.Undefined,
+  ticklen: OptArg[Number]                   = OptArg.Undefined,
+  tickcolor: OptArg[Color]                  = OptArg.Undefined,
+  tickwidth: OptArg[Number]                 = OptArg.Undefined,
+  minorticklen: OptArg[Number]              = OptArg.Undefined,
 )
 
 object Slider {
   final case class Step(
-    visible: OptArg[Boolean] = OptArg.Undefined,
+    visible: OptArg[Boolean]    = OptArg.Undefined,
     method: OptArg[Step.Method] = OptArg.Undefined,
-    args: OptArg[Seq[Json]] = OptArg.Undefined,
-    label: OptArg[String] = OptArg.Undefined,
-    value: OptArg[String] = OptArg.Undefined,
-    execute: OptArg[Boolean] = OptArg.Undefined,
+    args: OptArg[Seq[Json]]     = OptArg.Undefined,
+    label: OptArg[String]       = OptArg.Undefined,
+    value: OptArg[String]       = OptArg.Undefined,
+    execute: OptArg[Boolean]    = OptArg.Undefined,
   )
 
   object Step {
@@ -75,12 +75,12 @@ object Slider {
   }
 
   final case class CurrentValue(
-    visible: OptArg[Boolean] = OptArg.Undefined,
+    visible: OptArg[Boolean]  = OptArg.Undefined,
     xanchor: OptArg[Anchor.X] = OptArg.Undefined,
-    offset: OptArg[Number] = OptArg.Undefined,
-    prefix: OptArg[String] = OptArg.Undefined,
-    suffix: OptArg[String] = OptArg.Undefined,
-    font: OptArg[Font] = OptArg.Undefined,
+    offset: OptArg[Number]    = OptArg.Undefined,
+    prefix: OptArg[String]    = OptArg.Undefined,
+    suffix: OptArg[String]    = OptArg.Undefined,
+    font: OptArg[Font]        = OptArg.Undefined,
   )
 
   object CurrentValue {

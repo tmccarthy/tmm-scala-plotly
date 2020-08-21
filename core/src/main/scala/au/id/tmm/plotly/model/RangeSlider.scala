@@ -4,12 +4,12 @@ import au.id.tmm.plotly.model.utilities.OptArg
 import io.circe.Encoder
 
 final case class RangeSlider(
-  visible: OptArg[Boolean] = OptArg.Undefined,
-  thickness: OptArg[Number] = OptArg.Undefined,
+  visible: OptArg[Boolean]    = OptArg.Undefined,
+  thickness: OptArg[Number]   = OptArg.Undefined,
   range: OptArg[Range[Datum]] = OptArg.Undefined,
   borderwidth: OptArg[Number] = OptArg.Undefined,
-  bordercolor: OptArg[Color] = OptArg.Undefined,
-  bgcolor: OptArg[Color] = OptArg.Undefined,
+  bordercolor: OptArg[Color]  = OptArg.Undefined,
+  bgcolor: OptArg[Color]      = OptArg.Undefined,
 )
 
 object RangeSlider {

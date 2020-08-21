@@ -5,8 +5,8 @@ import io.circe.Encoder
 
 final case class Font(
   family: OptArg[String] = OptArg.Undefined,
-  size: OptArg[Number] = OptArg.Undefined,
-  color: OptArg[Color] = OptArg.Undefined,
+  size: OptArg[Number]   = OptArg.Undefined,
+  color: OptArg[Color]   = OptArg.Undefined,
 )
 
 object Font {

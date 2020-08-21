@@ -4,17 +4,17 @@ import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
 import io.circe.Encoder
 
 final case class Transform(
-  `type`: OptArg[Transform.Type] = OptArg.Undefined,
-  enabled: OptArg[Boolean] = OptArg.Undefined,
-  target: OptArg[OneOrArrayOf[AxisPosition]] = OptArg.Undefined,
-  operation: OptArg[String] = OptArg.Undefined,
+  `type`: OptArg[Transform.Type]                   = OptArg.Undefined,
+  enabled: OptArg[Boolean]                         = OptArg.Undefined,
+  target: OptArg[OneOrArrayOf[AxisPosition]]       = OptArg.Undefined,
+  operation: OptArg[String]                        = OptArg.Undefined,
   aggregations: OptArg[Seq[Transform.Aggregation]] = OptArg.Undefined,
-  preservegaps: OptArg[Boolean] = OptArg.Undefined,
-  groups: OptArg[OneOrArrayOf[AxisPosition]] = OptArg.Undefined,
-  nameformat: OptArg[String] = OptArg.Undefined,
-  styles: OptArg[Seq[Transform.Style]] = OptArg.Undefined,
-  value: OptArg[Datum] = OptArg.Undefined,
-  order: OptArg[Transform.Order] = OptArg.Undefined,
+  preservegaps: OptArg[Boolean]                    = OptArg.Undefined,
+  groups: OptArg[OneOrArrayOf[AxisPosition]]       = OptArg.Undefined,
+  nameformat: OptArg[String]                       = OptArg.Undefined,
+  styles: OptArg[Seq[Transform.Style]]             = OptArg.Undefined,
+  value: OptArg[Datum]                             = OptArg.Undefined,
+  order: OptArg[Transform.Order]                   = OptArg.Undefined,
 )
 
 object Transform {
@@ -30,9 +30,9 @@ object Transform {
 
   final case class Aggregation(
     target: String,
-    func: OptArg[Aggregation.Function] = OptArg.Undefined,
+    func: OptArg[Aggregation.Function]         = OptArg.Undefined,
     funcmode: OptArg[Aggregation.FunctionMode] = OptArg.Undefined,
-    enabled: OptArg[Boolean] = OptArg.Undefined,
+    enabled: OptArg[Boolean]                   = OptArg.Undefined,
   )
 
   object Aggregation {

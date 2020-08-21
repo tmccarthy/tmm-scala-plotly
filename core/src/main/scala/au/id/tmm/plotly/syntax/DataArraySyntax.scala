@@ -18,9 +18,9 @@ trait DataArraySyntax {
     DataArray.OfLocalDates(localDates)
 
   implicit def doublesToDataArray(doubles: Seq[Double]): DataArray.OfDoubles = DataArray.OfDoubles(doubles)
-  implicit def floatsToDataArray(floats: Seq[Float]): DataArray.OfFloats     = DataArray.OfFloats(floats)
-  implicit def longsToDataArray(longs: Seq[Long]): DataArray.OfLongs         = DataArray.OfLongs(longs)
-  implicit def intsToDataArray(ints: Seq[Int]): DataArray.OfInts             = DataArray.OfInts(ints)
+  implicit def floatsToDataArray(floats: Seq[Float]): DataArray.OfFloats = DataArray.OfFloats(floats)
+  implicit def longsToDataArray(longs: Seq[Long]): DataArray.OfLongs = DataArray.OfLongs(longs)
+  implicit def intsToDataArray(ints: Seq[Int]): DataArray.OfInts = DataArray.OfInts(ints)
 
   implicit def onceNestedDoublesToDataArray(onceNestedDoubles: Seq[Seq[Double]]): DataArray.TwoDimensional =
     DataArray.TwoDimensional(onceNestedDoubles.map(doublesToDataArray))

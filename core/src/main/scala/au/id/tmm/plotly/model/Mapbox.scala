@@ -7,14 +7,14 @@ import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 final case class Mapbox(
-  domain: OptArg[Domain] = OptArg.Undefined,
-  accesstoken: OptArg[String] = OptArg.Undefined,
-  style: OptArg[Mapbox.Style] = OptArg.Undefined,
-  center: OptArg[Mapbox.Center] = OptArg.Undefined,
-  zoom: OptArg[Number] = OptArg.Undefined,
-  bearing: OptArg[Number] = OptArg.Undefined,
-  pitch: OptArg[Number] = OptArg.Undefined,
-  layers: OptArg[Seq[MapboxLayers]] = OptArg.Undefined,
+  domain: OptArg[Domain]                = OptArg.Undefined,
+  accesstoken: OptArg[String]           = OptArg.Undefined,
+  style: OptArg[Mapbox.Style]           = OptArg.Undefined,
+  center: OptArg[Mapbox.Center]         = OptArg.Undefined,
+  zoom: OptArg[Number]                  = OptArg.Undefined,
+  bearing: OptArg[Number]               = OptArg.Undefined,
+  pitch: OptArg[Number]                 = OptArg.Undefined,
+  layers: OptArg[Seq[MapboxLayers]]     = OptArg.Undefined,
   uirevision: OptArg[Mapbox.UiRevision] = OptArg.Undefined,
 )
 

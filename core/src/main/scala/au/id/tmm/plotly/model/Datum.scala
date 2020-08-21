@@ -24,7 +24,7 @@ object Datum {
   final case class OfInstant(instant: Instant)       extends OfDateTime
   final case class OfLocalDate(localDate: LocalDate) extends OfDateTime
 
-  def OfZonedDateTime(zonedDateTime: ZonedDateTime): OfInstant    = OfInstant(zonedDateTime.toInstant)
+  def OfZonedDateTime(zonedDateTime: ZonedDateTime): OfInstant = OfInstant(zonedDateTime.toInstant)
   def OfOffsetDateTime(offsetDateTime: OffsetDateTime): OfInstant = OfInstant(offsetDateTime.toInstant)
   def OfLocalDateTime(localDateTime: LocalDateTime, timezone: ZoneId): OfInstant =
     OfZonedDateTime(localDateTime.atZone(timezone))
@@ -34,8 +34,8 @@ object Datum {
     * to supply a timezone using `OfLocalDateTime(localDateTime, timezone)`.
     */
   def OfLocalDateTimeUnsafe(localDateTime: LocalDateTime): OfInstant = OfLocalDateTime(localDateTime, ZoneOffset.UTC)
-  def OfEpochMilli(epochMilli: Long): OfInstant                      = OfInstant(Instant.ofEpochMilli(epochMilli))
-  def OfEpochSecond(epochSecond: Long): OfInstant                    = OfInstant(Instant.ofEpochSecond(epochSecond))
+  def OfEpochMilli(epochMilli: Long): OfInstant = OfInstant(Instant.ofEpochMilli(epochMilli))
+  def OfEpochSecond(epochSecond: Long): OfInstant = OfInstant(Instant.ofEpochSecond(epochSecond))
 
   object OfDateTime {
     implicit val encoder: Encoder[OfDateTime] = {

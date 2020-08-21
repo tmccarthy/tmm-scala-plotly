@@ -13,61 +13,50 @@ object Sunburst {
       rootSectors = List(
         Trace.Sunburst.Sector(
           value = 200,
-          id = "food",
           label = "Food",
           children = List(
             Trace.Sunburst.Sector(
               value = 100,
-              id = "fruit",
               label = "Fruit",
               children = List(
                 Trace.Sunburst.Sector(
                   value = 50,
-                  id = "apple",
                   label = "🍎",
                 ),
                 Trace.Sunburst.Sector(
                   value = 25,
-                  id = "banana",
                   label = "🍌",
                 ),
                 Trace.Sunburst.Sector(
                   value = 25,
-                  id = "pear",
                   label = "🍐",
                 ),
               ),
             ),
             Trace.Sunburst.Sector(
               value = 75,
-              id = "sweets",
               label = "Sweets",
               children = List(
                 Trace.Sunburst.Sector(
                   value = 50,
-                  id = "chocolate",
                   label = "🍫",
                 ),
                 Trace.Sunburst.Sector(
                   value = 25,
-                  id = "donuts",
                   label = "🍩",
                 ),
               ),
             ),
             Trace.Sunburst.Sector(
               value = 25,
-              id = "bread",
               label = "Bread",
               children = List(
                 Trace.Sunburst.Sector(
                   value = 20,
-                  id = "baguette",
                   label = "🥖",
                 ),
                 Trace.Sunburst.Sector(
                   value = 5,
-                  id = "bagel",
                   label = "🥯",
                 ),
               ),

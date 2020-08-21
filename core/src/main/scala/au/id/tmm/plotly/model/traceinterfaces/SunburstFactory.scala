@@ -36,8 +36,7 @@ trait SunburstFactory { this: Trace.type =>
 
       val values = DataArray.Wrapping(allSectors.map(_.sector.value))
 
-      val ids: OptArg[Vector[String]] =
-        unsquash(allSectors.map(_.sector.id), nullValue = "")
+      val idPerSector: Map[Sector, String] = generateIdsFor(allSectors.map(_.sector))
 
       val labels: OptArg[DataArray] =
         unsquash(allSectors.map(_.sector.label)).map(DataArray.Wrapping)
@@ -66,24 +65,27 @@ trait SunburstFactory { this: Trace.type =>
             line = existingMarker.line.map { existingLine: PlotMarker.ScatterMarkerLine =>
               val linesPerSector: Vector[OptArg[Sector.Marker.Line]] = markers.map(_.flatMap(_.line))
               existingLine.copy(
-                width = linesPerSector.map(_.flatMap(_.width)).sequence.map(OneOrArrayOf.Array.apply) orElse existingLine.width,
-                color = linesPerSector.map(_.flatMap(_.color)).sequence.map(OneOrArrayOf.Array.apply) orElse existingLine.color,
+                width = linesPerSector
+                  .map(_.flatMap(_.width))
+                  .sequence
+                  .map(OneOrArrayOf.Array.apply) orElse existingLine.width,
+                color = linesPerSector
+                  .map(_.flatMap(_.color))
+                  .sequence
+                  .map(OneOrArrayOf.Array.apply) orElse existingLine.color,
               )
-            }
+            },
           )
         }
 
       val parents: DataArray =
-        if (ids.isDefined)
-          DataArray.OfStrings(allSectors.map(_.parent.flatMap(_.id.toOption).getOrElse("")))
-        else
-          DataArray.Wrapping(allSectors.map(_.parent.map(_.value).getOrElse(Datum.OfString(""))))
+        DataArray.OfStrings(allSectors.map(s => s.parent.map(idPerSector).getOrElse("")))
 
       Trace(
         traceType = OptArg.Of(Trace.Type.Sunburst),
         values = OptArg.Of(values),
         parents = OptArg.Of(parents),
-        ids = ids,
+        ids = OptArg.Of(allSectors.map(s => idPerSector(s.sector))),
         labels = labels,
         text = texts,
         texttemplate = textTemplates orElse globalTextTemplate.map(OneOrArrayOf.One.apply),
@@ -122,10 +124,29 @@ trait SunburstFactory { this: Trace.type =>
       go(rootSectors, parent = None)
     }
 
+    private def generateIdsFor(allSectors: Seq[Sector]): Map[Sector, String] = {
+      val valuesAsStrings = allSectors.map(_.value).map {
+        case Datum.OfNumber(number)       => number.toString
+        case Datum.OfInstant(instant)     => instant.toString
+        case Datum.OfLocalDate(localDate) => localDate.toString
+        case Datum.OfString(string)       => string
+        case Datum.OfNull                 => "<null>"
+      }
+
+      if (valuesAsStrings == valuesAsStrings.distinct && !valuesAsStrings.contains("")) {
+        (allSectors zip valuesAsStrings).toMap
+      } else {
+        val valuesAsUniqueStrings = valuesAsStrings.zipWithIndex.map {
+          case (value, index) => s"${value}_$index"
+        }
+
+        (allSectors zip valuesAsUniqueStrings).toMap
+      }
+    }
+
     @silent("outer reference")
     final case class Sector(
       value: Datum,
-      id: OptArg[String] = OptArg.Undefined, // TODO should these be generated?
       label: OptArg[Datum] = OptArg.Undefined,
       text: OptArg[String] = OptArg.Undefined,
       textTemplate: OptArg[String] = OptArg.Undefined,
@@ -149,10 +170,11 @@ trait SunburstFactory { this: Trace.type =>
           color: OptArg[Color],
           width: OptArg[Number],
         ) {
-          private[Sunburst] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine = PlotMarker.ScatterMarkerLine(
-            color = color.map(OneOrArrayOf.One.apply),
-            width = width.map(OneOrArrayOf.One.apply),
-          )
+          private[Sunburst] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =
+            PlotMarker.ScatterMarkerLine(
+              color = color.map(OneOrArrayOf.One.apply),
+              width = width.map(OneOrArrayOf.One.apply),
+            )
         }
       }
 

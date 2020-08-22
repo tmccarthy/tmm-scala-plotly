@@ -1,6 +1,6 @@
 package au.id.tmm.plotly.model
 
-import au.id.tmm.plotly.model.utilities.{OptArg, FalseOr, JSEnum}
+import au.id.tmm.plotly.model.utilities.{FalseOr, JSEnum, OptArg}
 import io.circe.syntax._
 import io.circe.{Encoder, Json}
 
@@ -157,16 +157,16 @@ final case class Annotations(
   ax: OptArg[Number]                                    = OptArg.Undefined,
   ay: OptArg[Number]                                    = OptArg.Undefined,
   xref: OptArg[Annotations.CoordinateReference.X]       = OptArg.Undefined,
-  x: OptArg[AxisPosition]                               = OptArg.Undefined,
+  x: OptArg[Datum]                                      = OptArg.Undefined,
   xanchor: OptArg[Anchor.X]                             = OptArg.Undefined,
   xshift: OptArg[Number]                                = OptArg.Undefined,
   yref: OptArg[Annotations.CoordinateReference.Y]       = OptArg.Undefined,
-  y: OptArg[AxisPosition]                               = OptArg.Undefined,
+  y: OptArg[Datum]                                      = OptArg.Undefined,
   yanchor: OptArg[Anchor.Y]                             = OptArg.Undefined,
   yshift: OptArg[Number]                                = OptArg.Undefined,
   clicktoshow: OptArg[FalseOr[Annotations.ClickToShow]] = OptArg.Undefined,
-  xclick: OptArg[AxisPosition]                          = OptArg.Undefined,
-  yclick: OptArg[AxisPosition]                          = OptArg.Undefined,
+  xclick: OptArg[Datum]                                 = OptArg.Undefined,
+  yclick: OptArg[Datum]                                 = OptArg.Undefined,
   hovertext: OptArg[String]                             = OptArg.Undefined,
   hoverlabel: OptArg[HoverLabel]                        = OptArg.Undefined,
   captureevents: OptArg[Boolean]                        = OptArg.Undefined,

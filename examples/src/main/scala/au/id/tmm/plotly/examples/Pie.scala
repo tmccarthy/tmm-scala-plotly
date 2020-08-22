@@ -51,7 +51,7 @@ object Pie {
   private def withSyntax(): Unit = {
     import au.id.tmm.plotly._
     import au.id.tmm.plotly.model._
-    import au.id.tmm.plotly.syntax.all._
+    import au.id.tmm.plotly.syntax._
 
     val (labels, values, colours) = List(
       ("Coalition", 5_906_875, Color("blue")),

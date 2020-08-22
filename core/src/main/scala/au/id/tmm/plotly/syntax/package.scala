@@ -1,6 +1,14 @@
 package au.id.tmm.plotly
 
-package object syntax {
+package object syntax
+    extends AnyRef
+    with BlankOrSyntax
+    with BooleanOrSyntax
+    with FalseOrSyntax
+    with OneOrArrayOfSyntax
+    with OptArgSyntax
+    with DatumSyntax
+    with DataArraySyntax {
 
   object blankOr      extends BlankOrSyntax
   object booleanOr    extends BooleanOrSyntax
@@ -9,15 +17,5 @@ package object syntax {
   object optArg       extends OptArgSyntax
   object datum        extends DatumSyntax
   object dataArray    extends DataArraySyntax
-
-  object all
-      extends AnyRef
-      with BlankOrSyntax
-      with BooleanOrSyntax
-      with FalseOrSyntax
-      with OneOrArrayOfSyntax
-      with OptArgSyntax
-      with DatumSyntax
-      with DataArraySyntax
 
 }

@@ -1,6 +1,6 @@
 package au.id.tmm.plotly.model
 
-import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum}
+import au.id.tmm.plotly.model.utilities.{JSEnum, OptArg}
 import io.circe.Encoder
 
 final case class Image(
@@ -11,8 +11,8 @@ final case class Image(
   sizey: OptArg[Number]                     = OptArg.Undefined,
   sizing: OptArg[Image.Sizing]              = OptArg.Undefined,
   opacity: OptArg[Number]                   = OptArg.Undefined,
-  x: OptArg[AxisPosition]                   = OptArg.Undefined,
-  y: OptArg[AxisPosition]                   = OptArg.Undefined,
+  x: OptArg[Datum]                          = OptArg.Undefined,
+  y: OptArg[Datum]                          = OptArg.Undefined,
   xanchor: OptArg[Anchor.X]                 = OptArg.Undefined,
   yanchor: OptArg[Anchor.Y]                 = OptArg.Undefined,
   xref: OptArg[Image.CoordinateReference.X] = OptArg.Undefined,

@@ -3,7 +3,6 @@ package au.id.tmm.plotly.syntax
 import java.time.Instant
 
 import au.id.tmm.plotly.model.Datum
-import au.id.tmm.plotly.syntax.datum._
 import org.scalatest.flatspec.AnyFlatSpec
 
 class DatumSyntaxSpec extends AnyFlatSpec {

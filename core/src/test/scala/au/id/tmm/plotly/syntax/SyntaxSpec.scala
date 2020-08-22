@@ -2,7 +2,6 @@ package au.id.tmm.plotly.syntax
 
 import au.id.tmm.plotly.model.utilities._
 import org.scalatest.flatspec.AnyFlatSpec
-import au.id.tmm.plotly.syntax.all._
 
 class SyntaxSpec extends AnyFlatSpec {
 

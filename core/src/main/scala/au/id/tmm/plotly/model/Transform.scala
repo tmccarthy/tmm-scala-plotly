@@ -1,16 +1,16 @@
 package au.id.tmm.plotly.model
 
-import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotly.model.utilities.{JSEnum, OneOrArrayOf, OptArg}
 import io.circe.Encoder
 
 final case class Transform(
   `type`: OptArg[Transform.Type]                   = OptArg.Undefined,
   enabled: OptArg[Boolean]                         = OptArg.Undefined,
-  target: OptArg[OneOrArrayOf[AxisPosition]]       = OptArg.Undefined,
+  target: OptArg[OneOrArrayOf[Datum]]              = OptArg.Undefined,
   operation: OptArg[String]                        = OptArg.Undefined,
   aggregations: OptArg[Seq[Transform.Aggregation]] = OptArg.Undefined,
   preservegaps: OptArg[Boolean]                    = OptArg.Undefined,
-  groups: OptArg[OneOrArrayOf[AxisPosition]]       = OptArg.Undefined,
+  groups: OptArg[OneOrArrayOf[Datum]]              = OptArg.Undefined,
   nameformat: OptArg[String]                       = OptArg.Undefined,
   styles: OptArg[Seq[Transform.Style]]             = OptArg.Undefined,
   value: OptArg[Datum]                             = OptArg.Undefined,
@@ -75,8 +75,8 @@ object Transform {
   }
 
   final case class Style(
-    target: OneOrArrayOf[AxisPosition],
-    value: Trace,
+    target: OptArg[OneOrArrayOf[Datum]] = OptArg.Undefined,
+    value: OptArg[Trace]                = OptArg.Undefined,
   )
 
   object Style {

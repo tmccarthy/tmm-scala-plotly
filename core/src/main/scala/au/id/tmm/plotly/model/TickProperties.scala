@@ -2,14 +2,14 @@ package au.id.tmm.plotly.model
 
 import java.time.Duration
 
-import au.id.tmm.plotly.model.utilities.{OptArg, JSEnum, OneOrArrayOf}
+import au.id.tmm.plotly.model.utilities.{JSEnum, OneOrArrayOf, OptArg}
 import io.circe.Encoder
 import io.circe.syntax.EncoderOps
 
 final case class TickProperties(
   tickmode: OptArg[TickProperties.TickMode]                        = OptArg.Undefined,
   nticks: OptArg[Int]                                              = OptArg.Undefined,
-  tick0: OptArg[AxisPosition]                                      = OptArg.Undefined,
+  tick0: OptArg[Datum]                                             = OptArg.Undefined,
   dtick: OptArg[TickProperties.DTick]                              = OptArg.Undefined,
   tickvals: OptArg[DataArray]                                      = OptArg.Undefined,
   tickText: OptArg[DataArray]                                      = OptArg.Undefined,

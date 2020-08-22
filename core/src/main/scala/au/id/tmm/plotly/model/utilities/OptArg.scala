@@ -6,8 +6,13 @@ import io.circe.{Encoder, Json}
 import scala.annotation.tailrec
 
 /**
-  * An optional argument for one of the classes in the `au.id.tmm.plotlyscalafacade.model` package.
-  * // TODO needs an explanation of how to dodge this with the syntax.
+  * An optional argument for one of the classes in the `au.id.tmm.plotly.model` package.
+  *
+  * This type is used to avoid requiring arguments where none is required by the Plotly JS API. We use this dedicated
+  * type instead of `Option`.
+  *
+  * You can import the implicit conversions in `au.id.tmm.plotly.syntax._` so that you do not need to constantly wrap
+  * arguments in `OptArg.Of`.
   */
 sealed trait OptArg[+A] {
   def toOption: Option[A] =

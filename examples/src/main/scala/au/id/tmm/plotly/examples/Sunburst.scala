@@ -2,7 +2,7 @@ package au.id.tmm.plotly.examples
 
 import au.id.tmm.plotly.model._
 import au.id.tmm.plotly.model.utilities._
-import au.id.tmm.plotly.syntax.all._
+import au.id.tmm.plotly.syntax._
 import au.id.tmm.plotly.{Plot, Plotting}
 
 object Sunburst {

@@ -2,7 +2,7 @@ package au.id.tmm.plotly.model.utilities
 
 import io.circe.Encoder
 
-sealed trait OneOrArrayOf[A]
+sealed trait OneOrArrayOf[+A]
 
 object OneOrArrayOf {
 

@@ -133,3 +133,14 @@ val plot = Plot(
 
 Plotting.openInBrowser(plot)
 ```
+
+### Dedicated trace interfaces
+
+As discussed in the [Rationale section above](#Rationale), the [`Trace`](/core/src/main/scala/au/id/tmm/plotly/model/Trace.scala) 
+class provides an almost-exhaustive representation of the Plotly Javascript interface. While this allows us to use most
+of the features of Plotly, it also allows us to provide useless or invalid parameters. For example, we could provide the
+`z` co-ordinates for a two-dimensional scatter plot.
+
+As a partial solution to this, the project includes some dedicated constructors for traces based on the trace type. 
+These are available in the [`au.id.tmm.plotly.model.traceinterfaces`](/core/src/main/scala/au/id/tmm/plotly/model/traceinterfaces)
+package. For example, an interface is provided for sunburst plots and is demoed in [the examples project](/examples/src/main/scala/au/id/tmm/plotly/examples/Sunburst.scala).

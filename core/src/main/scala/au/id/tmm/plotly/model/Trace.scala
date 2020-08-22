@@ -1,6 +1,6 @@
 package au.id.tmm.plotly.model
 
-import au.id.tmm.plotly.model.traceinterfaces.SunburstFactory
+import au.id.tmm.plotly.model.traceinterfaces.SunburstTraceInterface
 import au.id.tmm.plotly.model.utilities._
 import cats.instances.int.catsKernelStdOrderForInt
 import cats.instances.string.catsKernelStdOrderForString
@@ -84,7 +84,7 @@ final case class Trace(
   maxdepth: OptArg[Trace.MaxDepth]                           = OptArg.Undefined,
 )
 
-object Trace extends SunburstFactory {
+object Trace extends SunburstTraceInterface {
 
   sealed abstract class Type(val asString: String) extends JSEnum
 

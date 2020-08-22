@@ -6,7 +6,7 @@ import cats.instances.vector.catsStdInstancesForVector
 import cats.syntax.traverse.toTraverseOps
 import com.github.ghik.silencer.silent
 
-private[model] trait SunburstFactory { this: Trace.type =>
+private[model] trait SunburstTraceInterface { this: Trace.type =>
 
   object Sunburst {
     def apply(
@@ -172,14 +172,14 @@ private[model] trait SunburstFactory { this: Trace.type =>
       }.toMap
     }
 
-    type Sector = SunburstFactory.Sector
-    val Sector: SunburstFactory.Sector.type = SunburstFactory.Sector
+    type Sector = SunburstTraceInterface.Sector
+    val Sector: SunburstTraceInterface.Sector.type = SunburstTraceInterface.Sector
 
   }
 
 }
 
-private[model] object SunburstFactory {
+private[model] object SunburstTraceInterface {
 
   @silent("outer reference")
   final case class Sector(
@@ -205,7 +205,7 @@ private[model] object SunburstFactory {
         color: OptArg[Color]  = OptArg.Undefined,
         width: OptArg[Number] = OptArg.Undefined,
       ) {
-        private[SunburstFactory] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =
+        private[SunburstTraceInterface] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =
           PlotMarker.ScatterMarkerLine(
             color = color.map(OneOrArrayOf.One.apply),
             width = width.map(OneOrArrayOf.One.apply),
@@ -213,7 +213,7 @@ private[model] object SunburstFactory {
       }
     }
 
-    private[SunburstFactory] final case class WithParent(sector: Sector, parent: Option[Sector])
+    private[SunburstTraceInterface] final case class WithParent(sector: Sector, parent: Option[Sector])
 
   }
 

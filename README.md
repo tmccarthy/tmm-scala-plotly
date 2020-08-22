@@ -100,7 +100,7 @@ Plotting.openInBrowser(plot)
 
 In the above you should note that we make use of types like `OptArg` and `DataArray`. These allow us to have explicit 
 and type-safe representations of optional parameters and the different types of data array respectively. Using these
-everywhere gets tiring, so we can import `au.id.tmm.plotly.syntax.all._` to make things a little less verbose 
+everywhere gets tiring, so we can import `au.id.tmm.plotly.syntax._` to make things a little less verbose 
 while retaining type safety. With this import, the above becomes:
 
 ```scala

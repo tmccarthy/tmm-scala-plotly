@@ -1,4 +1,6 @@
 # `tmm-scala-plotly`
+[![CircleCI](https://circleci.com/gh/tmccarthy/tmm-scala-plotly/tree/master.svg?style=svg)](https://circleci.com/gh/tmccarthy/tmm-scala-plotly/tree/master)
+[![Maven Central](https://img.shields.io/maven-central/v/au.id.tmm.tmm-scala-plotly/tmm-scala-plotly-codec_2.13.svg)](https://repo.maven.apache.org/maven2/au/id/tmm/tmm-scala-plotly/tmm-scala-plotly-codec_2.13/)
 
 Yet another library for integration between [Plotly](https://plotly.com/javascript/) and Scala.
 

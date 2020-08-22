@@ -15,7 +15,7 @@ object BooleanOr {
   final case class Value[A](a: A)                 extends BooleanOr[A]
   final case class BooleanValue(boolean: Boolean) extends BooleanOr[Nothing]
 
-  implicit def plotlyFacadeEncoderForBooleanOr[A : Encoder]: Encoder[BooleanOr[A]] =
+  implicit def tmmPlotlyEncoderForBooleanOr[A : Encoder]: Encoder[BooleanOr[A]] =
     Encoder[BooleanOr[A]] {
       case Value(a)        => Encoder[A].apply(a)
       case BooleanValue(b) => Json.fromBoolean(b)

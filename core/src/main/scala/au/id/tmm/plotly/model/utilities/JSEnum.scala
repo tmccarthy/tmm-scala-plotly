@@ -8,7 +8,7 @@ trait JSEnum {
 }
 
 object JSEnum {
-  def plotlyFacadeEncoderForJsEnum[T <: JSEnum]: Encoder[T] = Encoder[String].contramap(_.asString)
+  def tmmPlotlyEncoderForJsEnum[T <: JSEnum]: Encoder[T] = Encoder[String].contramap(_.asString)
 
-  def plotlyFacadeShowForJsEnum[T <: JSEnum]: Show[T] = _.asString
+  def tmmPlotlyShowForJsEnum[T <: JSEnum]: Show[T] = _.asString
 }

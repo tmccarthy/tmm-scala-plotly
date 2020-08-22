@@ -41,7 +41,7 @@ to write it:
 * **Incorrect:** This library does not (yet) use the power of the Scala type system to ensure valid use of Plotly. For 
   example, you can provide `z` co-ordinates to two-dimensional scatter plots. This is an intentional tradeoff to make it
   simpler to produce an exhaustive representation of the Javascript API.
-* **No ScalaJS support:** I don't use ScalaJS, so I'm not interested in supporting it.
+* **No ScalaJS support:** I don't use ScalaJS, so I haven't provided support for it.
 * **Circe as a first-class citizen:** This project uses [`circe`](https://github.com/circe/circe) to encode the model to 
   Json. The `circe` integrations are deliberately exposed by the main library to give clients as much flexibility as 
   possible when encoding.

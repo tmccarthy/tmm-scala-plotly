@@ -6,7 +6,7 @@ import cats.instances.vector.catsStdInstancesForVector
 import cats.syntax.traverse.toTraverseOps
 import com.github.ghik.silencer.silent
 
-trait SunburstFactory { this: Trace.type =>
+private[model] trait SunburstFactory { this: Trace.type =>
 
   object Sunburst {
     def apply(
@@ -172,44 +172,48 @@ trait SunburstFactory { this: Trace.type =>
       }.toMap
     }
 
-    @silent("outer reference")
-    final case class Sector(
-      value: Datum,
-      label: OptArg[Datum]          = OptArg.Undefined,
-      text: OptArg[String]          = OptArg.Undefined,
-      textTemplate: OptArg[String]  = OptArg.Undefined,
-      hoverText: OptArg[String]     = OptArg.Undefined,
-      hoverTemplate: OptArg[String] = OptArg.Undefined,
-      customData: OptArg[Datum]     = OptArg.Undefined,
-      marker: OptArg[Sector.Marker] = OptArg.Undefined, // TODO need documentation on how this is composed
-      children: Seq[Sector]         = List.empty,
+    type Sector = SunburstFactory.Sector
+    val Sector: SunburstFactory.Sector.type = SunburstFactory.Sector
+
+  }
+
+}
+
+private[model] object SunburstFactory {
+
+  @silent("outer reference")
+  final case class Sector(
+    value: Datum,
+    label: OptArg[Datum]          = OptArg.Undefined,
+    text: OptArg[String]          = OptArg.Undefined,
+    textTemplate: OptArg[String]  = OptArg.Undefined,
+    hoverText: OptArg[String]     = OptArg.Undefined,
+    hoverTemplate: OptArg[String] = OptArg.Undefined,
+    customData: OptArg[Datum]     = OptArg.Undefined,
+    marker: OptArg[Sector.Marker] = OptArg.Undefined, // TODO need documentation on how this is composed
+    children: Seq[Sector]         = List.empty,
+  )
+
+  object Sector {
+    final case class Marker(
+      color: OptArg[Color]      = OptArg.Undefined,
+      line: OptArg[Marker.Line] = OptArg.Undefined,
     )
 
-    object Sector {
-      @silent("outer reference")
-      final case class Marker(
-        color: OptArg[Color]      = OptArg.Undefined,
-        line: OptArg[Marker.Line] = OptArg.Undefined,
-      )
-
-      object Marker {
-        @silent("outer reference")
-        final case class Line(
-          color: OptArg[Color]  = OptArg.Undefined,
-          width: OptArg[Number] = OptArg.Undefined,
-        ) {
-          private[Sunburst] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =
-            PlotMarker.ScatterMarkerLine(
-              color = color.map(OneOrArrayOf.One.apply),
-              width = width.map(OneOrArrayOf.One.apply),
-            )
-        }
+    object Marker {
+      final case class Line(
+        color: OptArg[Color]  = OptArg.Undefined,
+        width: OptArg[Number] = OptArg.Undefined,
+      ) {
+        private[SunburstFactory] def asScatterMarkerLine: PlotMarker.ScatterMarkerLine =
+          PlotMarker.ScatterMarkerLine(
+            color = color.map(OneOrArrayOf.One.apply),
+            width = width.map(OneOrArrayOf.One.apply),
+          )
       }
-
-      @silent("outer reference")
-      private[Sunburst] final case class WithParent(sector: Sector, parent: Option[Sector])
-
     }
+
+    private[SunburstFactory] final case class WithParent(sector: Sector, parent: Option[Sector])
 
   }
 

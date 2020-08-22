@@ -9,7 +9,7 @@ Yet another library for integration between [Plotly](https://plotly.com/javascri
 In your `build.sbt` file.
 
 ```scala
-tmmScalaPlotlyVersion = 0.0.1
+tmmScalaPlotlyVersion = 0.0.2
 
 libraryDependencies += "au.id.tmm.plotly" %% "plotly-core" % tmmScalaPlotlyVersion
 ```

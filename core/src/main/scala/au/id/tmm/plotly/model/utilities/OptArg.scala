@@ -15,37 +15,37 @@ import scala.annotation.tailrec
   * arguments in `OptArg.Of`.
   */
 sealed trait OptArg[+A] {
-  def toOption: Option[A] =
+  private[plotly] def toOption: Option[A] =
     this match {
       case OptArg.Of(a)     => Some(a)
       case OptArg.Undefined => None
     }
 
-  def map[B](f: A => B): OptArg[B] =
+  private[plotly] def map[B](f: A => B): OptArg[B] =
     this match {
       case OptArg.Of(a)     => OptArg.Of(f(a))
       case OptArg.Undefined => OptArg.Undefined
     }
 
-  def flatMap[B](f: A => OptArg[B]): OptArg[B] =
+  private[plotly] def flatMap[B](f: A => OptArg[B]): OptArg[B] =
     this match {
       case OptArg.Of(a)     => f(a)
       case OptArg.Undefined => OptArg.Undefined
     }
 
-  def isDefined: Boolean =
+  private[plotly] def isDefined: Boolean =
     this match {
       case OptArg.Of(_)     => true
       case OptArg.Undefined => false
     }
 
-  def orElse[A1 >: A](that: => OptArg[A1]): OptArg[A1] =
+  private[plotly] def orElse[A1 >: A](that: => OptArg[A1]): OptArg[A1] =
     this match {
       case self @ OptArg.Of(_) => self
       case OptArg.Undefined    => that
     }
 
-  def getOrElse[A1 >: A](that: => A1): A1 =
+  private[plotly] def getOrElse[A1 >: A](that: => A1): A1 =
     this match {
       case OptArg.Of(a)     => a
       case OptArg.Undefined => that

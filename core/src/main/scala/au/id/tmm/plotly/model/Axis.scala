@@ -11,7 +11,7 @@ sealed trait Axis {
   def color: OptArg[Color]
   def title: OptArg[Axis.Title]
   def titlefont: OptArg[Font]
-  def `type`: OptArg[Axis.Type]
+  def axisType: OptArg[Axis.Type]
   def autorange: OptArg[BooleanOr[Axis.AutoRange]]
   def rangemode: OptArg[Axis.RangeMode]
   def range: OptArg[Axis.Range]
@@ -154,7 +154,7 @@ final case class LayoutAxis(
   color: OptArg[Color]                                = OptArg.Undefined,
   title: OptArg[Axis.Title]                           = OptArg.Undefined,
   titlefont: OptArg[Font]                             = OptArg.Undefined,
-  `type`: OptArg[Axis.Type]                           = OptArg.Undefined,
+  axisType: OptArg[Axis.Type]                         = OptArg.Undefined,
   autorange: OptArg[BooleanOr[Axis.AutoRange]]        = OptArg.Undefined,
   rangemode: OptArg[Axis.RangeMode]                   = OptArg.Undefined,
   range: OptArg[Axis.Range]                           = OptArg.Undefined,
@@ -270,7 +270,7 @@ object LayoutAxis {
         "color" := layoutAxis.color,
         "title" := layoutAxis.title,
         "titlefont" := layoutAxis.titlefont,
-        "type" := layoutAxis.`type`,
+        "type" := layoutAxis.axisType,
         "autorange" := layoutAxis.autorange,
         "rangemode" := layoutAxis.rangemode,
         "range" := layoutAxis.range,
@@ -319,7 +319,7 @@ final case class SceneAxis(
   color: OptArg[Color]                         = OptArg.Undefined,
   title: OptArg[Axis.Title]                    = OptArg.Undefined,
   titlefont: OptArg[Font]                      = OptArg.Undefined,
-  `type`: OptArg[Axis.Type]                    = OptArg.Undefined,
+  axisType: OptArg[Axis.Type]                  = OptArg.Undefined,
   autorange: OptArg[BooleanOr[Axis.AutoRange]] = OptArg.Undefined,
   rangemode: OptArg[Axis.RangeMode]            = OptArg.Undefined,
   range: OptArg[Axis.Range]                    = OptArg.Undefined,
@@ -356,7 +356,7 @@ object SceneAxis {
         "color" := sceneAxis.color,
         "title" := sceneAxis.title,
         "titlefont" := sceneAxis.titlefont,
-        "type" := sceneAxis.`type`,
+        "type" := sceneAxis.axisType,
         "autorange" := sceneAxis.autorange,
         "rangemode" := sceneAxis.rangemode,
         "range" := sceneAxis.range,

@@ -25,7 +25,6 @@ private[model] trait SunburstTraceInterface { this: Trace.type =>
       branchvalues: OptArg[Trace.BranchValues]                   = OptArg.Undefined,
       count: OptArg[FlagList[Trace.Count]]                       = OptArg.Undefined,
       hoverlabel: OptArg[HoverLabel]                             = OptArg.Undefined,
-      hole: OptArg[Number]                                       = OptArg.Undefined,
       insidetextfont: OptArg[Font]                               = OptArg.Undefined,
       insidetextorientation: OptArg[Trace.InsideTextOrientation] = OptArg.Undefined,
       outsidetextfont: OptArg[Font]                              = OptArg.Undefined,

@@ -11,7 +11,7 @@ In your `build.sbt` file.
 ```scala
 tmmScalaPlotlyVersion = 0.0.2
 
-libraryDependencies += "au.id.tmm.plotly" %% "plotly-core" % tmmScalaPlotlyVersion
+libraryDependencies += "au.id.tmm.tmm-scala-plotly" %% "tmm-scala-plotly-core" % tmmScalaPlotlyVersion
 ```
 
 ## Rationale

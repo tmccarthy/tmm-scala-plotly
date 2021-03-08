@@ -5,16 +5,16 @@ import cats.Show
 import cats.instances.string.catsKernelStdOrderForString
 import cats.kernel.Order
 import io.circe.{Encoder, Json}
-import org.scalatest.flatspec.AnyFlatSpec
+import munit.FunSuite
 
-class FlagListSpec extends AnyFlatSpec {
+class FlagListSpec extends FunSuite {
 
-  "the FlagList encoder" should "encode a single flag" in {
-    assert(Encoder[FlagList[Flag]].apply(FlagList[Flag](Flag.A)) === Json.fromString("a"))
+  test("encode a single flat") {
+    assertEquals(Encoder[FlagList[Flag]].apply(FlagList[Flag](Flag.A)), Json.fromString("a"))
   }
 
-  it should "encode multiple flags" in {
-    assert(Encoder[FlagList[Flag]].apply(FlagList[Flag](Flag.A, Flag.B, Flag.C)) === Json.fromString("a+b+c"))
+  test("encode multiple flags") {
+    assertEquals(Encoder[FlagList[Flag]].apply(FlagList[Flag](Flag.A, Flag.B, Flag.C)), Json.fromString("a+b+c"))
   }
 
 }

@@ -3,20 +3,20 @@ package au.id.tmm.plotly.syntax
 import java.time.Instant
 
 import au.id.tmm.plotly.model.Datum
-import org.scalatest.flatspec.AnyFlatSpec
+import munit.FunSuite
 
-class DatumSyntaxSpec extends AnyFlatSpec {
+class DatumSyntaxSpec extends FunSuite {
 
-  "the datum syntax" should "provide a conversion from Double" in {
-    assert((2d: Datum) === Datum.OfNumber(2d))
+  test("provide a conversion from Double") {
+    assertEquals(2d: Datum, Datum.OfNumber(2d))
   }
 
-  it should "provide a conversion from Instant" in {
-    assert((Instant.EPOCH: Datum) === Datum.OfInstant(Instant.EPOCH))
+  test("provide a conversion from Instant") {
+    assertEquals(Instant.EPOCH: Datum, Datum.OfInstant(Instant.EPOCH))
   }
 
-  it should "provide a conversion from String" in {
-    assert(("hello": Datum) === Datum.OfString("hello"))
+  test("provide a conversion from String") {
+    assertEquals("hello": Datum, Datum.OfString("hello"))
   }
 
 }
